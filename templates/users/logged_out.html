@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/logout.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="logout-container">
+    <h1 class="logout-title">Вы успешно вышли из системы</h1>
+    <p class="logout-message">
+      Вернуться на <a href="{% url 'users:login' %}" class="logout-link">страницу входа</a>.
+    </p>
+  </div>
+{% endblock %}

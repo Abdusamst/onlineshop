@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "assets/search.css" %}" />
+{% endblock %}
+
+
+{% block content %}
+<div class="search-results-container">
+    <h2 class="search-results-title">
+        Результаты поиска{% if query %} для "{{ query }}"{% endif %}
+    </h2>
+
+    {% if results %}
+        <ul class="search-results-list">
+            {% for item in results %}
+                <li class="search-results-item">
+                    <a href="{% url 'store:item_details' item.slug %}" class="search-results-link">
+                        {{ item.title }}
+                    </a>
+                    <p class="search-results-description">
+                        {{ item.description|truncatewords:20 }}
+                    </p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="search-results-empty">Ничего не найдено.</p>
+    {% endif %}
+</div>
+{% endblock %}

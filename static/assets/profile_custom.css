@@ -1,0 +1,106 @@
+/* Заголовок профиля */
+.profile-title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Основная информация профиля */
+.profile-info {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-info:hover {
+  background-color: #e9ecef;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Приветствие пользователя */
+.profile-greeting {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #555;
+  font-family: 'Arial', sans-serif;
+}
+
+.profile-username {
+  font-weight: bold;
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+.profile-username:hover {
+  color: #0056b3;
+}
+
+.profile-order-count {
+  font-weight: bold;
+  color: #28a745;
+}
+
+/* Секция с действиями пользователя */
+.profile-actions {
+  margin-top: 20px;
+}
+
+/* Ссылки */
+.profile-orders, .profile-logout, .profile-password-change {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.profile-orders-link, .profile-logout-link, .profile-password-change-link {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.profile-orders-link:hover, .profile-logout-link:hover, .profile-password-change-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+
+/* Кнопка выхода */
+.profile-logout-link {
+  color: #dc3545;
+}
+
+.profile-logout-link:hover {
+  color: #c82333;
+}
+
+/* Кнопка смены пароля */
+.profile-password-change-link {
+  color: #17a2b8;
+}
+
+.profile-password-change-link:hover {
+  color: #138496;
+}
+
+/* Стиль для блока действий */
+.profile-actions p {
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.profile-actions p:hover {
+  background-color: #e9ecef;
+  transform: scale(1.02);
+}

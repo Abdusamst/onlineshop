@@ -1,0 +1,96 @@
+/* Заголовок страницы с заказами */
+.orders-title {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Контейнер для заказов */
+  .orders-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Карточка заказа */
+  .order-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    padding: 20px;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .order-card:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Заголовок карточки */
+  .order-header {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Статус и адрес */
+  .order-address {
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .order-status {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  /* Таблица с товарами */
+  .table-wrapper {
+    margin-top: 20px;
+  }
+  
+  .order-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .order-table th, .order-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .order-table th {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .order-table td {
+    color: #555;
+  }
+  
+  .order-table tfoot {
+    font-weight: bold;
+  }
+  
+  .order-divider {
+    border: 0;
+    border-top: 2px solid #f0f0f0;
+    margin: 20px 0;
+  }
+  
+  /* Сообщение о том, что заказов нет */
+  .no-orders-message {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+  }
+  

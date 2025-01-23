@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/item_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="item-details-container">
+    <h2 class="item-title">{{ item.title }}</h2>
+    <p class="item-category">Товар принадлежит к категории: 
+        {% for tag in item.tags.all %}
+            <b><a href="{% url 'store:tag_details' tag.slug %}" class="item-tag">{{ tag }}</a></b>
+            {% if not forloop.last %},{% endif %}
+        {% endfor %}
+    </p>
+
+    <div class="item-card">
+        <div class="item-image-wrapper">
+            {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.title }}" class="item-image">
+            {% else %}
+                <img src="{% static 'images/pic14.jpg' %}" alt="Default image" class="item-image">
+            {% endif %}
+        </div>
+
+        <div class="item-info">
+            <p class="item-description">{{ item.description }}</p>
+
+            {% if item.old_price %}
+                <p class="item-price">
+                    <span class="old-price">Старая цена: <s>{{ item.old_price }} Сом</s></span>
+                    <span class="new-price">Новая цена: <b>{{ item.price }}</b> Сом</span>
+                </p>
+            {% else %}
+                <p class="item-price">
+                    Цена: <b>{{ item.price }}</b> Сом
+                </p>
+            {% endif %}
+
+            <div class="item-actions">
+                <a href="{% url 'cart:add_to_cart' item.slug %}" class="button add-to-cart">Добавить в корзину</a>
+                {% if user.is_authenticated %}
+                    {% if is_favorite %}
+                        <a href="{% url 'store:remove_from_favorites' item.id %}" class="button remove-favorite">Удалить из избранного</a>
+                    {% else %}
+                        <a href="{% url 'store:add_to_favorites' item.id %}" class="button add-favorite">Добавить в избранное</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

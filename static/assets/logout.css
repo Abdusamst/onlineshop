@@ -1,0 +1,37 @@
+/* Общий контейнер для страницы */
+.logout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Заголовок уведомления */
+  .logout-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #4caf50;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  /* Сообщение и ссылка */
+  .logout-message {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .logout-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .logout-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  

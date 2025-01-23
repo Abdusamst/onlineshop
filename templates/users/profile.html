@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "assets/profile_custom.css" %}" />
+{% endblock %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/profile_custom.css' %}">
+</head>
+<body>
+{% block content %}
+<h1 class="profile-title">Ваш профиль</h1>
+<div class="profile-info">
+  <p class="profile-greeting">
+    Здравствуйте, <span class="profile-username">{{ request.user.get_username }}</span>. 
+    Всего у вас <strong class="profile-order-count">{{ request.user.orders.count }}</strong> заказов.
+  </p>
+  <div class="profile-actions">
+    <p class="profile-orders">
+      Ваши заказы: 
+      <a href="{% url 'users:user_orders' %}" class="profile-orders-link">Перейти к заказам</a>
+    </p>
+    <p class="profile-logout">
+      Если вы хотите выйти из системы: 
+      <a href="{% url 'users:logout' %}" class="profile-logout-link">Выйти</a>
+    </p>
+    <p class="profile-password-change">
+      Если вы хотите сменить пароль: 
+      <a href="{% url 'users:password_change' %}" class="profile-password-change-link">Сменить пароль</a>
+    </p>
+  </div>
+</div>
+{% endblock %}
+
+</body>
+</html>
+

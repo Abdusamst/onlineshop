@@ -1,0 +1,98 @@
+.carousel-slide {
+    width: 1000px;
+    height: 320px;
+    border: 4px solid;
+    border-radius: 15px;
+    background: linear-gradient(to right, rgb(0, 108, 202), rgb(1, 108, 230));
+    overflow: hidden;
+    position: relative;
+    list-style-type: none;
+    margin-left: 250px;
+    margin-top: 30px;
+    
+}
+
+.carousel-slide .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 10px; /* Добавляем радиус скругления для изображения */
+    margin: 0 auto; /* Добавляем выравнивание по центру */
+    border-radius: 10px;
+}
+
+.beseller {
+    background-color: darkred;
+    padding: 7px 25px;
+    text-decoration: none;
+    border-radius: 30px;
+    margin-left: 1300px;
+    position: absolute;
+    margin-top: -320px;
+}
+
+.icon-besseler {
+    color: white;
+}
+
+.Jhin {
+    width: 300px;
+    height: 500px;
+    position: absolute;
+    margin-left: 1350px;
+    margin-top: -250px;
+    z-index: -1;
+}
+
+.tags_mainpage {
+    display: flex;
+    flex-direction: row;
+     /* чтобы теги переносились на следующую строку при нехватке места */
+    gap: 20px; /* расстояние между тегами */
+    justify-content: center; /* выравнивание по центру */
+    margin: 20px 0; /* отступы сверху и снизу */
+}
+
+.tags_mainpage a {
+    text-align: center; /* выравнивание текста по центру */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.tags_mainpage .image {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%; /* делаем изображение круглым */
+    border: 2px solid #000; /* добавляем рамку для кружков */
+}
+
+.tags_mainpage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* делаем изображение круглым */
+}
+
+.tags_mainpage b {
+    margin-top: 10px; /* отступ сверху */
+    display: block;
+}
+
+.tags_mainpage {
+   
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+.button_small {
+    background-color: rgb(0, 69, 139);
+}

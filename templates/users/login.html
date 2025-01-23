@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "assets/login.css" %}" />
+{% endblock %}
+
+{% block content %}
+<h1 class="login-title">Войти на сайт</h1>
+<form method="post" class="login-form">
+  {% csrf_token %}
+  {% for field in form %}
+  <p class="login-form-group">
+    <div class="login-form-field">
+      <label class="login-label" for="{{ field.id_for_label }}">{{ field.label }}:</label> 
+      {{ field }}
+    </div>
+    {% if form.errors %}
+    <div class="login-error-container">
+      {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+          <span class="login-error-message">{{ error }}</span>
+        {% endfor %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </p>
+  {% endfor %}
+  <br>
+  <button type="submit" class="login-submit-button">Войти</button>
+</form>
+<div class="login-register-container">
+  <span class="login-register-text">Еще не зарегистрированы?</span>
+  <a href="{% url 'users:signup' %}" class="login-register-link">Зарегистрироваться</a>
+</div>
+<a href="{% url 'users:password_reset_form' %}" class="login-forgot-password-link">
+  Забыли пароль?
+</a>
+{% endblock %}

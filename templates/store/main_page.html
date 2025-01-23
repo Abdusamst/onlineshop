@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/main_page.css' %}">
+</head>
+<body>
+    <div id="carouselExampleIndicators" class="carousel-slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for poster in posters %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="{{ poster.image.url }}" class="d-block w-100 img-poster" alt="Poster">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Poster {{ forloop.counter }}</h5>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    
+        {% if posters|length > 1 %}
+            <!-- Кнопки навигации только если больше одного изображения -->
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        {% endif %}
+    </div>
+    
+    <div class="become-seller">
+        <a href="{% url 'store:becomeseller' %}" class="beseller"><span class="icon-besseler">Стать продавцом</span></a>
+    </div>
+    <div>
+        <img src="{% static 'images/ddd.png' %}" class="Jhin">
+    </div>
+    <!--Карусель категорий-->
+    <div class="carousel-container">
+        <div class="tags_mainpage">
+          {% for tag in page_obj_2 %}
+          <a href="{% url 'store:tag_details' tag.slug %}" class="carousel-item">
+            <p><span class="image right">
+              {% if tag.image %}
+                <img src="{{ tag.image.url }}" alt="" style="width: 200px; height: 200px;"/>
+              {% else %}
+                <img src="{% static 'images/pic14.jpg' %}" alt="" />
+              {% endif %}
+            </span></p>
+            <b>{{ tag.name }}</b>
+          </a>
+          {% endfor %}
+        </div>
+        <button class="next">&#60;</button>
+        <button class="previous">&#62;</button>
+      </div>
+      
+    
+    
+    <!-- Продукты -->
+    <section id="products">
+        <div class="inner">
+            <h2>Список всех продуктов</h2>
+            <div class="product-list">
+                {% for item in page_obj %}
+                    <div class="product-item" id="item-{{ item.id }}">
+                        <a href="{% url 'store:item_details' item.slug %}"><b>{{ item.title }}</b></a>
+                        <p><span class="image right">
+                            {% if item.image %}
+                                <img src="{{ item.image.url }}" alt="" />
+                            {% else %}
+                                <img src="{% static 'images/pic14.jpg' %}" alt="" />
+                            {% endif %}
+                        </span>{{ item.description }}</p>
+                        {% if user.is_authenticated %}
+                            <button class="btn btn-sm btn-outline-primary" onclick="toggleFavorite({ item.id })">
+                                {% if item.id in favorites %}
+                                <i class="fa-solid fa-heart"></i>
+                                {% else %}
+                                <i class="fa-solid fa-heart"></i>
+                                {% endif %}
+                            </button>
+                            <a href="{% url 'cart:add_to_cart' item.slug %}" class="button_small" style="margin-top:10px;">
+                                Добавить в корзину</a>
+                        {% endif %}
+                    </div>
+                    {% if not forloop.last %}{% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    {% endblock %}
+    
+    {% block js %}
+    <script>
+
+function toggleFavorite(itemId) {
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;       
+    fetch(`/toggle_favorite/${itemId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify({}),
+    })
+    .then(response => response.json())
+    .then(data => {
+        const button = document.getElementById(`favorite-btn-${itemId}`);
+        const icon = button.querySelector('i');
+
+        if (data.action === 'added') {
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+        } else if (data.action === 'removed') {
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+        }
+    })
+    .catch(error => console.error('Ошибка:', error));
+}
+
+
+</script>
+    {% endblock %}
+    
+</body>
+</html>
+

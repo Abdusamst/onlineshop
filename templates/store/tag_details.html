@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'assets/tag_detail.css' %}">
+{% endblock %}
+<div class="tag-page">
+    <h2 class="tag-title">{{ tag.name }}</h2>
+    <p class="tag-count">Количество товаров:&ensp;<span class="count">{{ tag.items.count }}</span></p>
+    <p><a href="{% url 'store:tag_list' %}" class="back-to-categories"><b>Все категории</b></a></p>
+    <hr class="divider">
+    <div class="items-list">
+        {% for item in page_obj %}
+        <div class="item-card">
+            <a href="{% url 'store:item_details' item.slug %}" class="item-title"><b>{{ item.title }}</b></a>
+            <div class="item-image">
+                {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.title }}" class="image-content">
+                {% else %}
+                <img src="{% static "images/pic01.jpg" %}" alt="default image" class="image-placeholder">
+                {% endif %}
+            </div>
+            <a href="{% url 'cart:add_to_cart' item.slug %}" class="add-to-cart-btn button small">Добавить в корзину</a>
+            <p class="item-description">{{ item.description }}</p>
+            <div class="item-prices">
+                {% if item.old_price %}
+                <p class="price-old">Старая цена: <s>{{ item.old_price }} сом</s></p>
+                <p class="price-new">Новая цена: <b>{{ item.price }}</b> сом</p>
+                {% else %}
+                <p class="price-current">Цена: <b>{{ item.price }}</b> сом</p>
+                {% endif %}
+            </div>
+            {% if not forloop.last %}
+            <hr class="item-divider">
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

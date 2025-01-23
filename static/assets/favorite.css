@@ -1,0 +1,109 @@
+.favorites-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.favorites-title {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.favorites-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.favorites-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.favorites-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.favorites-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.favorites-card-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.favorites-item-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.favorites-item-title a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.2s ease;
+}
+
+.favorites-item-title a:hover {
+    color: #0056b3;
+}
+
+.favorites-item-description {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0 15px;
+}
+
+.favorites-remove-button {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.favorites-remove-button:hover {
+    background-color: #e60000;
+}
+
+.favorites-empty {
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+    margin-top: 20px;
+}
+
+.favorites-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.favorites-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Сохраняет пропорции изображения и вписывает его внутрь контейнера */
+    object-position: center; /* Центрует изображение, если оно меньше контейнера */
+}

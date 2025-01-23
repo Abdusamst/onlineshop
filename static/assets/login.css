@@ -1,0 +1,124 @@
+/* Заголовок */
+.login-title {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Форма */
+  .login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Группа элементов формы */
+  .login-form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Элемент формы */
+  .login-form-field {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Метка поля */
+  .login-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  /* Поле ввода */
+  .login-form-field input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .login-form-field input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Контейнер ошибок */
+  .login-error-container {
+    margin-top: 5px;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border: 1px solid #ffcccc;
+    border-radius: 4px;
+  }
+  
+  /* Сообщение об ошибке */
+  .login-error-message {
+    color: #d9534f;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  
+  /* Кнопка отправки */
+  .login-submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Контейнер регистрации */
+  .login-register-container {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  /* Текст регистрации */
+  .login-register-text {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Ссылка регистрации */
+  .login-register-link {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-register-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Ссылка восстановления пароля */
+  .login-forgot-password-link {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .login-forgot-password-link:hover {
+    text-decoration: underline;
+  }
+  

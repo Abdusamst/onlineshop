@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "assets/favorite.css" %}" />
+{% endblock %}
+
+{% block content %}
+<div class="favorites-container">
+    <h2 class="favorites-title">Мои избранные товары</h2>
+
+    {% if favorites %}
+        <div class="favorites-grid">
+            {% for favorite in favorites %}
+                <div class="favorites-card">
+                    <div class="favorites-card-image">
+                        {% if favorite.item.image %}
+                            <img src="{{ favorite.item.image.url }}" alt="{{ favorite.item.title }}" class="favorites-item-image">
+                        {% else %}
+                            <img src="{% static 'images/default-item.jpg' %}" alt="Нет изображения" class="favorites-item-image">
+                        {% endif %}
+                    </div>
+                    <div class="favorites-card-content">
+                        <h3 class="favorites-item-title">
+                            <a href="{% url 'store:item_details' favorite.item.slug %}">
+                                {{ favorite.item.title }}
+                            </a>
+                        </h3>
+                        <p class="favorites-item-description">
+                            {{ favorite.item.description|truncatewords:20 }}
+                        </p>
+                        <form action="{% url 'store:remove_from_favorites' favorite.item.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="favorites-remove-button">
+                                Удалить из избранного
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="favorites-empty">У вас нет избранных товаров.</p>
+    {% endif %}
+</div>
+{% endblock %}
