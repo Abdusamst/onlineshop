@@ -1,0 +1,33 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0 2px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination .button:hover {
+    background-color: #0056b3;
+}
+
+.pagination .button.disabled {
+    background-color: #ccc;
+    cursor: default;
+}
+
+.pagination .button.small {
+    padding: 5px 10px;
+    font-size: 12px;
+}

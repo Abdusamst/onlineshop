@@ -95,4 +95,32 @@
 
 .button_small {
     background-color: rgb(0, 69, 139);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.button_small a {
+    color: white;
+}
+
+.btn-outline-primary {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+i.fa-heart {
+    font-size: 24px; /* Размер иконки */
+    transition: color 0.3s;
+}
+
+.fa-heart.fa-solid {
+    color: red; /* Красный цвет для solid */
+}
+
+.fa-heart.fa-regular {
+    color: grey; /* Серый цвет для regular */
 }

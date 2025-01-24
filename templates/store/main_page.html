@@ -80,15 +80,16 @@
                                 <img src="{% static 'images/pic14.jpg' %}" alt="" />
                             {% endif %}
                         </span>{{ item.description }}</p>
+                        <p class="price-current">Цена: <b style="color: black;">{{ item.price }}</b> сом</p>
                         {% if user.is_authenticated %}
-                            <button class="btn btn-sm btn-outline-primary" onclick="toggleFavorite({ item.id })">
-                                {% if item.id in favorites %}
-                                <i class="fa-solid fa-heart"></i>
-                                {% else %}
-                                <i class="fa-solid fa-heart"></i>
-                                {% endif %}
-                            </button>
-                            <a href="{% url 'cart:add_to_cart' item.slug %}" class="button_small" style="margin-top:10px;">
+                        <button id="favorite-btn-{{ item.id }}" class="btn btn-sm btn-outline-primary" onclick="toggleFavorite({{ item.id }})">
+                            {% if item.id in favorites %}
+                            <i class="fa-solid fa-heart"></i>
+                            {% else %}
+                            <i class="fa-regular fa-heart"></i>
+                            {% endif %}
+                        </button>                        
+                            <a href="{% url 'cart:add_to_cart' item.slug %}" class="button_small" style="margin-top:10px; color: white;">
                                 Добавить в корзину</a>
                         {% endif %}
                     </div>
@@ -119,7 +120,7 @@ function toggleFavorite(itemId) {
     .then(response => response.json())
     .then(data => {
         const button = document.getElementById(`favorite-btn-${itemId}`);
-        const icon = button.querySelector('i');
+        const icon = button.firstElementChild;
 
         if (data.action === 'added') {
             icon.classList.remove('fa-regular');
