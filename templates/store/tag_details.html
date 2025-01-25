@@ -28,7 +28,7 @@
                 <p class="price-old">Старая цена: <s>{{ item.old_price }} сом</s></p>
                 <p class="price-new">Новая цена: <b>{{ item.price }}</b> сом</p>
                 {% else %}
-                <p class="price-current">Цена: <b>{{ item.price }}</b> сом</p>
+                <p class="price-current">Цена: <b>{{ item.price }}</b> сом</p>  
                 {% endif %}
             </div>
             {% if not forloop.last %}

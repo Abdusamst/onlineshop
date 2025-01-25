@@ -124,3 +124,44 @@ i.fa-heart {
 .fa-heart.fa-regular {
     color: grey; /* Серый цвет для regular */
 }
+
+.carousel-container {
+    position: relative;
+    max-width: 1340px;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.tags_mainpage {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px 50px;
+}
+
+.next, .previous {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.next {
+    right: 0;
+}
+
+.previous {
+    left: 0;
+}
+
+.next:hover, .previous:hover {
+    background-color: rgba(0,0,0,0.7);
+}
+
