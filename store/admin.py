@@ -1,6 +1,10 @@
 from django.contrib import admin
-from .models import Item, ItemTag, Poster
+from .models import Item, ItemTag, Poster, Seller
 
+
+@admin.register(Seller)  # Если @admin.register отсутствует, добавь его
+class SellerAdmin(admin.ModelAdmin):
+    list_display = ['id']
 
 class ItemAdmin(admin.ModelAdmin):
     list_display = ('title', 'short_description', 'slug', 'price',
@@ -11,7 +15,7 @@ class ItemAdmin(admin.ModelAdmin):
     def short_description(self, obj):
         if len(obj.description) > 100:
             return obj.description[:100] + '...'
-        else:
+        else:   
             return obj.description
 
     def get_queryset(self, request):
