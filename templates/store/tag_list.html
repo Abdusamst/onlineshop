@@ -2,17 +2,26 @@
 
 {% block content %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "assets/tag_list.css" %}">
+{% endblock %}
+
+<div class="category-container">
     <h2>Список всех категорий</h2>
     <hr>
-{% for tag in page_obj %}
-    <a href="{% url 'store:tag_details' tag.slug %}"><b>{{ tag.name }}</b></a>
-    <p><span class="image right">
-        {% if tag.image %}
-            <img src="{{ tag.image.url }}" alt="" style="width: 200px; height: 200px;"/>
-        {% else %}
-            <img src="{% static "images/pic14.jpg" %}" alt="" />
-        {% endif %}
-    </span>{{tag.description}}{{tag.description}}</p>
-    {% if not forloop.last %}<hr>{% endif %}
-{% endfor %}
-{% endblock %} 
+    {% for tag in page_obj %}
+        <div class="category-item">
+            <a href="{% url 'store:tag_details' tag.slug %}">{{ tag.name }}</a>
+            <p>
+                {% if tag.image %}
+                    <img src="{{ tag.image.url }}" alt="{{ tag.name }}">
+                {% else %}
+                    <img src="{% static "images/pic14.jpg" %}" alt="Default Image">
+                {% endif %}
+                {{ tag.description }}
+            </p>
+        </div>
+        {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
