@@ -138,20 +138,34 @@ from .models import Seller, Item
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import SellerRegistrationForm
+from .models import User, Seller
+
 @login_required
 def become_seller(request):
+    if request.user.is_seller:
+        messages.info(request, 'Вы уже продавец.')
+        return redirect('store:home')
+
     if request.method == 'POST':
         form = SellerRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             seller = form.save(commit=False)
             seller.user = request.user
             seller.save()
-            return redirect('store:home')
+            request.user.is_seller = True
+            request.user.save()
+            return redirect('store:add_item')  # Перенаправление на добавление товара
     else:
         form = SellerRegistrationForm()
+        
     return render(request, 'store/becomeseller.html', {'form': form})
 
-from django.contrib.auth.decorators import login_required
+
+
 
 @login_required
 def add_item(request):
@@ -159,11 +173,42 @@ def add_item(request):
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
             item = form.save(commit=False)
-            item.seller = request.user.seller 
+            item.seller = request.user  # Используйте объект CustomUser вместо Seller
             item.save()
-            return redirect('store:item_list')
+            return redirect('store:my_items')
     else:
         form = ItemForm()
     return render(request, 'store/add_item.html', {'form': form})
 
 
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Item
+
+@login_required
+def my_items(request):
+    seller = request.user
+    items = Item.objects.filter(seller=seller)
+    return render(request, 'store/my_items.html', {'items': items})
+
+
+@login_required
+def edit_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id, seller=request.user)  # Используйте объект CustomUser вместо Seller
+    if request.method == 'POST':
+        form = ItemForm(request.POST, request.FILES, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('store:my_items')
+    else:
+        form = ItemForm(instance=item)
+    return render(request, 'store/edit_item.html', {'form': form, 'item': item})
+
+@login_required
+def delete_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id, seller=request.user)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('store:my_items')
+    return render(request, 'store/delete_item.html', {'item': item})

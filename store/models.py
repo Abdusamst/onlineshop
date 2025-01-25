@@ -89,7 +89,7 @@ class Item(models.Model):
         verbose_name='Доступно',
     )
     tags = TaggableManager(through=TaggedItem, related_name="tagged_items", verbose_name='Категории',)
-
+    seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default = 1 ,related_name='items', verbose_name='Продавец')
     def __str__(self):
         return self.title
 
