@@ -24,17 +24,7 @@
             {% endfor %}
         </div>
     
-        {% if posters|length > 1 %}
-            <!-- Кнопки навигации только если больше одного изображения -->
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        {% endif %}
+
     </div>
     
     <div class="become-seller">
@@ -106,6 +96,33 @@
     
     {% block js %}
     <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.querySelector('.tags_mainpage');
+    const nextButton = document.querySelector('.next');
+    const prevButton = document.querySelector('.previous');
+    const carouselItems = document.querySelectorAll('.tags_mainpage a');
+
+    const itemWidth = carouselItems[0].offsetWidth + 20;
+    const totalItems = carouselItems.length;
+    const visibleItems = 4;
+    const maxScroll = (totalItems - visibleItems) * itemWidth;
+
+    let currentScroll = 0;
+
+    nextButton.addEventListener('click', () => {
+        if (currentScroll < maxScroll) {
+            currentScroll += itemWidth;
+            carousel.scrollLeft = currentScroll;
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (currentScroll > 0) {
+            currentScroll -= itemWidth;
+            carousel.scrollLeft = currentScroll;
+        }
+    });
+});
 
 function toggleFavorite(itemId) {
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;       

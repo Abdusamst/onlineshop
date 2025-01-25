@@ -37,14 +37,25 @@ def item_details(request, item_slug):
     }
     return render(request, 'store/item_details.html', context)
 
+from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
+from .models import ItemTag, Item
+
 def tag_details(request, slug):
     tag = get_object_or_404(ItemTag, slug=slug)
-    items = Item.objects.filter(tags__in=[tag])
+    items = Item.objects.filter(tags=tag)  # Вместо tags__in=[tag]
+    paginator = Paginator(items, 10)  # отобразить 10 товаров на странице
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
         'tag': tag,
-        'page_obj': paginator(request, items, 3),
+        'page_obj': page_obj,
     }
+
     return render(request, 'store/tag_details.html', context)
+
 
 def tag_list(request):
     tags = ItemTag.objects.all()
