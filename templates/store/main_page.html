@@ -34,6 +34,12 @@
                 <a href="{% url 'store:becomeseller' %}" class="beseller">Стать продавцом</a>
             </div>
         </div>
+        <div class="seller-dashboard">
+            {% if user.is_seller %}
+            <a href="{% url 'store:add_item' %}" class="button_add_item">Добавить товар</a>
+            <a href="{% url 'store:my_items' %}" class="button_my_items">Мои товары</a>
+        {% endif %}
+        </div>
         <!--Карусель категорий-->
         <div class="carousel-container">
             <div class="tags_mainpage">
@@ -56,12 +62,7 @@
           
         
     </div>
-        <div class="seller-dashboard">
-            {% if user.is_seller %}
-            <a href="{% url 'store:add_item' %}" class="button">Добавить товар</a>
-            <a href="{% url 'store:my_items' %}" class="button">Мои товары</a>
-        {% endif %}
-        </div>
+
         <!-- Продукты -->
         <section id="products">
             <div class="inner">

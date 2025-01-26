@@ -82,7 +82,7 @@ def update_cart_item(request):
         cart_item.save()
 
         # Обновляем общую сумму корзины
-        cart_total_price = sum(item.total_price for item in cart.cartitem_set.all())
+        cart_total_price = sum(item.total_price for item in cart.items.all())
 
         return JsonResponse({
             'success': True,
