@@ -170,10 +170,33 @@ i.fa-heart {
     margin-left: 15%;
 }
 
+
+
 .products {
     background-color: white;
 }   
 
+.button_add_item {
+    background-color: darkred;
+    padding: 7px 25px;
+    text-decoration: none;
+    border-radius: 30px;
+    color: white;
+    margin-left: 1470px;
+    position: absolute;
+    margin-top: -320px;
+}
+
+.button_my_items {
+    background-color: darkred;
+    padding: 7px 25px;
+    text-decoration: none;
+    border-radius: 30px;
+    color: white;
+    margin-left: 1630px;
+    position: absolute;
+    margin-top: -320px;
+}
 
 
 @media screen and (max-width: 1199px) {

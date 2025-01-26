@@ -49,16 +49,16 @@
   </div>
 </section>
 <div style="text-align: justify;">
-  <a href="{% url 'store:home' %}" style="float: left;" class="button">Продолжить покупки</a>
+  <a href="{% url 'store:home' %}" style="float: left;" class="button_continue">Продолжить покупки</a>
   <form method="post" style="float: right;">
     {% csrf_token %}
-    <button type="submit" class="button">Оформить заказ в WhatsApp</button>
+    <button type="submit" class="button_whatsapp">Оформить заказ в WhatsApp</button>
   </form>
 </div>
 {% else %}
 <p>Ваша корзина пуста.</p>
 {% endif %}
 {% block js %}
-<script src="{% static "assets/js/ajax.js" %}"></script>
+<script src="{% static "assets/js/cart.js" %}"></script>
 {% endblock %}
 {% endblock %}
