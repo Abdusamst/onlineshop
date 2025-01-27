@@ -166,10 +166,6 @@ i.fa-heart {
     background-color: rgba(0,0,0,0.7);
 }
 
-.main_page1 {
-    margin-left: 15%;
-}
-
 
 
 .products {
@@ -198,64 +194,278 @@ i.fa-heart {
     margin-top: -320px;
 }
 
-
-@media screen and (max-width: 1199px) {
-    .main_page1 {
-        margin-left: 2%;
-        margin-right: 2%;
-    }
-
-    .carousel-slide {
-        width: 95%;
-        margin: 15px auto;
-    }
-
-    .tags_mainpage {
-        overflow-x: scroll;
-        padding: 10px;
-    }
-
-    .product-list {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
+#products {
+    padding: 20px;
+    background-color: #f9f9f9;
 }
 
-@media screen and (max-width: 768px) {
+#products .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#products h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(25% - 20px); /* три элемента в строке */
+    max-width: calc(25% - 20px);
+    box-sizing: border-box;
+}
+
+.product-item a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.product-item p {
+    color: #666;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-item .btn {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.product-item .button.small {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.product-item .button.small:hover {
+    background-color: #0056b3;
+}
+
+
+@media (max-width: 575.98px) { 
+    .button_add_item {
+        margin-top: 300px;
+        margin-left: 200px;
+    }
+    .button_my_items {
+        margin-top: 300px;
+        margin-left: 60px;
+    }
+    
+    .beseller {
+        margin-top: 360px;
+        margin-left: 60px;
+    }
+
+    #products {
+        margin-top: 600px;
+    }
+
+    .Jhin {
+        margin-top: 300px;
+        margin-left: 200px;
+        width: 300px;
+        height: 500px;
+    }
+    
+    .carousel-slide {
+        width: 490px;
+        height: 250px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        width: 500px;
+        margin-left: 20px;
+    }
+
+
+    .tags_mainpage .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-left: 70px;
+    }
+    .tags_mainpage {
+        margin-right: 20px;
+    }
+
+    .product-item {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .button_add_item {
+        margin-top: 300px;
+        margin-left: 200px;
+    }
+    .button_my_items {
+        margin-top: 300px;
+        margin-left: 60px;
+    }
+    
+    .beseller {
+        margin-top: 360px;
+        margin-left: 60px;
+    }
+
+    #products {
+        margin-top: 600px;
+    }
+
+    .Jhin {
+        margin-top: 300px;
+        margin-left: 200px;
+        width: 300px;
+        height: 500px;
+    }
+    
+    .carousel-slide {
+        width: 510px;
+        height: 250px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        width: 500px;
+        margin-left: 20px;
+    }
+
+
+    .tags_mainpage .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-left: 70px;
+    }
+    .tags_mainpage {
+        margin-right: 20px;
+    }
+
+    .product-item {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+ }
+
+/* Планшеты */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    .button_add_item {
+        margin-top: 300px;
+        margin-left: 200px;
+    }
+    .button_my_items {
+        margin-top: 300px;
+        margin-left: 60px;
+    }
+    
+    .beseller {
+        margin-top: 300px;
+        margin-left: 370px;
+    }
+
+    #products {
+        margin-top: 600px;
+    }
+
+    .Jhin {
+        margin-top: 300px;
+        margin-left: 600px;
+        width: 300px;
+        height: 500px;
+    }
+    
+    .carousel-slide {
+        width: 900px;
+        height: 350px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        width: 940px;
+        margin-left: 20px;
+    }
+
+
+    .tags_mainpage .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-left: 50px;
+    }
+    .tags_mainpage {
+        margin-right: 50px;
+    }
+
+    .product-item {
+        flex: 1 1 calc(27% - 30px);
+        max-width: calc(27% - 30px);
+    }
+ }
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+
+/* Десктопы */
+@media (min-width: 1200px) and (max-width: 1399.98px) { 
     .main_page1 {
         margin-left: 1%;
-        margin-right: 1%;
     }
 
-    .navigation-menu {
-        flex-direction: column;
-        align-items: center;
-    }
+}
+ /* Ноут */
 
-    .tags_mainpage a {
-        width: 150px;
-    }
+/* 2K  второй монитор манитора*/ 
+@media (min-width: 1400px) {
 
-    .product-list {
-        grid-template-columns: 1fr;
-    }
 }
 
-@media screen and (max-width: 1200px) {
-    .jhin-seller-container {
-        flex-direction: column;
-        align-items: center;
-    }
+/* 4K */
+@media (min-width: 2560px) {
 
-    .Jhin {
-        width: 200px;
-        height: 350px;
-        margin-bottom: 20px;
-    }
 }
 
-@media screen and (max-width: 768px) {
-    .Jhin {
-        width: 150px;
-        height: 250px;
-    }
+/* 5K */
+@media (min-width: 5120px) {
+}
+
+/* 8K */
+@media (min-width: 7680px) {
+
 }
