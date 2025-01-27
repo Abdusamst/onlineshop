@@ -150,79 +150,295 @@ body {
     background-color: white;
 }
 
-#products {
-    padding: 20px;
-    background-color: #f9f9f9;
+
+#catalog {
+    position: absolute;
+    left: 50;
+    background: #ffffff; /* Белый фон */
+    border: 1px solid #e0e0e0; /* Лёгкая рамка */
+    border-radius: 10px; /* Закруглённые углы */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Глубокая тень */
+    padding: 15px;
+    z-index: 1000;
+    width: 220px; /* Чуть шире для удобства */
+    top: 250px;
+    list-style-type: none;
+    animation: fadeIn 0.3s ease-in-out; /* Плавное появление */
+    display: none; /* По умолчанию скрыто */
 }
 
-#products .inner {
-    max-width: 1200px;
-    margin: 0 auto;
+#catalog h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
     text-align: center;
 }
 
-#products h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #333;
+#catalog ul {
+    padding: 0;
+    margin: 0;
 }
 
-.product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.product-item {
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(25% - 20px); /* три элемента в строке */
-    max-width: calc(25% - 20px);
-    box-sizing: border-box;
-}
-
-.product-item a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.product-item p {
-    color: #666;
+#catalog ul li {
     margin-bottom: 10px;
     text-align: left;
 }
 
-.product-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+#catalog ul li:last-child {
+    margin-bottom: 0;
 }
 
-.product-item .btn {
-    display: inline-block;
-    margin-top: 10px;
-}
-
-.product-item .button.small {
-    display: inline-block;
-    margin-top: 10px;
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+#catalog ul li a {
     text-decoration: none;
-    transition: background-color 0.3s;
+    font-size: 16px;
+    color: #007bff; /* Синий цвет ссылки */
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-.product-item .button.small:hover {
-    background-color: #0056b3;
+#catalog ul li a:hover {
+    background: #007bff;
+    color: white;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 575.98px) { 
+    .catalog-button {
+        padding: 5px 10px;
+        font-size: 15px;
+    }
+    
+    .logo {
+        background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 36, 65));
+    }
+    .inner1 {
+        margin-left: auto !important;
+        gap: 14px;
+    }
+    .search-bar form {
+        width: 60%;  /* Сделаем форму шире */
+        max-width: 800px;  /* Ограничим максимальную ширину */
+        margin-left: -70px;
+    }
+    .search-bar button i {
+        font-size: 16px;
+    }
+
+    .search-bar button {
+        padding: 6px 15px;
+    }
+    .actions {
+        gap: 4px;
+        margin-left: -80px;
+    }
+    .search-bar input[type="text"] {
+        padding: 5px;
+    }
+    .icons-header {
+        gap: 10px;
+    }
+
+    #catalog {
+        left: 0;
+    }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    
+    #catalog {
+        left: 2;
+    }
+    
+    .catalog-button {
+        padding: 5px 10px;
+        font-size: 15px;
+    }
+    
+    .logo {
+        background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 36, 65));
+    }
+    .inner1 {
+        margin-left: auto !important;
+        gap: 14px;
+    }
+    .search-bar form {
+        width: 60%;  /* Сделаем форму шире */
+        max-width: 800px;  /* Ограничим максимальную ширину */
+        margin-left: -70px;
+    }
+    .search-bar button i {
+        font-size: 16px;
+    }
+
+    .search-bar button {
+        padding: 6px 15px;
+    }
+    .actions {
+        gap: 4px;
+        margin-left: -100px;
+        margin-right: 50px;
+    }
+    .search-bar input[type="text"] {
+        padding: 5px;
+    }
+    .icons-header {
+        gap: 10px;
+    }
+ }
+
+/* Планшеты */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    
+    #catalog {
+        left: 2;
+    }
+    
+    .catalog-button {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+    
+    .logo {
+        background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 36, 65));
+    }
+    .inner1 {
+        margin-left: auto !important;
+        gap: 30px;
+    }
+    .search-bar form {
+        width: 80%;  /* Сделаем форму шире */
+        max-width: 800px;  /* Ограничим максимальную ширину */
+        margin-left: -70px;
+    }
+    .search-bar button i {
+        font-size: 16px;
+    }
+
+    .search-bar button {
+        padding: 12px 30px;
+    }
+    .actions {
+        gap: 4px;
+        margin-left: -200px;
+        margin-right: 50px;
+    }
+    .search-bar input[type="text"] {
+        padding: 5px;
+    }
+    .icons-header {
+        gap: 10px;
+        margin-left: 100px;
+    }
+ }
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+/* Десктопы */
+@media (min-width: 1200px) and (max-width: 1399.98px) { 
+
+}
+/* 2K */
+@media (min-width: 1400px) {
+    
+}
+
+/* 4K */
+@media (min-width: 2560px) {
+    .catalog-button {
+        padding: 20px 40px;
+        font-size: 22px;
+    }
+
+
+    .search-bar form {
+        width: 95%;
+        max-width: 1200px;
+    }
+
+    .search-bar button {
+        padding: 16px 40px;
+        font-size: 20px;
+    }
+
+    .actions {
+        gap: 15px;
+    }
+
+    .icons-header {
+        gap: 20px;
+    }
+}
+
+/* 5K */
+@media (min-width: 5120px) {
+    .catalog-button {
+        padding: 25px 50px;
+        font-size: 26px;
+    }
+
+    .logo {
+        font-size: 48px;
+    }
+
+    .search-bar form {
+        width: 100%;
+        max-width: 1500px;
+    }
+
+    .search-bar button {
+        padding: 18px 50px;
+        font-size: 24px;
+    }
+
+    .actions {
+        gap: 20px;
+    }
+
+    .icons-header {
+        gap: 25px;
+    }
+}
+
+/* 8K */
+@media (min-width: 7680px) {
+    .catalog-button {
+        padding: 30px 60px;
+        font-size: 32px;
+    }
+
+    .logo {
+        font-size: 60px;
+    }
+
+    .search-bar form {
+        width: 100%;
+        max-width: 2000px;
+    }
+
+    .search-bar button {
+        padding: 20px 60px;
+        font-size: 28px;
+    }
+
+    .actions {
+        gap: 30px;
+    }
+
+    .icons-header {
+        gap: 35px;
+    }
 }
