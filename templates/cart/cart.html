@@ -12,17 +12,16 @@
   <div class="table-wrapper">
     <table class="alt">
       <thead>
-        <tr>
-          <th>Название</th>
-          <th>Количество</th>
-          <th>Цена</th>
-          <th></th>
-        </tr>
       </thead>
       <tbody>
         {% for cart_item in cart_items %}
         <tr>
-          <td><a href="{% url 'store:item_details' cart_item.item.slug %}">{{ cart_item.item.title }}</a></td>
+          <td>
+            <img src="{{ cart_item.item.image.url }}" alt="{{ cart_item.item.title }}" style="width: 120px; height: 120px; object-fit: cover;">
+          </td>
+          <td>
+            <a href="{% url 'store:item_details' cart_item.item.slug %}">{{ cart_item.item.title }}</a>
+          </td>
           <td>
             <div class="count">
               <span class="minus" data-cart-item-id="{{ cart_item.id }}">—</span>
@@ -42,7 +41,7 @@
       <tfoot>
         <tr>
           <td colspan="2"></td>
-          <td><u><b><span id="cart-total-price" data-cart-id="{{ cart.id }}">{{ cart.total_price }}</span></b></u></td>
+          <td><u><b><span id="cart-total-price" data-cart-id="{{ cart.id }}">Общая стоимость: {{ cart.total_price }}</span></b></u></td>
         </tr>
       </tfoot>
     </table>

@@ -10,6 +10,7 @@ from OnlineStore.settings import TELEGRAM_CHAT_ID, TELEGRAM_TOKEN
 from checkout.models import Order
 from .forms import CreationForm, FeedbackForm
 from .models import Feedback
+from store.models import ItemTag
 
 
 @login_required
@@ -18,8 +19,12 @@ def user_orders(request):
     Представление списка заказов пользователя.
     """
     orders = Order.objects.filter(user=request.user)
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
     context = {
         'orders': orders,
+        'tags': tags,
+        'page_obj_2': tags,
     }
     return render(request, 'users/user_orders.html', context)
 
@@ -29,7 +34,13 @@ def profile(request):
     """
     Представление профиля пользователя.
     """
-    return render(request, 'users/profile.html')
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
+    context = {
+        'tags': tags,
+        'page_obj_2': tags,
+    }
+    return render(request, 'users/profile.html', context)
 
 
 from django.shortcuts import render, redirect

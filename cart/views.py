@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from store.models import Item
 from .models import Cart, CartItem
 from store.utils import generate_whatsapp_message
+from store.models import ItemTag
 
 @login_required
 def cart(request):
@@ -21,11 +22,14 @@ def cart(request):
     if request.method == 'POST':
         whatsapp_url = generate_whatsapp_message(cart_items)
         return redirect(whatsapp_url)
-
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
     context = {
+        'tags': tags,
+        'page_obj_2': tags,
         'cart_items': cart_items,
         'cart': cart,
-    }
+    }    
 
     return render(request, 'cart/cart.html', context)
 

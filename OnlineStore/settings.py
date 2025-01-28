@@ -47,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'store.custommiddleware.CustomLocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'OnlineStore.urls'
@@ -112,6 +113,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('ru', 'Russian'),
+    ('ky', 'Kyrgyz'),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -145,8 +153,13 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 AUTH_USER_MODEL = 'users.CustomUser'  # Замените 'yourapp' на имя вашего приложения, где находится модель пользователя
 
 LOGIN_REDIRECT_URL = '/'
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # или другой подходящий
 
 
 # Telegram
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]

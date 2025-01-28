@@ -1,0 +1,89 @@
+/* Mobile-first approach */
+.add-item-form {
+    width: 90%;
+    max-width: 500px;
+    margin: 1rem auto;
+    padding: 1rem;
+}
+
+.add-item-form h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Form elements */
+.add-item-form form p {
+    margin-bottom: 1rem;
+}
+
+.add-item-form form p label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+/* Input fields */
+.add-item-form form p input[type="text"],
+.add-item-form form p input[type="number"],
+.add-item-form form p textarea,
+.add-item-form form p select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px; /* Prevents zoom on mobile */
+}
+
+/* File input specific */
+.add-item-form form p input[type="file"] {
+    width: 100%;
+    padding: 0.5rem 0;
+}
+
+/* Submit button */
+.add-item-form .button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Error messages */
+.add-item-form form p .errorlist {
+    color: #f44336;
+    margin: 0.25rem 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.875rem;
+}
+
+/* Help text */
+.add-item-form form p .helptext {
+    color: #666;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Tablet and larger */
+@media screen and (min-width: 768px) {
+    .add-item-form {
+        padding: 1.5rem;
+        margin: 2rem auto;
+    }
+
+    .add-item-form h1 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Desktop adjustments */
+@media screen and (min-width: 1024px) {
+    .add-item-form {
+        padding: 2rem;
+    }
+}

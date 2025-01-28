@@ -26,7 +26,7 @@
     padding: 7px 25px;
     text-decoration: none;
     border-radius: 30px;
-    margin-left: 1300px;
+    margin-left: 1270px;
     position: absolute;
     margin-top: -320px;
     color: white;
@@ -178,7 +178,7 @@ i.fa-heart {
     text-decoration: none;
     border-radius: 30px;
     color: white;
-    margin-left: 1470px;
+    margin-left: 1440px;
     position: absolute;
     margin-top: -320px;
 }
@@ -189,9 +189,9 @@ i.fa-heart {
     text-decoration: none;
     border-radius: 30px;
     color: white;
-    margin-left: 1630px;
+    margin-left: 1380px;
     position: absolute;
-    margin-top: -320px;
+    margin-top: -270px;
 }
 
 #products {
@@ -273,6 +273,10 @@ i.fa-heart {
 
 
 @media (max-width: 575.98px) { 
+    .carousel-slide .carousel-item img {
+        height: 250px;
+    }
+    
     .button_add_item {
         margin-top: 300px;
         margin-left: 200px;
@@ -327,6 +331,10 @@ i.fa-heart {
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
+    .carousel-slide .carousel-item img {
+        height: 550px;
+    }
+    
     .button_add_item {
         margin-top: 300px;
         margin-left: 200px;
@@ -438,14 +446,113 @@ i.fa-heart {
  }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
+    .button_add_item {
+        margin-top: 300px;
+        margin-left: 200px;
+    }
+    .button_my_items {
+        margin-top: 300px;
+        margin-left: 60px;
+    }
+    
+    .beseller {
+        margin-top: 300px;
+        margin-left: 370px;
+    }
 
+    #products {
+        margin-top: 600px;
+    }
+
+    .Jhin {
+        margin-top: 300px;
+        margin-left: 600px;
+        width: 300px;
+        height: 500px;
+    }
+    
+    .carousel-slide {
+        width: 900px;
+        height: 350px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        width: 940px;
+        margin-left: 20px;
+    }
+
+
+    .tags_mainpage .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-left: 50px;
+    }
+    .tags_mainpage {
+        margin-right: 50px;
+    }
+
+    .product-item {
+        flex: 1 1 calc(27% - 30px);
+        max-width: calc(27% - 30px);
+    }
  }
 
 
 /* Десктопы */
 @media (min-width: 1200px) and (max-width: 1399.98px) { 
-    .main_page1 {
-        margin-left: 1%;
+    .button_add_item {
+        margin-left: 1170px;
+
+    }
+    .button_my_items {
+        margin-left: 1170px;
+    }
+    
+    .beseller {
+        margin-left: 1170px;
+        margin-top: 15px;
+    }
+
+    #products {
+        margin-top: 600px;
+    }
+
+    .Jhin {
+        margin-left: 1000px;
+        width: 200px;
+        margin-top: -350px;
+        height: 400px;
+    }
+    
+    .carousel-slide {
+        width: 900px;
+        height: 350px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        width: 940px;
+        margin-left: 20px;
+    }
+
+
+    .tags_mainpage .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-left: 50px;
+    }
+    .tags_mainpage {
+        margin-right: 50px;
+    }
+
+    .product-item {
+        flex: 1 1 calc(27% - 30px);
+        max-width: calc(27% - 30px);
     }
 
 }
@@ -453,7 +560,7 @@ i.fa-heart {
 
 /* 2K  второй монитор манитора*/ 
 @media (min-width: 1400px) {
-
+    
 }
 
 /* 4K */

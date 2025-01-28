@@ -344,12 +344,51 @@ body {
  }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
+    #catalog {
+        left: 2;
+    }
+    
+    .catalog-button {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+    
+    .logo {
+        background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 36, 65));
+    }
+    .inner1 {
+        margin-left: auto !important;
+        gap: 30px;
+    }
+    .search-bar form {
+        width: 80%;  /* Сделаем форму шире */
+        max-width: 800px;  /* Ограничим максимальную ширину */
+        margin-left: -70px;
+    }
+    .search-bar button i {
+        font-size: 16px;
+    }
 
+    .search-bar button {
+        padding: 12px 30px;
+    }
+    .actions {
+        gap: 4px;
+        margin-left: -200px;
+        margin-right: 50px;
+    }
+    .search-bar input[type="text"] {
+        padding: 5px;
+    }
+    .icons-header {
+        gap: 10px;
+        margin-left: 100px;
+    }
  }
 
 /* Десктопы */
 @media (min-width: 1200px) and (max-width: 1399.98px) { 
-
+    
 }
 /* 2K */
 @media (min-width: 1400px) {

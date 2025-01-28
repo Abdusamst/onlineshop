@@ -17,15 +17,10 @@
             <div class="carousel-inner">
                 {% for poster in posters %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                        <img src="{{ poster.image.url }}" class="d-block w-100 img-poster" alt="Poster">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Poster {{ forloop.counter }}</h5>
-                        </div>
+                        <img src="{{ poster.image.url }}" class="d-block w-100 img-poster" alt="">
                     </div>
                 {% endfor %}
             </div>
-        
-    
         </div>
         
         <div class="jhin-seller-container">

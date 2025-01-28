@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-28 19:45+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Kyrgyz <LL@li.org>\n"
+"Language: ky\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\OnlineStore\settings.py:119
+msgid "English"
+msgstr "Англисче"
+
+#: .\OnlineStore\settings.py:120
+msgid "Russian"
+msgstr "Орусча"
+
+#: .\OnlineStore\settings.py:121
+msgid "Kyrgyz"
+msgstr "Кыргызча"
+
+#: .\store\models.py:21
+msgid "Категория"
+msgstr "Категория"
+
+#: .\store\models.py:22
+msgid "Категории"
+msgstr "Категориялар"
+
+#: .\store\models.py:54
+msgid "Постер"
+msgstr "Постер"
+
+#: .\store\models.py:55
+msgid "Постеры"
+msgstr "Постерлер"
+
+#: .\templates\cart\cart.html:9
+msgid "Корзина"
+msgstr "Корзина"
+
+#: .\templates\cart\cart.html:16
+msgid "Название"
+msgstr "Аты"
+
+#: .\templates\cart\cart.html:17
+msgid "Количество"
+msgstr "Саны"
+
+#: .\templates\cart\cart.html:18
+msgid "Цена"
+msgstr "Баасы"
+
+#: .\templates\cart\cart.html:52
+msgid "Продолжить покупки"
+msgstr "Сатып алууну улантуу"
+
+#: .\templates\cart\cart.html:55
+msgid "Оформить заказ в WhatsApp"
+msgstr "WhatsApp'та заказ берүү"
+
+#: .\templates\cart\cart.html:59
+msgid "Ваша корзина пуста."
+msgstr "Сиздин корзинаңыз бош."
