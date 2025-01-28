@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from taggit.managers import TaggableManager 
-from taggit.models import GenericTaggedItemBase, TagBase
-
+from taggit .models import GenericTaggedItemBase, TagBase
+from django.utils.text import slugify
 from django.conf import settings
 
 
@@ -62,9 +62,9 @@ class Poster(models.Model):
 class Item(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название',)
     description = models.TextField(verbose_name='Описание',)
-    slug = models.CharField(
+    slug = models.SlugField(
         unique=True,
-        max_length=50,
+        blank=True,
     )
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления',)
     price = models.DecimalField(
@@ -92,6 +92,16 @@ class Item(models.Model):
     seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default = 1 ,related_name='items', verbose_name='Продавец')
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:  # если slug еще не создан
+            self.slug = slugify(self.name)
+            original_slug = self.slug
+            counter = 1
+            while Item.objects.filter(slug=self.slug).exists():
+                self.slug = f'{original_slug}-{counter}'
+                counter += 1
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['-price']

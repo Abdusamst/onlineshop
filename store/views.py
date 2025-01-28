@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from .models import Item, ItemTag, Poster, Favorite
 from .paginator import paginator
-
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.utils.text import slugify
+from django.utils.translation import gettext as _
 def store(request):
     items = Item.objects.filter(is_available=True)
     tags = ItemTag.objects.all().order_by('name')  # Добавим сортировку
@@ -17,7 +20,10 @@ def store(request):
     return render(request, 'store/main_page.html', context)
 
 
-
+@receiver(pre_save, sender=Item)
+def create_slug(sender, instance, **kwargs):
+    if not instance.slug:  # проверяем, есть ли уже slug
+        instance.slug = slugify(instance.name)
 
 def poster(request):
     posters = Poster.objects.all()
@@ -28,10 +34,12 @@ def poster(request):
 
 def item_details(request, item_slug):
     item = get_object_or_404(Item, slug=item_slug)
+    tags = ItemTag.objects.all().order_by('name')
     is_favorite = False
     if request.user.is_authenticated:
         is_favorite = Favorite.objects.filter(user=request.user, item=item).exists()
     context = {
+        'page_obj_2': tags,
         'item': item,
         'is_favorite': is_favorite,
     }
@@ -48,10 +56,14 @@ def tag_details(request, slug):
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
 
     context = {
         'tag': tag,
         'page_obj': page_obj,
+        'tags': tags,
+        'page_obj_2': tags,
     }
 
     return render(request, 'store/tag_details.html', context)
@@ -59,8 +71,15 @@ def tag_details(request, slug):
 
 def tag_list(request):
     tags = ItemTag.objects.all()
+    for tag in tags:
+        tag.description = _(tag.description)
+        tag.name = _(tag.name)
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
     context = {
         'page_obj': paginator(request, tags, 6),
+        'tags': tags,
+        'page_obj_2': tags,
     }
     return render(request, 'store/tag_list.html', context)
 
@@ -87,8 +106,12 @@ def remove_from_favorites(request, item_id):
 @login_required
 def favorite_list(request):
     favorites = Favorite.objects.filter(user=request.user)
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
     context = {
-        'favorites': favorites,
+        'tags': tags,
+        'page_obj_2': tags,
+        'favorites': favorites
     }
     return render(request, 'store/favorite_list.html', context)
 
@@ -122,10 +145,15 @@ def search(request):
         ).distinct()
     else:
         results = Item.objects.all()  # Показываем все товары, если запрос пуст
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
     context = {
+        'tags': tags,
+        'page_obj_2': tags,
         'query': query,
         'results': results,
     }
+    
     return render(request, 'store/search.html', context)
 
 
@@ -161,8 +189,17 @@ def become_seller(request):
             return redirect('store:add_item')  # Перенаправление на добавление товара
     else:
         form = SellerRegistrationForm()
-        
-    return render(request, 'store/becomeseller.html', {'form': form})
+
+
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
+    context = {
+        'form': form,
+        'tags': tags,
+        'page_obj_2': tags,
+    }
+    
+    return render(request, 'store/becomeseller.html', context)
 
 
 
@@ -178,7 +215,15 @@ def add_item(request):
             return redirect('store:my_items')
     else:
         form = ItemForm()
-    return render(request, 'store/add_item.html', {'form': form})
+
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
+    context = {
+        'form': form,
+        'tags': tags,
+        'page_obj_2': tags,
+    }
+    return render(request, 'store/add_item.html', context)
 
 
 
@@ -190,7 +235,14 @@ from .models import Item
 def my_items(request):
     seller = request.user
     items = Item.objects.filter(seller=seller)
-    return render(request, 'store/my_items.html', {'items': items})
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
+    context = {
+        'items': items,
+        'tags': tags,
+        'page_obj_2': tags,
+    }
+    return render(request, 'store/my_items.html', context)
 
 
 @login_required
@@ -203,7 +255,16 @@ def edit_item(request, item_id):
             return redirect('store:my_items')
     else:
         form = ItemForm(instance=item)
-    return render(request, 'store/edit_item.html', {'form': form, 'item': item})
+
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
+    context = {
+        'item': item,
+        'form': form,
+        'tags': tags,
+        'page_obj_2': tags,
+    }
+    return render(request, 'store/edit_item.html', context)
 
 @login_required
 def delete_item(request, item_id):
@@ -211,4 +272,12 @@ def delete_item(request, item_id):
     if request.method == 'POST':
         item.delete()
         return redirect('store:my_items')
-    return render(request, 'store/delete_item.html', {'item': item})
+    
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
+    context = {
+        'item': item,
+        'tags': tags,
+        'page_obj_2': tags,
+    }
+    return render(request, 'store/delete_item.html', context)

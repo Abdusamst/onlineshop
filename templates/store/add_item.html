@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'assets/add_item.css' %}">
+{% endblock %}
 {% block content %}
     <div class="add-item-form">
         <h1>Добавить товар</h1>
