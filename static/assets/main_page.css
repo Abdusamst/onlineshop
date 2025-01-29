@@ -32,6 +32,17 @@
     color: white;
 }
 
+.button_admin {
+    background-color: darkred;
+    padding: 7px 25px;
+    text-decoration: none;
+    border-radius: 30px;
+    margin-left: 1600px;
+    position: absolute;
+    margin-top: -320px;
+    color: white;
+}
+
 .icon-besseler {
     color: white;
 }
@@ -277,6 +288,11 @@ i.fa-heart {
         height: 250px;
     }
     
+    .button_admin {
+        margin-top: 200px;
+        margin-left: 200px;
+    }
+
     .button_add_item {
         margin-top: 300px;
         margin-left: 200px;

@@ -1,27 +1,28 @@
 {% extends 'base.html' %}
 
-{% load static %}
+{% load static i18n %}
 {% block css %}
-<link rel="stylesheet" href="{% static "assets/cart.css"%}" />
+<link rel="stylesheet" href="{% static "assets/cart.css" %}" />
 {% endblock %}
 
 {% block content %}
-<h1>Корзина</h1>
+<h1>{% trans "Корзина" %}</h1>
 {% if cart_items %}
 <section>
   <div class="table-wrapper">
     <table class="alt">
       <thead>
+        <tr>
+          <th>{% trans "Название" %}</th>
+          <th>{% trans "Количество" %}</th>
+          <th>{% trans "Цена" %}</th>
+          <th></th>
+        </tr>
       </thead>
       <tbody>
         {% for cart_item in cart_items %}
         <tr>
-          <td>
-            <img src="{{ cart_item.item.image.url }}" alt="{{ cart_item.item.title }}" style="width: 120px; height: 120px; object-fit: cover;">
-          </td>
-          <td>
-            <a href="{% url 'store:item_details' cart_item.item.slug %}">{{ cart_item.item.title }}</a>
-          </td>
+          <td><a href="{% url 'store:item_details' cart_item.item.slug %}">{{ cart_item.item.title }}</a></td>
           <td>
             <div class="count">
               <span class="minus" data-cart-item-id="{{ cart_item.id }}">—</span>
@@ -41,21 +42,21 @@
       <tfoot>
         <tr>
           <td colspan="2"></td>
-          <td><u><b><span id="cart-total-price" data-cart-id="{{ cart.id }}">Общая стоимость: {{ cart.total_price }}</span></b></u></td>
+          <td><u><b><span id="cart-total-price" data-cart-id="{{ cart.id }}">{{ cart.total_price }}</span></b></u></td>
         </tr>
       </tfoot>
     </table>
   </div>
 </section>
 <div style="text-align: justify;">
-  <a href="{% url 'store:home' %}" style="float: left;" class="button_continue">Продолжить покупки</a>
+  <a href="{% url 'store:home' %}" style="float: left;" class="button_continue">{% trans "Продолжить покупки" %}</a>
   <form method="post" style="float: right;">
     {% csrf_token %}
-    <button type="submit" class="button_whatsapp">Оформить заказ в WhatsApp</button>
+    <button type="submit" class="button_whatsapp">{% trans "Оформить заказ в WhatsApp" %}</button>
   </form>
 </div>
 {% else %}
-<p>Ваша корзина пуста.</p>
+<p>{% trans "Ваша корзина пуста." %}</p>
 {% endif %}
 {% block js %}
 <script src="{% static "assets/js/cart.js" %}"></script>
