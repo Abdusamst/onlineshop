@@ -65,26 +65,48 @@
         <p>Нет отзывов для этого товара.</p>
     {% endfor %}
 </div>
-
-{% if user.is_authenticated and has_bought %}
-    <h3>Оставьте отзыв</h3>
-    <form action="{% url 'store:add_review' item_slug=item.slug %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label for="rating">Рейтинг (1-5):</label>
-        <input type="number" id="rating" name="rating" min="1" max="5" required>
-        
-        <label for="text">Отзыв:</label>
-        <textarea id="text" name="text" rows="4" required></textarea>
-
-        <label for="image">Изображение (необязательно):</label>
-        <input type="file" id="image" name="image">
-
-        <button type="submit">Отправить отзыв</button>
-    </form>
-{% elif user.is_authenticated %}
-    <p>Вы не можете оставить отзыв, пока не приобретете этот товар.</p>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
 {% endif %}
-    <h3>Похожие товары</h3>
+{% if user.is_authenticated and has_bought %}
+<div class="review-form-container">
+    <h3>Оставьте отзыв</h3>
+    <form class="review-form" action="{% url 'store:add_review' item.slug %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="rating">Рейтинг (1-5):</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="text">Отзыв:</label>
+            <textarea id="text" name="text" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Изображение (необязательно):</label>
+            <div class="image-upload-wrapper">
+                <input type="file" id="image" name="image" accept="image/*" class="image-input">
+                <div class="image-preview-container" id="imagePreview">
+                    <img src="" alt="Preview" class="image-preview">
+                    <div class="image-preview-placeholder">
+                        <i class="upload-icon">📸</i>
+                        <span>Нажмите или перетащите изображение</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-button">Отправить отзыв</button>
+    </form>
+</div>
+{% endif %}
+</div>
+    <h3 >Похожие товары</h3>
     <div class="similar-items-container">
         {% for similar_item in similar_items %}
             <div class="similar-item">
@@ -104,5 +126,55 @@
     </div>
     
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.querySelector('.image-preview');
+    const placeholder = document.querySelector('.image-preview-placeholder');
+    const previewContainer = document.getElementById('imagePreview');
 
+    // Handle file selection
+    imageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                imagePreview.style.display = 'block';
+                imagePreview.src = e.target.result;
+                placeholder.style.display = 'none';
+            }
+            
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.style.display = 'none';
+            placeholder.style.display = 'block';
+            imagePreview.src = '';
+        }
+    });
+
+    // Handle drag and drop
+    previewContainer.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.style.borderColor = '#007bff';
+    });
+
+    previewContainer.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        this.style.borderColor = '#ddd';
+    });
+
+    previewContainer.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.style.borderColor = '#ddd';
+        
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            imageInput.files = e.dataTransfer.files;
+            const event = new Event('change');
+            imageInput.dispatchEvent(event);
+        }
+    });
+});
+</script>
 {% endblock %}

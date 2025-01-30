@@ -34,66 +34,86 @@ def poster(request):
     }
     return render(request, 'store/poster.html', context)
 
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.db.models import Q
+from checkout.models import Order
+from .models import Item, ItemTag, Review, Favorite
 
 def item_details(request, item_slug):
     item = get_object_or_404(Item, slug=item_slug)
     tags = ItemTag.objects.all().order_by('name')
     is_favorite = False
-    item = get_object_or_404(Item, slug=item_slug)
+    has_bought = False  # Установим False по умолчанию
     reviews = item.reviews.all()
 
-    has_bought = False
     if request.user.is_authenticated:
         has_bought = Order.objects.filter(
-    user=request.user,
-    items__item=item,  # Используем связь через items, а не напрямую через item
-    status='Доставлен'
-).exists()
-
-
-
-    if request.user.is_authenticated:
+            user=request.user,
+            items__item=item,  # Убедись, что `items__item` соответствует реальной связи в модели
+            status='delivered'  # Убедись, что статус точно такой же в БД
+        ).exists()
         is_favorite = Favorite.objects.filter(user=request.user, item=item).exists()
 
-    # Похожие товары (ищем по тегам и названию)
     similar_items = Item.objects.filter(
-        Q(tags__in=item.tags.all()) |  # Фильтрация по тегам
-        Q(title__icontains=item.title.split()[0])  # Фильтрация по названию (первое слово)
-    ).exclude(id=item.id).distinct()[:4]  # Исключаем сам товар и убираем дубликаты
+        Q(tags__in=item.tags.all()) |
+        Q(title__icontains=item.title.split()[0])
+    ).exclude(id=item.id).distinct()[:4]
 
     context = {
         'page_obj_2': tags,
         'item': item,
         'is_favorite': is_favorite,
-        'similar_items': similar_items,  # Передаем в шаблон
+        'similar_items': similar_items,
         'reviews': reviews,
         'has_bought': has_bought,
     }
     return render(request, 'store/item_details.html', context)
 
-from checkout.models import Order
-from .models import Review
 @login_required
 def add_review(request, item_slug):
     item = get_object_or_404(Item, slug=item_slug)
+    
+    
+    has_bought = Order.objects.filter(
+        user=request.user, 
+        items__item=item,
+        status='delivered'
+    ).exists()
+    
 
-    if Order.objects.filter(user=request.user, item=item, status='completed').exists():
-        if request.method == 'POST':
-            text = request.POST.get('text')
-            rating = request.POST.get('rating')
-            image = request.FILES.get('image')
-            
-            Review.objects.create(
+    if not has_bought:
+        messages.error(request, 'Вы можете оставить отзыв только после покупки товара.')
+        return redirect('store:item_details', item_slug=item.slug)
+
+    if request.method == 'POST':
+        
+        text = request.POST.get('text')
+        rating = request.POST.get('rating')
+        image = request.FILES.get('image')
+        
+        
+        if not text or not rating:
+            print("Missing required fields")  # Отладочная информация
+            messages.error(request, 'Пожалуйста, заполните все обязательные поля.')
+            return redirect('store:item_details', item_slug=item.slug)
+        
+        try:
+            review = Review.objects.create(
                 item=item,
                 user=request.user,
                 text=text,
                 rating=rating,
                 images=image
             )
-            return redirect('store:item_details', item_slug=item.slug)
-    else:
-        return redirect('store:item_details', item_slug=item.slug)
+            messages.success(request, 'Спасибо! Ваш отзыв успешно добавлен.')
+        except Exception as e:
+            messages.error(request, f'Произошла ошибка при сохранении отзыва: {str(e)}')
+            
+    return redirect('store:item_details', item_slug=item.slug)
+
+
 
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
