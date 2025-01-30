@@ -41,3 +41,11 @@ class SellerRegistrationForm(forms.ModelForm):
     wants_to_sell_on_ozon = forms.BooleanField(label='Хотите продавать на Ozon', required=False)
     has_store_on_wildberries = forms.BooleanField(label='Есть магазин на Wildberries', required=False)
     has_store_on_ozon = forms.BooleanField(label='Есть магазин на Ozon', required=False)
+
+from django import forms
+from .models import Review
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['rating', 'text', 'user', 'images']
