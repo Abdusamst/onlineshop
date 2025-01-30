@@ -50,6 +50,7 @@
 </section>
 <div style="text-align: justify;">
   <a href="{% url 'store:home' %}" style="float: left;" class="button_continue">{% trans "Продолжить покупки" %}</a>
+  <a href="{% url 'checkout:checkout' %}" style="float: right;" class="button_checkout">Оформить заказ</a>
   <form method="post" style="float: right;">
     {% csrf_token %}
     <button type="submit" class="button_whatsapp">{% trans "Оформить заказ в WhatsApp" %}</button>

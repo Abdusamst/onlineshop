@@ -18,8 +18,27 @@ class ItemTag(TagBase):
         )
 
     class Meta:
-        verbose_name = _("Категория")
-        verbose_name_plural = _("Категории")
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
+
+from django.db import models
+from django.conf import settings
+
+class Review(models.Model):
+    item = models.ForeignKey('store.Item', on_delete=models.CASCADE, related_name='reviews', verbose_name='Товар')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
+    text = models.TextField(verbose_name='Отзыв', blank=False)
+    rating = models.PositiveIntegerField(choices=[(i, str(i)) for i in range(1, 6)], verbose_name='Рейтинг (1-5)', blank=False)
+    images = models.ImageField(upload_to='reviews/', null=True, blank=True, verbose_name='Изображения отзыва')
+
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
+    def __str__(self):
+        return f'Отзыв от {self.user.username} на {self.item.title}'
 
 
 class Favorite(models.Model):
@@ -41,6 +60,7 @@ class TaggedItem(GenericTaggedItemBase):
         related_name="items",
         verbose_name='Категория',
     )
+    
 
 
 class Poster(models.Model):
@@ -50,14 +70,12 @@ class Poster(models.Model):
         blank=True
     )
 
-    class Meta:
-        verbose_name = _("Постер")
-        verbose_name_plural = _("Постеры")
-
     def __str__(self):
         return f"Poster {self.id}"
 
-
+    class Meta:
+        verbose_name = "Постер"
+        verbose_name_plural = "Постеры"
 
 class Item(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название',)
@@ -138,3 +156,7 @@ class Seller(models.Model):
 
     def __str__(self):
         return self.store_name
+
+    class Meta:
+        verbose_name = 'Продавец'
+        verbose_name_plural = 'Продавцы'

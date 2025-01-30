@@ -29,8 +29,8 @@
 
             {% if item.old_price %}
                 <p class="item-price">
-                    <span class="old-price">Старая цена: <s>{{ item.old_price }} Сом</s></span>
-                    <span class="new-price">Новая цена: <b>{{ item.price }}</b> Сом</span>
+                    <span class="old-price"><s>{{ item.old_price }} Сом</s></span>
+                    <span class="new-price"><b>{{ item.price }}</b> Сом</span>
                 </p>
             {% else %}
                 <p class="item-price">
@@ -50,4 +50,59 @@
             </div>
         </div>
     </div>
+    <h3>Отзывы</h3>
+<div class="reviews">
+    {% for review in reviews %}
+        <div class="review">
+            <p><strong>{{ review.user.username }}</strong> (Рейтинг: {{ review.rating }}/5)</p>
+            <p>{{ review.text }}</p>
+            {% if review.images %}
+                <img src="{{ review.images.url }}" alt="Изображение отзыва" class="review-image">
+            {% endif %}
+            <p>Дата: {{ review.created_at }}</p>
+        </div>
+    {% empty %}
+        <p>Нет отзывов для этого товара.</p>
+    {% endfor %}
 </div>
+
+{% if user.is_authenticated and has_bought %}
+    <h3>Оставьте отзыв</h3>
+    <form action="{% url 'store:add_review' item_slug=item.slug %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="rating">Рейтинг (1-5):</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" required>
+        
+        <label for="text">Отзыв:</label>
+        <textarea id="text" name="text" rows="4" required></textarea>
+
+        <label for="image">Изображение (необязательно):</label>
+        <input type="file" id="image" name="image">
+
+        <button type="submit">Отправить отзыв</button>
+    </form>
+{% elif user.is_authenticated %}
+    <p>Вы не можете оставить отзыв, пока не приобретете этот товар.</p>
+{% endif %}
+    <h3>Похожие товары</h3>
+    <div class="similar-items-container">
+        {% for similar_item in similar_items %}
+            <div class="similar-item">
+                <a href="{% url 'store:item_details' similar_item.slug %}">
+                    {% if similar_item.image %}
+                        <img src="{{ similar_item.image.url }}" alt="{{ similar_item.title }}">
+                    {% else %}
+                        <img src="/static/images/default.jpg" alt="Нет изображения">
+                    {% endif %}
+                    <p class="title">{{ similar_item.title }}</p>
+                    <p class="price"><b>{{ similar_item.price }}</b> Сом</p>
+                </a>
+            </div>
+        {% empty %}
+            <p class="no-items">Нет похожих товаров</p>
+        {% endfor %}
+    </div>
+    
+</div>
+
+{% endblock %}

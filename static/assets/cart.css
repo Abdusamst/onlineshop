@@ -88,6 +88,36 @@ p:empty + p {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
+.button_checkout {
+  background-color: darkred; /* Зелёный фон */
+  color: white; /* Белый цвет текста */
+  padding: 15px 20px; /* Отступы внутри кнопки */
+  text-align: center; /* Текст по центру */
+  text-decoration: none; /* Убираем подчёркивание */
+  display: inline-block; /* Отображение в одну строку */
+  font-size: 16px; /* Размер шрифта */
+  border-radius: 5px; /* Скруглённые углы */
+  border: none; /* Убираем границы */
+  cursor: pointer; /* Указатель при наведении */
+  float: right; /* Расположение справа */
+}
+
+.button_checkout:hover {
+  background-color: #45a049; /* Более тёмный зелёный при наведении */
+}
+
+.button_checkout {
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(37, 211, 102, 0.2);
+  font-weight: 500;
+}
+
+.button_checkout:hover {
+  background-color: #20bc5c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+}
+
 
 /* Delete button styling */
 td a img {

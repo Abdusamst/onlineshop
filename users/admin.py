@@ -19,7 +19,7 @@ from .models import CustomUser
 # Регистрируем модель CustomUser в админке, используя UserAdmin
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
-    list_display = ['username', 'email', 'phone_number', 'is_superuser', 'is_staff', 'is_seller', 'is_phone_verified']
+    list_display = ['username', 'phone_number', 'is_superuser', 'is_staff', 'is_seller', 'is_phone_verified']
     list_filter = ['is_superuser', 'is_staff', 'is_seller']
     search_fields = ['username', 'email', 'phone_number']
     ordering = ['username']

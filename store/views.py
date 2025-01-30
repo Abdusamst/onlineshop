@@ -5,6 +5,8 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.text import slugify
 from django.utils.translation import gettext as _
+from django.contrib.auth.decorators import login_required
+
 def store(request):
     items = Item.objects.filter(is_available=True)
     tags = ItemTag.objects.all().order_by('name')  # Добавим сортировку
@@ -32,18 +34,66 @@ def poster(request):
     }
     return render(request, 'store/poster.html', context)
 
+from django.db.models import Q
+
 def item_details(request, item_slug):
     item = get_object_or_404(Item, slug=item_slug)
     tags = ItemTag.objects.all().order_by('name')
     is_favorite = False
+    item = get_object_or_404(Item, slug=item_slug)
+    reviews = item.reviews.all()
+
+    has_bought = False
+    if request.user.is_authenticated:
+        has_bought = Order.objects.filter(
+    user=request.user,
+    items__item=item,  # Используем связь через items, а не напрямую через item
+    status='Доставлен'
+).exists()
+
+
+
     if request.user.is_authenticated:
         is_favorite = Favorite.objects.filter(user=request.user, item=item).exists()
+
+    # Похожие товары (ищем по тегам и названию)
+    similar_items = Item.objects.filter(
+        Q(tags__in=item.tags.all()) |  # Фильтрация по тегам
+        Q(title__icontains=item.title.split()[0])  # Фильтрация по названию (первое слово)
+    ).exclude(id=item.id).distinct()[:4]  # Исключаем сам товар и убираем дубликаты
+
     context = {
         'page_obj_2': tags,
         'item': item,
         'is_favorite': is_favorite,
+        'similar_items': similar_items,  # Передаем в шаблон
+        'reviews': reviews,
+        'has_bought': has_bought,
     }
     return render(request, 'store/item_details.html', context)
+
+from checkout.models import Order
+from .models import Review
+@login_required
+def add_review(request, item_slug):
+    item = get_object_or_404(Item, slug=item_slug)
+
+    if Order.objects.filter(user=request.user, item=item, status='completed').exists():
+        if request.method == 'POST':
+            text = request.POST.get('text')
+            rating = request.POST.get('rating')
+            image = request.FILES.get('image')
+            
+            Review.objects.create(
+                item=item,
+                user=request.user,
+                text=text,
+                rating=rating,
+                images=image
+            )
+            return redirect('store:item_details', item_slug=item.slug)
+    else:
+        return redirect('store:item_details', item_slug=item.slug)
 
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator

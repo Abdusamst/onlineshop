@@ -1,11 +1,9 @@
 .item-details-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .item-title {
@@ -90,7 +88,7 @@
 }
 
 .add-to-cart {
-    background-color: #001275;
+    background-color: #750000;
 }
 
 .add-favorite {
@@ -104,4 +102,80 @@
 .button:hover {
     opacity: 0.9;
 }
-    
+
+
+.similar-items {
+    margin-top: 30px;
+}
+
+.similar-items-list {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.similar-item {
+    width: 150px;
+    text-align: center;
+}
+
+.similar-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+
+
+.similar-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.similar-item {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    text-align: center;
+    padding: 10px;
+}
+
+.similar-item:hover {
+    transform: translateY(-5px);
+}
+
+.similar-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.similar-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 2px solid #f5f5f5;
+}
+
+.similar-item .title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 8px 0;
+    color: #333;
+}
+
+.similar-item .price {
+    font-size: 14px;
+    color: #007bff;
+}
+
+.no-items {
+    text-align: center;
+    font-size: 16px;
+    color: #777;
+    padding: 20px;
+}

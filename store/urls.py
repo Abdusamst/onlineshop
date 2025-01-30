@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import item_details, store, tag_details, tag_list, add_to_favorites, remove_from_favorites, favorite_list, toggle_favorite, search, become_seller, add_item
+from .views import item_details, store, tag_details, tag_list, add_to_favorites, remove_from_favorites, favorite_list, toggle_favorite, search, become_seller, add_item, add_review
 from . import views
 app_name = 'store'
 
@@ -18,5 +18,6 @@ urlpatterns = [
     path('edit_item/<int:item_id>/', views.edit_item, name='edit_item'),  # Добавляем путь к редактированию товара
     path('delete_item/<int:item_id>/', views.delete_item, name='delete_item'),  # Добавляем путь к удалению товара
     path('<slug:item_slug>/', item_details, name='item_details'),  # Маршрут для деталей товара
+    path('<slug:item_slug>/add_review/', views.add_review, name='add_review'),
 ]
 
