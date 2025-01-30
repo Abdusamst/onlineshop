@@ -4,7 +4,7 @@ from taggit.managers import TaggableManager
 from taggit .models import GenericTaggedItemBase, TagBase
 from django.utils.text import slugify
 from django.conf import settings
-
+from django.db.models import Avg
 
 class ItemTag(TagBase):
     image = models.ImageField(
@@ -106,6 +106,7 @@ class Item(models.Model):
         default=True,
         verbose_name='Доступно',
     )
+    
     tags = TaggableManager(through=TaggedItem, related_name="tagged_items", verbose_name='Категории',)
     seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default = 1 ,related_name='items', verbose_name='Продавец')
     def __str__(self):
@@ -121,6 +122,8 @@ class Item(models.Model):
                 counter += 1
         super().save(*args, **kwargs)
 
+    def average_rating(self):
+        return self.reviews.aggregate(Avg('rating'))['rating__avg'] or 0
     class Meta:
         ordering = ['-price']
         verbose_name = 'Товар'
