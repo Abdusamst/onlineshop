@@ -47,6 +47,8 @@ def item_details(request, item_slug):
     is_favorite = False
     has_bought = False  # Установим False по умолчанию
     reviews = item.reviews.all()
+    average_rating = item.average_rating()  # Добавил расчет среднего рейтинга
+    user_has_reviewed = False  # Добавил проверку, оставил ли пользователь отзыв
 
     if request.user.is_authenticated:
         has_bought = Order.objects.filter(
@@ -55,6 +57,7 @@ def item_details(request, item_slug):
             status='delivered'  # Убедись, что статус точно такой же в БД
         ).exists()
         is_favorite = Favorite.objects.filter(user=request.user, item=item).exists()
+        user_has_reviewed = reviews.filter(user=request.user).exists()
 
     similar_items = Item.objects.filter(
         Q(tags__in=item.tags.all()) |
@@ -68,6 +71,8 @@ def item_details(request, item_slug):
         'similar_items': similar_items,
         'reviews': reviews,
         'has_bought': has_bought,
+        'average_rating': average_rating,  # Передаем средний рейтинг в контекст
+        'user_has_reviewed': user_has_reviewed,  # Передаем информацию о наличии отзыва
     }
     return render(request, 'store/item_details.html', context)
 

@@ -51,6 +51,7 @@
         </div>
     </div>
     <h3>Отзывы</h3>
+    <p>Средний рейтинг: {{ average_rating|floatformat:1 }} / 5</p>
 <div class="reviews">
     {% for review in reviews %}
         <div class="review">
@@ -72,7 +73,7 @@
         </div>
     {% endfor %}
 {% endif %}
-{% if user.is_authenticated and has_bought %}
+{% if user.is_authenticated and has_bought and not user_has_reviewed %}
 <div class="review-form-container">
     <h3>Оставьте отзыв</h3>
     <form class="review-form" action="{% url 'store:add_review' item.slug %}" method="POST" enctype="multipart/form-data">
