@@ -4,4 +4,4 @@ Pillow==8.0.1
 python-telegram-bot==20.1
 python-dotenv==1.0.0
 django-phonenumber-field phonenumbers
-twilio
+pip install phonenumbers twilio

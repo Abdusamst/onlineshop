@@ -36,3 +36,19 @@ class CustomUserCreationForm(UserCreationForm):
             raise forms.ValidationError('Необходимо указать телефонный номер.')
 
         return cleaned_data
+
+from django import forms
+import phonenumbers
+
+class PhoneNumberForm(forms.Form):
+    phone_number = forms.CharField(max_length=15)
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data['phone_number']
+        try:
+            parsed_number = phonenumbers.parse(phone_number, None)
+            if not phonenumbers.is_valid_number(parsed_number):
+                raise forms.ValidationError("Invalid phone number")
+        except phonenumbers.phonenumberutil.NumberParseException:
+            raise forms.ValidationError("Invalid phone number format")
+        return phonenumbers.format_number(parsed_number, phonenumbers.PhoneNumberFormat.E164)

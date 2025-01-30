@@ -76,7 +76,7 @@
                                     <img src="{% static 'images/pic14.jpg' %}" alt="" />
                                 {% endif %}
                             </span>{{ item.description }}</p>
-                            <p class="price-current">Цена: <b style="color: black;">{{ item.price }}</b> сом</p>
+                            <p class="price-current"><b style="color: black;">{{ item.price }}</b> сом</p>
                             {% if user.is_authenticated %}
                             <button id="favorite-btn-{{ item.id }}" class="btn btn-sm btn-outline-primary" onclick="toggleFavorite({{ item.id }})">
                                 {% if item.id in favorites %}
