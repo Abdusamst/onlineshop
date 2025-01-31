@@ -1,0 +1,127 @@
+/* Основные стили */
+.all-reviews-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.all-reviews-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-date {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.review strong {
+    font-size: 16px;
+    color: #333;
+}
+
+.review p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.review-image {
+    max-width: 300px;
+    min-width: none;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    .all-reviews-container {
+        padding: 15px;
+    }
+
+    .all-reviews-container h2 {
+        font-size: 20px;
+    }
+
+    .review {
+        padding: 15px;
+    }
+
+    .review strong {
+        font-size: 14px;
+    }
+
+    .review p {
+        font-size: 12px;
+    }
+
+    .button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .all-reviews-container {
+        padding: 10px;
+    }
+
+    .all-reviews-container h2 {
+        font-size: 18px;
+    }
+
+    .review {
+        padding: 10px;
+    }
+
+    .review strong {
+        font-size: 12px;
+    }
+
+    .review p {
+        font-size: 11px;
+    }
+
+    .button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
