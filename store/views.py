@@ -49,6 +49,7 @@ def item_details(request, item_slug):
     reviews = item.reviews.all()
     average_rating = item.average_rating()  # Добавил расчет среднего рейтинга
     user_has_reviewed = False  # Добавил проверку, оставил ли пользователь отзыв
+    
 
     if request.user.is_authenticated:
         has_bought = Order.objects.filter(
@@ -118,7 +119,20 @@ def add_review(request, item_slug):
             
     return redirect('store:item_details', item_slug=item.slug)
 
+from django.shortcuts import render, get_object_or_404
+from .models import Item, Review
 
+def all_reviews(request, item_slug):  # Используйте item_slug
+    item = get_object_or_404(Item, slug=item_slug)
+    reviews = Review.objects.filter(item=item)
+    average_rating = item.average_rating()
+
+    context = {
+        'item': item,
+        'reviews': reviews,
+        'average_rating': average_rating,
+    }
+    return render(request, 'store/all_reviews.html', context)
 
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator

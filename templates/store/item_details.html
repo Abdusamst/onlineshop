@@ -3,6 +3,7 @@
 {% load static %}
 {% block css %}
 <link rel="stylesheet" href="{% static 'assets/item_detail.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 {% endblock %}
 
 {% block content %}
@@ -14,8 +15,11 @@
             {% if not forloop.last %},{% endif %}
         {% endfor %}
     </p>
+    <p>Количество отзывов: {{ reviews.count }}</p>
+
 
     <div class="item-card">
+        
         <div class="item-image-wrapper">
             {% if item.image %}
                 <img src="{{ item.image.url }}" alt="{{ item.title }}" class="item-image">
@@ -34,7 +38,7 @@
                 </p>
             {% else %}
                 <p class="item-price">
-                    Цена: <b>{{ item.price }}</b> Сом
+                   <b>{{ item.price }}</b> Сом
                 </p>
             {% endif %}
 
@@ -50,85 +54,125 @@
             </div>
         </div>
     </div>
+
     <h3>Отзывы</h3>
-    <p>Средний рейтинг: {{ average_rating|floatformat:1 }} / 5</p>
-<div class="reviews">
-    {% for review in reviews %}
-        <div class="review">
-            <p><strong>{{ review.user.username }}</strong> (Рейтинг: {{ review.rating }}/5)</p>
-            <p>{{ review.text }}</p>
-            {% if review.images %}
-                <img src="{{ review.images.url }}" alt="Изображение отзыва" class="review-image">
+    {% if reviews.count > 3 %}
+    <a href="{% url 'store:all_reviews' item.slug %}" class="button_view-all-reviews">Все отзовы -></a>
+{% endif %}
+    <p>
+        {% for i in "12345" %}
+            {% if i|add:0 <= average_rating %}
+                <i class="fas fa-star" style="color: gold;"></i>
+            {% else %}
+                <i class="far fa-star" style="color: gold;"></i>
             {% endif %}
-            <p>Дата: {{ review.created_at }}</p>
-        </div>
-    {% empty %}
-        <p>Нет отзывов для этого товара.</p>
-    {% endfor %}
-</div>
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
-{% if user.is_authenticated and has_bought and not user_has_reviewed %}
-<div class="review-form-container">
-    <h3>Оставьте отзыв</h3>
-    <form class="review-form" action="{% url 'store:add_review' item.slug %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="rating">Рейтинг (1-5):</label>
-            <input type="number" id="rating" name="rating" min="1" max="5" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="text">Отзыв:</label>
-            <textarea id="text" name="text" rows="4" required></textarea>
-        </div>
+        {% endfor %}
+        ({{ average_rating|floatformat:1 }} / 5)
+    </p>
 
-        <div class="form-group">
-            <label>Изображение (необязательно):</label>
-            <div class="image-upload-wrapper">
-                <input type="file" id="image" name="image" accept="image/*" class="image-input">
-                <div class="image-preview-container" id="imagePreview">
-                    <img src="" alt="Preview" class="image-preview">
-                    <div class="image-preview-placeholder">
-                        <i class="upload-icon">📸</i>
-                        <span>Нажмите или перетащите изображение</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="reviews">
 
-        <button type="submit" class="submit-button">Отправить отзыв</button>
-    </form>
-</div>
-{% endif %}
-</div>
-    <h3 >Похожие товары</h3>
-    <div class="similar-items-container">
-        {% for similar_item in similar_items %}
-            <div class="similar-item">
-                <a href="{% url 'store:item_details' similar_item.slug %}">
-                    {% if similar_item.image %}
-                        <img src="{{ similar_item.image.url }}" alt="{{ similar_item.title }}">
-                    {% else %}
-                        <img src="/static/images/default.jpg" alt="Нет изображения">
-                    {% endif %}
-                    <p class="title">{{ similar_item.title }}</p>
-                    <p class="price"><b>{{ similar_item.price }}</b> Сом</p>
-                </a>
+
+        {% for review in reviews|slice:":3" %}
+
+            <div class="review">
+                <p class="review-date">{{ review.created_at }}</p>
+                <p><strong>{{ review.user.username }}</strong> 
+                    {% for i in "12345" %}
+                        {% if i|add:0 <= review.rating %}
+                            <i class="fas fa-star" style="color: gold;"></i>
+                        {% else %}
+                            <i class="far fa-star" style="color: gold;"></i>
+                        {% endif %}
+                    {% endfor %}
+                </p>
+                <p>{{ review.text }}</p>
+                {% if review.images %}
+                    <img src="{{ review.images.url }}" alt="Изображение отзыва" class="review-image">
+                {% endif %}
             </div>
         {% empty %}
-            <p class="no-items">Нет похожих товаров</p>
+            <p>Нет отзывов для этого товара.</p>
         {% endfor %}
     </div>
-    
+
+
+    {% if user.is_authenticated and has_bought and not user_has_reviewed %}
+        <button id="show-review-form" class="button">Оставить отзыв</button>
+        <div id="review-form-container" class="review-form-container" style="display: none;">
+            <h3>Оставьте отзыв</h3>
+            <form class="review-form" action="{% url 'store:add_review' item.slug %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="rating">Рейтинг (1-5):</label>
+                    <div class="rating-stars">
+                        {% for i in "54321" %}
+                            <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" required>
+                            <label for="star{{ i }}" class="fas fa-star"></label>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="text">Отзыв:</label>
+                    <textarea id="text" name="text" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Изображение (необязательно):</label>
+                    <div class="image-upload-wrapper">
+                        <input type="file" id="image" name="image" accept="image/*" class="image-input">
+                        <div class="image-preview-container" id="imagePreview">
+                            <img src="" alt="Preview" class="image-preview">
+                            <div class="image-preview-placeholder">
+                                <i class="upload-icon">📸</i>
+                                <span>Нажмите или перетащите изображение</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">Отправить отзыв</button>
+            </form>
+        </div>
+    {% endif %}
+    <h3>Похожие товары</h3>
+<div class="similar-items-container">
+    {% for similar_item in similar_items %}
+        <div class="similar-item">
+            <a href="{% url 'store:item_details' similar_item.slug %}">
+                {% if similar_item.image %}
+                    <img src="{{ similar_item.image.url }}" alt="{{ similar_item.title }}">
+                {% else %}
+                    <img src="/static/images/default.jpg" alt="Нет изображения" class="similar-image">
+                {% endif %}
+                <p class="title">{{ similar_item.title }}</p>
+                <p class="price" style="color: darkred;"><b>{{ similar_item.price }}</b> Сом</p>
+            </a>
+        </div>
+    {% empty %}
+        <p class="no-items">Нет похожих товаров</p>
+    {% endfor %}
 </div>
+
+</div>
+
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    const showReviewFormButton = document.getElementById('show-review-form');
+    const reviewFormContainer = document.getElementById('review-form-container');
+
+    if (showReviewFormButton && reviewFormContainer) {
+        showReviewFormButton.addEventListener('click', function() {
+            if (reviewFormContainer.style.display === 'none') {
+                reviewFormContainer.style.display = 'block';
+            } else {
+                reviewFormContainer.style.display = 'none';
+            }
+        });
+    }
+
     const imageInput = document.getElementById('image');
     const imagePreview = document.querySelector('.image-preview');
     const placeholder = document.querySelector('.image-preview-placeholder');

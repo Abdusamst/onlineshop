@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'assets/all_reviews.css' %}">
+{% endblock %}
+{% block content %}
+<div class="all-reviews-container">
+    <h2>Все отзывы на товар: {{ item.title }}</h2>
+    <div class="reviews">
+        {% for review in reviews %}
+            <div class="review">
+                <p class="review-date">{{ review.created_at }}</p>
+                <p><strong>{{ review.user.username }}</strong> 
+                    (Рейтинг: 
+                    {% for i in "12345" %}
+                        {% if i|add:0 <= review.rating %}
+                            <i class="fas fa-star" style="color: gold;"></i>
+                        {% else %}
+                            <i class="far fa-star" style="color: gold;"></i>
+                        {% endif %}
+                    {% endfor %}
+                    )
+                </p>
+                <p>{{ review.text }}</p>
+                {% if review.images %}
+                    <img src="{{ review.images.url }}" alt="Изображение отзыва" class="review-image">
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>Нет отзывов для этого товара.</p>
+        {% endfor %}
+    </div>
+    <a href="{% url 'store:item_details' item.slug %}" class="button">Вернуться к товару</a>
+</div>
+{% endblock %}
