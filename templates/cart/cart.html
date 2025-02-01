@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% load static i18n %}
+
 {% block css %}
-<link rel="stylesheet" href="{% static "assets/cart.css" %}" />
+  <link rel="stylesheet" href="{% static "assets/cart.css" %}" />
 {% endblock %}
 
 {% block content %}
-<h1>{% trans "Корзина" %}</h1>
+<h1>Корзина</h1>
 {% if cart_items %}
 <section>
   <div class="table-wrapper">
     <table class="alt">
       <thead>
         <tr>
-          <th>{% trans "Название" %}</th>
-          <th>{% trans "Количество" %}</th>
-          <th>{% trans "Цена" %}</th>
+          <th>Название</th>
+          <th>Количество</th>
+          <th>Цена</th>
           <th></th>
         </tr>
       </thead>
@@ -49,17 +50,22 @@
   </div>
 </section>
 <div style="text-align: justify;">
-  <a href="{% url 'store:home' %}" style="float: left;" class="button_continue">{% trans "Продолжить покупки" %}</a>
+  <a href="{% url 'store:home' %}" style="float: left;" class="button_continue">Продолжать покупки</a>
   <a href="{% url 'checkout:checkout' %}" style="float: right;" class="button_checkout">Оформить заказ</a>
   <form method="post" style="float: right;">
     {% csrf_token %}
-    <button type="submit" class="button_whatsapp">{% trans "Оформить заказ в WhatsApp" %}</button>
+    <button type="submit" class="button_whatsapp">Оформить заказ в WhatsApp</button>
   </form>
 </div>
 {% else %}
-<p>{% trans "Ваша корзина пуста." %}</p>
+<p>Ваша корзина пуста.</p>
 {% endif %}
 {% block js %}
 <script src="{% static "assets/js/cart.js" %}"></script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="{% static "assets/js/translator.js" %}"></script> <!-- Укажи правильный путь -->
+
 {% endblock %}
+
+
 {% endblock %}
