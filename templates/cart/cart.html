@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
-
 {% load static %}
+
+
 {% block css %}
-<link rel="stylesheet" href="{% static "assets/cart.css"%}" />
+  <link rel="stylesheet" href="{% static "assets/cart.css" %}" />
 {% endblock %}
 
 {% block content %}
@@ -12,16 +13,17 @@
   <div class="table-wrapper">
     <table class="alt">
       <thead>
+        <tr>
+          <th>Название</th>
+          <th>Количество</th>
+          <th>Цена</th>
+          <th></th>
+        </tr>
       </thead>
       <tbody>
         {% for cart_item in cart_items %}
         <tr>
-          <td>
-            <img src="{{ cart_item.item.image.url }}" alt="{{ cart_item.item.title }}" style="width: 120px; height: 120px; object-fit: cover;">
-          </td>
-          <td>
-            <a href="{% url 'store:item_details' cart_item.item.slug %}">{{ cart_item.item.title }}</a>
-          </td>
+          <td><a href="{% url 'store:item_details' cart_item.item.slug %}">{{ cart_item.item.title }}</a></td>
           <td>
             <div class="count">
               <span class="minus" data-cart-item-id="{{ cart_item.id }}">—</span>
@@ -41,14 +43,15 @@
       <tfoot>
         <tr>
           <td colspan="2"></td>
-          <td><u><b><span id="cart-total-price" data-cart-id="{{ cart.id }}">Общая стоимость: {{ cart.total_price }}</span></b></u></td>
+          <td><u><b><span id="cart-total-price" data-cart-id="{{ cart.id }}">{{ cart.total_price }}</span></b></u></td>
         </tr>
       </tfoot>
     </table>
   </div>
 </section>
 <div style="text-align: justify;">
-  <a href="{% url 'store:home' %}" style="float: left;" class="button_continue">Продолжить покупки</a>
+  <a href="{% url 'store:home' %}" style="float: left;" class="button_continue">Продолжать покупки</a>
+  <a href="{% url 'checkout:checkout' %}" style="float: right;" class="button_checkout">Оформить заказ</a>
   <form method="post" style="float: right;">
     {% csrf_token %}
     <button type="submit" class="button_whatsapp">Оформить заказ в WhatsApp</button>
@@ -59,5 +62,10 @@
 {% endif %}
 {% block js %}
 <script src="{% static "assets/js/cart.js" %}"></script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="{% static "assets/js/translator.js" %}"></script> <!-- Укажи правильный путь -->
+
 {% endblock %}
+
+
 {% endblock %}

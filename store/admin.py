@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Item, ItemTag, Poster, Seller
+from .models import Item, ItemTag, Poster, Seller, Review
+
 
 
 @admin.register(Seller)  # Если @admin.register отсутствует, добавь его
@@ -50,8 +51,12 @@ class ItemTagAdmin(admin.ModelAdmin):
 class PosterAdmin(admin.ModelAdmin):
     list_display = ('image',)
 
-
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('item', 'user', 'rating', 'text', 'created_at')
+    search_fields = ('user__username', 'item__title', 'text')
+    list_filter = ('rating', 'created_at')
 # Регистрация моделей с классами админки
 admin.site.register(Item, ItemAdmin)
 admin.site.register(ItemTag, ItemTagAdmin)
 admin.site.register(Poster, PosterAdmin)
+admin.site.register(Review, ReviewAdmin)

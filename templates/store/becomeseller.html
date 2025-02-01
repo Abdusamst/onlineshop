@@ -2,21 +2,22 @@
 
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'assets/seller_regestration.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/becomeseller.css' %}">
 {% endblock %}
 
 {% block content %}
-    <h1>Стать продавцом</h1>
-    {% if user.is_seller %}
-        <p>Вы уже продавец. <a href="{% url 'store:add_item' %}">Добавить товар</a></p>
-    {% else %}
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Стать продавцом</button>
-        </form>
-    {% endif %}
-</body>
-</html>
-
+    <div class="become-seller-container">
+        <h1>Стать продавцом</h1>
+        {% if user.is_seller %}
+            <div class="seller-message">
+                <p>Вы уже продавец. <a href="{% url 'store:add_item' %}">Добавить товар</a></p>
+            </div>
+        {% else %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Стать продавцом</button>
+            </form>
+        {% endif %}
+    </div>
 {% endblock %}

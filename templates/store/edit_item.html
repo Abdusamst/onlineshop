@@ -1,9 +1,49 @@
 {% extends "base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'assets/edit_item.css' %}">
+{% endblock %}
 {% block content %}
-    <h1>Редактировать товар: {{ item.title }}</h1>
-    <form method="post" enctype="multipart/form-data">
+    <h1 style="text-align: center; color: #333; font-size: 2em; margin-bottom: 20px;">Редактировать товар: {{ item.title }}</h1>
+    <form method="post" enctype="multipart/form-data" style="max-width: 600px; margin: 20px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="button">Сохранить изменения</button>
+        <button type="submit" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; font-size: 1em; cursor: pointer; transition: background-color 0.3s ease;">Сохранить изменения</button>
     </form>
+
+    <style>
+        form p {
+            margin-bottom: 15px;
+        }
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        form input[type="text"],
+        form input[type="number"],
+        form textarea,
+        form select,
+        form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+            color: #333;
+        }
+        form input[type="text"]:focus,
+        form input[type="number"]:focus,
+        form textarea:focus,
+        form select:focus,
+        form input[type="file"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+    </style>
 {% endblock %}

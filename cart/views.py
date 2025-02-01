@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
-
+from django.utils.translation import gettext as _
 from store.models import Item
 from .models import Cart, CartItem
 from store.utils import generate_whatsapp_message
@@ -24,8 +24,12 @@ def cart(request):
         return redirect(whatsapp_url)
     page_obj_2 = ItemTag.objects.all()
     tags = ItemTag.objects.all().order_by('name')
+
+    for tag in tags:
+        tag.description = _(tag.description)
+
     context = {
-        'tags': tags,
+        # 'tags': tags,
         'page_obj_2': tags,
         'cart_items': cart_items,
         'cart': cart,

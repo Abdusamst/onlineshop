@@ -4,7 +4,7 @@ from taggit.managers import TaggableManager
 from taggit .models import GenericTaggedItemBase, TagBase
 from django.utils.text import slugify
 from django.conf import settings
-
+from django.db.models import Avg
 
 class ItemTag(TagBase):
     image = models.ImageField(
@@ -18,8 +18,27 @@ class ItemTag(TagBase):
         )
 
     class Meta:
-        verbose_name = _("Категория")
-        verbose_name_plural = _("Категории")
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
+
+from django.db import models
+from django.conf import settings
+
+class Review(models.Model):
+    item = models.ForeignKey('store.Item', on_delete=models.CASCADE, related_name='reviews', verbose_name='Товар')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
+    text = models.TextField(verbose_name='Отзыв', blank=False)
+    rating = models.PositiveIntegerField(choices=[(i, str(i)) for i in range(1, 6)], verbose_name='Рейтинг (1-5)', blank=False)
+    images = models.ImageField(upload_to='reviews/', null=True, blank=True, verbose_name='Изображения отзыва')
+
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
+    def __str__(self):
+        return f'Отзыв от {self.user.username} на {self.item.title}'
 
 
 class Favorite(models.Model):
@@ -41,6 +60,7 @@ class TaggedItem(GenericTaggedItemBase):
         related_name="items",
         verbose_name='Категория',
     )
+    
 
 
 class Poster(models.Model):
@@ -50,14 +70,12 @@ class Poster(models.Model):
         blank=True
     )
 
-    class Meta:
-        verbose_name = _("Постер")
-        verbose_name_plural = _("Постеры")
-
     def __str__(self):
         return f"Poster {self.id}"
 
-
+    class Meta:
+        verbose_name = "Постер"
+        verbose_name_plural = "Постеры"
 
 class Item(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название',)
@@ -88,6 +106,7 @@ class Item(models.Model):
         default=True,
         verbose_name='Доступно',
     )
+    
     tags = TaggableManager(through=TaggedItem, related_name="tagged_items", verbose_name='Категории',)
     seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default = 1 ,related_name='items', verbose_name='Продавец')
     def __str__(self):
@@ -95,7 +114,7 @@ class Item(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:  # если slug еще не создан
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.title)
             original_slug = self.slug
             counter = 1
             while Item.objects.filter(slug=self.slug).exists():
@@ -103,6 +122,10 @@ class Item(models.Model):
                 counter += 1
         super().save(*args, **kwargs)
 
+    def average_rating(self):
+        return self.reviews.aggregate(Avg('rating'))['rating__avg'] or 0
+    
+    
     class Meta:
         ordering = ['-price']
         verbose_name = 'Товар'
@@ -139,3 +162,6 @@ class Seller(models.Model):
     def __str__(self):
         return self.store_name
 
+    class Meta:
+        verbose_name = 'Продавец'
+        verbose_name_plural = 'Продавцы'
