@@ -138,3 +138,4 @@ class Seller(models.Model):
 
     def __str__(self):
         return self.store_name
+
