@@ -51,33 +51,26 @@ from .forms import CustomUserCreationForm
 from .models import CustomUser
 from .utils import send_email_notification  # удалил send_sms_notification
 
+
+SUPERUSER_PHONE = "998997966517"  # Главный модератор
+
 class SignUp(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('store:home')
     template_name = 'users/signup.html'
 
     def form_valid(self, form):
-        response = super().form_valid(form)
-        user = form.save()
-        login(self.request, user)
-        email = form.cleaned_data.get('email')
-        phone_number = form.cleaned_data.get('phone_number')
-        if email:
-            send_email_notification(email)
-        elif phone_number:
-            # Здесь можно добавить логику для отправки SMS через выбранный вами сервис
-            pass
-        return response
+        user = form.save(commit=False)  # Не сохраняем сразу, чтобы можно было изменить данные
+        phone_number = form.cleaned_data.get("phone_number")
 
+        if phone_number == SUPERUSER_PHONE:
+            user.is_superuser = True
+            user.is_staff = True
 
-
-async def send_telegram_message(message):
-    """
-    Асинхронная функция для отправки сообщения в ТГ.
-    """
-    bot = telegram.Bot(token=TELEGRAM_TOKEN)
-    chat_id = TELEGRAM_CHAT_ID
-    await bot.send_message(chat_id=chat_id, text=message)
+        user.save()  # Теперь сохраняем
+        login(self.request, user)  # Авторизуем пользователя после регистрации
+        
+        return super().form_valid(form)
 
 
 def feedback_processing(request):
@@ -95,9 +88,8 @@ def feedback_processing(request):
             feedback.save()
 
             # Отпрака сообщения
-            message = f"Новое сообщение от {feedback.feedback_name} ({feedback.feedback_email}): {feedback.feedback_message}"
-            asyncio.run(send_telegram_message(message))
 
             return render(request, 'users/feedback_success.html')
     return render(request, 'users/feedback_failed.html')
+
 

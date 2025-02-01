@@ -3,6 +3,7 @@
 {% load static %}
 {% block css %}
 <link rel="stylesheet" href="{% static 'assets/item_detail.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 {% endblock %}
 
 {% block content %}
@@ -14,8 +15,11 @@
             {% if not forloop.last %},{% endif %}
         {% endfor %}
     </p>
+    <p>Количество отзывов: {{ reviews.count }}</p>
+
 
     <div class="item-card">
+        
         <div class="item-image-wrapper">
             {% if item.image %}
                 <img src="{{ item.image.url }}" alt="{{ item.title }}" class="item-image">
@@ -29,12 +33,12 @@
 
             {% if item.old_price %}
                 <p class="item-price">
-                    <span class="old-price">Старая цена: <s>{{ item.old_price }} Сом</s></span>
-                    <span class="new-price">Новая цена: <b>{{ item.price }}</b> Сом</span>
+                    <span class="old-price"><s>{{ item.old_price }} Сом</s></span>
+                    <span class="new-price"><b>{{ item.price }}</b> Сом</span>
                 </p>
             {% else %}
                 <p class="item-price">
-                    Цена: <b>{{ item.price }}</b> Сом
+                   <b>{{ item.price }}</b> Сом
                 </p>
             {% endif %}
 
@@ -50,4 +54,208 @@
             </div>
         </div>
     </div>
+
+    <h3>Отзывы</h3>
+    {% if reviews.count > 3 %}
+    <a href="{% url 'store:all_reviews' item.slug %}" class="button_view-all-reviews">Все отзовы -></a>
+{% endif %}
+    <p>
+        {% for i in "12345" %}
+            {% if i|add:0 <= average_rating %}
+                <i class="fas fa-star" style="color: gold;"></i>
+            {% else %}
+                <i class="far fa-star" style="color: gold;"></i>
+            {% endif %}
+        {% endfor %}
+        ({{ average_rating|floatformat:1 }} / 5)
+    </p>
+
+    <div class="reviews">
+
+
+        {% for review in reviews|slice:":3" %}
+
+            <div class="review">
+                <p class="review-date">{{ review.created_at }}</p>
+                <p><strong>{{ review.user.username }}</strong> 
+                    {% for i in "12345" %}
+                        {% if i|add:0 <= review.rating %}
+                            <i class="fas fa-star" style="color: gold;"></i>
+                        {% else %}
+                            <i class="far fa-star" style="color: gold;"></i>
+                        {% endif %}
+                    {% endfor %}
+                </p>
+                <p>{{ review.text }}</p>
+                {% if review.images %}
+                    <img src="{{ review.images.url }}" alt="Изображение отзыва" class="review-image">
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>Нет отзывов для этого товара.</p>
+        {% endfor %}
+    </div>
+    
+
+    {% if user.is_authenticated and has_bought and not user_has_reviewed %}
+    <button id="show-review-form" class="button">Оставить отзыв</button>
+    <div id="review-form-container" class="review-form-container" style="display: none;">
+        <h3>Оставьте отзыв</h3>
+        <form class="review-form" action="{% url 'store:add_review' item.slug %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="rating">Рейтинг (1-5):</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" required class="rating-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="text">Отзыв:</label>
+                <textarea id="text" name="text" rows="6" required class="review-textarea"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Изображение (необязательно):</label>
+                <div class="image-upload-wrapper">
+                    <input type="file" id="image" name="image" accept="image/*" class="image-input">
+                    <div class="image-preview-container" id="imagePreview">
+                        <img src="" alt="Preview" class="image-preview">
+                        <div class="image-preview-placeholder">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-button">Отправить отзыв</button>
+        </form>
+    </div>
+{% endif %}
+    <div class="seller-info">
+        <h3>Продавец этого товара</h3>
+        {% if item.seller %}
+            <div class="seller-details">
+                <p><strong>Продавец:</strong> {{ item.seller.username }}</p>
+            </div>
+        {% else %}
+            <p>Информация о продавце недоступна.</p>
+        {% endif %}
+    </div>
+    <h3>Похожие товары</h3>
+<div class="similar-items-container">
+    {% for similar_item in similar_items %}
+        <div class="similar-item">
+            <a href="{% url 'store:item_details' similar_item.slug %}">
+                {% if similar_item.image %}
+                    <img src="{{ similar_item.image.url }}" alt="{{ similar_item.title }}">
+                {% else %}
+                    <img src="/static/images/default.jpg" alt="Нет изображения" class="similar-image">
+                {% endif %}
+                <p class="title">{{ similar_item.title }}</p>
+                <p class="price" style="color: darkred;"><b>{{ similar_item.price }}</b> Сом</p>
+            </a>
+        </div>
+    {% empty %}
+        <p class="no-items">Нет похожих товаров</p>
+    {% endfor %}
 </div>
+
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const showReviewFormButton = document.getElementById('show-review-form');
+    const reviewFormContainer = document.getElementById('review-form-container');
+
+    if (showReviewFormButton && reviewFormContainer) {
+        showReviewFormButton.addEventListener('click', function() {
+            if (reviewFormContainer.style.display === 'none') {
+                reviewFormContainer.style.display = 'block';
+            } else {
+                reviewFormContainer.style.display = 'none';
+            }
+        });
+    }
+
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.querySelector('.image-preview');
+    const placeholder = document.querySelector('.image-preview-placeholder');
+    const previewContainer = document.getElementById('imagePreview');
+
+    // Handle file selection
+    imageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                imagePreview.style.display = 'block';
+                imagePreview.src = e.target.result;
+                placeholder.style.display = 'none';
+            }
+            
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.style.display = 'none';
+            placeholder.style.display = 'block';
+            imagePreview.src = '';
+        }
+    });
+
+    // Handle drag and drop
+    previewContainer.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.style.borderColor = '#007bff';
+    });
+
+    previewContainer.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        this.style.borderColor = '#ddd';
+    });
+
+    previewContainer.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.style.borderColor = '#ddd';
+        
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            imageInput.files = e.dataTransfer.files;
+            const event = new Event('change');
+            imageInput.dispatchEvent(event);
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.rating-stars input[type="radio"]');
+    const labels = document.querySelectorAll('.rating-stars label');
+
+    stars.forEach((star, index) => {
+        star.addEventListener('change', () => {
+            labels.forEach((label, i) => {
+                if (i >= index) {
+                    label.classList.add('selected');
+                } else {
+                    label.classList.remove('selected');
+                }
+            });
+        });
+    });
+
+    labels.forEach((label, index) => {
+        label.addEventListener('mouseover', () => {
+            labels.forEach((l, i) => {
+                if (i >= index) {
+                    l.classList.add('hovered');
+                } else {
+                    l.classList.remove('hovered');
+                }
+            });
+        });
+
+        label.addEventListener('mouseout', () => {
+            labels.forEach(l => l.classList.remove('hovered'));
+        });
+    });
+});
+</script>
+{% endblock %}

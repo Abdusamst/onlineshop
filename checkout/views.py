@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-
+from store.models import ItemTag
 from cart.views import Cart
 from .forms import OrderCreateForm
 from .models import Order, OrderItem, ShippingAddress
@@ -13,8 +13,14 @@ def checkout(request):
     Представление чекаута.
     """
     cart = Cart.objects.get(user=request.user)
+    page_obj_2 = ItemTag.objects.all()
+    tags = ItemTag.objects.all().order_by('name')
     form = OrderCreateForm()
-    context = {'cart': cart, 'form': form}
+    context = {'cart': cart,
+                'form': form,
+                'page_obj_2': page_obj_2,
+                'tags': tags,
+                }
 
     return render(request, 'checkout/checkout.html', context)
 

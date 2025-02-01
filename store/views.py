@@ -5,6 +5,8 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.text import slugify
 from django.utils.translation import gettext as _
+from django.contrib.auth.decorators import login_required
+
 def store(request):
     items = Item.objects.filter(is_available=True)
     tags = ItemTag.objects.all().order_by('name')  # Добавим сортировку
@@ -23,7 +25,7 @@ def store(request):
 @receiver(pre_save, sender=Item)
 def create_slug(sender, instance, **kwargs):
     if not instance.slug:  # проверяем, есть ли уже slug
-        instance.slug = slugify(instance.name)
+        instance.slug = slugify(instance.title)  # Используем title вместо name
 
 def poster(request):
     posters = Poster.objects.all()
@@ -32,18 +34,105 @@ def poster(request):
     }
     return render(request, 'store/poster.html', context)
 
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.db.models import Q
+from checkout.models import Order
+from .models import Item, ItemTag, Review, Favorite
+
 def item_details(request, item_slug):
     item = get_object_or_404(Item, slug=item_slug)
     tags = ItemTag.objects.all().order_by('name')
     is_favorite = False
+    has_bought = False  # Установим False по умолчанию
+    reviews = item.reviews.all()
+    average_rating = item.average_rating()  # Добавил расчет среднего рейтинга
+    user_has_reviewed = False  # Добавил проверку, оставил ли пользователь отзыв
+    
+
     if request.user.is_authenticated:
+        has_bought = Order.objects.filter(
+            user=request.user,
+            items__item=item,  # Убедись, что `items__item` соответствует реальной связи в модели
+            status='delivered'  # Убедись, что статус точно такой же в БД
+        ).exists()
         is_favorite = Favorite.objects.filter(user=request.user, item=item).exists()
+        user_has_reviewed = reviews.filter(user=request.user).exists()
+
+    similar_items = Item.objects.filter(
+        Q(tags__in=item.tags.all()) |
+        Q(title__icontains=item.title.split()[0])
+    ).exclude(id=item.id).distinct()[:4]
+
     context = {
         'page_obj_2': tags,
         'item': item,
         'is_favorite': is_favorite,
+        'similar_items': similar_items,
+        'reviews': reviews,
+        'has_bought': has_bought,
+        'average_rating': average_rating,  # Передаем средний рейтинг в контекст
+        'user_has_reviewed': user_has_reviewed,  # Передаем информацию о наличии отзыва
     }
     return render(request, 'store/item_details.html', context)
+
+@login_required
+def add_review(request, item_slug):
+    item = get_object_or_404(Item, slug=item_slug)
+    
+    
+    has_bought = Order.objects.filter(
+        user=request.user, 
+        items__item=item,
+        status='delivered'
+    ).exists()
+    
+
+    if not has_bought:
+        messages.error(request, 'Вы можете оставить отзыв только после покупки товара.')
+        return redirect('store:item_details', item_slug=item.slug)
+
+    if request.method == 'POST':
+        
+        text = request.POST.get('text')
+        rating = request.POST.get('rating')
+        image = request.FILES.get('image')
+        
+        
+        if not text or not rating:
+            print("Missing required fields")  # Отладочная информация
+            messages.error(request, 'Пожалуйста, заполните все обязательные поля.')
+            return redirect('store:item_details', item_slug=item.slug)
+        
+        try:
+            review = Review.objects.create(
+                item=item,
+                user=request.user,
+                text=text,
+                rating=rating,
+                images=image
+            )
+            messages.success(request, 'Спасибо! Ваш отзыв успешно добавлен.')
+        except Exception as e:
+            messages.error(request, f'Произошла ошибка при сохранении отзыва: {str(e)}')
+            
+    return redirect('store:item_details', item_slug=item.slug)
+
+from django.shortcuts import render, get_object_or_404
+from .models import Item, Review
+
+def all_reviews(request, item_slug):  # Используйте item_slug
+    item = get_object_or_404(Item, slug=item_slug)
+    reviews = Review.objects.filter(item=item)
+    average_rating = item.average_rating()
+
+    context = {
+        'item': item,
+        'reviews': reviews,
+        'average_rating': average_rating,
+    }
+    return render(request, 'store/all_reviews.html', context)
 
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
@@ -153,7 +242,6 @@ def search(request):
         'query': query,
         'results': results,
     }
-    
     return render(request, 'store/search.html', context)
 
 
@@ -210,7 +298,7 @@ def add_item(request):
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
             item = form.save(commit=False)
-            item.seller = request.user  # Используйте объект CustomUser вместо Seller
+            item.seller = request.user  
             item.save()
             return redirect('store:my_items')
     else:
@@ -224,8 +312,6 @@ def add_item(request):
         'page_obj_2': tags,
     }
     return render(request, 'store/add_item.html', context)
-
-
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404

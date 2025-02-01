@@ -1,7 +1,31 @@
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'assets/popup.css' %}">
+{% endblock %}
+
 <div id="overlay" class="overlay"></div>
 <div id="online-payment-info" class="hidden">
   <button id="close-btn">Закрыть</button>
-  <h2 style="color: red;">НЕ ПЛАТИТЕ ЭТО НЕДОРОБОТАННАЯ ФУНКЦИЯ</h2>
   <div id="paypal-button-container"></div>
-  <h2 style="color: red;">НЕ ПЛАТИТЕ ЭТО НЕДОРОБОТАННАЯ ФУНКЦИЯ</h2>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const overlay = document.getElementById("overlay");
+    const paymentInfo = document.getElementById("online-payment-info");
+    const closeButton = document.getElementById("close-btn");
+
+    function showPopup() {
+      overlay.style.display = "block";
+      paymentInfo.style.display = "block";
+    }
+
+    function hidePopup() {
+      overlay.style.display = "none";
+      paymentInfo.style.display = "none";
+    }
+
+    closeButton.addEventListener("click", hidePopup);
+    overlay.addEventListener("click", hidePopup);
+  });
+</script>
