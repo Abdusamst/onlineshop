@@ -32,8 +32,9 @@
             </div>
             <!-- Nav -->
             <button class="catalog-button" onclick="toggleCatalog()">
-                <i class="fa-solid fa-bars"></i>Каталог
+                <i class="fa-solid fa-bars"></i> Каталог
             </button>
+
             <div class="search-bar">
                 <form action="{% url 'store:search' %}" method="get">
                     <input type="text" name="q">
@@ -88,6 +89,14 @@
           changeLanguage(savedLang); // Применяем перевод
         }
       };
+      function toggleCatalog() {
+            const catalog = document.getElementById('catalog');
+            if (catalog.style.display === 'none') {
+                catalog.style.display = 'block';
+            } else {
+                catalog.style.display = 'none';
+            }
+        }
     </script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 {% endblock %}

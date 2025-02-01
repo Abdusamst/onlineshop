@@ -166,7 +166,7 @@ def tag_list(request):
     page_obj_2 = ItemTag.objects.all()
     tags = ItemTag.objects.all().order_by('name')
     context = {
-        'page_obj': paginator(request, tags, 6),
+        'page_obj': paginator(request, tags, 6),                                                                                                        
         'tags': tags,
         'page_obj_2': tags,
     }
@@ -367,3 +367,6 @@ def delete_item(request, item_id):
         'page_obj_2': tags,
     }
     return render(request, 'store/delete_item.html', context)
+
+
+
