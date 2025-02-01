@@ -25,7 +25,7 @@ def store(request):
 @receiver(pre_save, sender=Item)
 def create_slug(sender, instance, **kwargs):
     if not instance.slug:  # проверяем, есть ли уже slug
-        instance.slug = slugify(instance.name)
+        instance.slug = slugify(instance.title)  # Используем title вместо name
 
 def poster(request):
     posters = Poster.objects.all()
@@ -242,7 +242,6 @@ def search(request):
         'query': query,
         'results': results,
     }
-    
     return render(request, 'store/search.html', context)
 
 
@@ -299,7 +298,7 @@ def add_item(request):
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
             item = form.save(commit=False)
-            item.seller = request.user  # Используйте объект CustomUser вместо Seller
+            item.seller = request.user  
             item.save()
             return redirect('store:my_items')
     else:
@@ -313,8 +312,6 @@ def add_item(request):
         'page_obj_2': tags,
     }
     return render(request, 'store/add_item.html', context)
-
-
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404

@@ -14,15 +14,16 @@
         </a>
         
         <!-- Language Selector -->
-        <div class="language-selector">
-            <a href="{% url 'set_language' %}?language=en"><img src="" alt=""> {% trans "Рус" %}</a>
-            <a href="{% url 'set_language' %}?language=ky"><img src="" alt=""> {% trans "Кырг" %}</a>
-            <a href="{% url 'set_language' %}?language=ru"><img src="" alt=""> {% trans "Eng" %}</a>
+        <div id="language-selector" class="language-selector">
+            <button class="lang-button" onclick="changeLanguage('ru')">Русский</button>
+            <button class="lang-button" onclick="changeLanguage('en')">English</button>
+            <button class="lang-button" onclick="changeLanguage('ky')">Кыргызча</button>
         </div>
 
+        <div id="google_translate_element"></div>
         <div class="inner1">
             <div class="catalog" id="catalog" style="display: none;">
-                <h3>{% trans "Каталог" %}</h3>
+                <h3>Каталог</h3>
                 <ul>
                     {% for tag in page_obj_2 %}
                         <li><a href="{% url 'store:tag_details' tag.slug %}">{{ tag.name }}</a></li>
@@ -31,7 +32,7 @@
             </div>
             <!-- Nav -->
             <button class="catalog-button" onclick="toggleCatalog()">
-                <i class="fa-solid fa-bars"></i> {% trans "Каталог" %}
+                <i class="fa-solid fa-bars"></i>Каталог
             </button>
             <div class="search-bar">
                 <form action="{% url 'store:search' %}" method="get">
@@ -44,19 +45,19 @@
                     <li class="icons-header">
                         <a href="{% url 'users:profile' %}">
                             <i class="fa-solid fa-user"></i>
-                            <span class="icon-text">{% trans "Войти" %}</span>
+                            <span class="icon-text">Войти</span>
                         </a>
                         <a href="{% url 'users:user_orders' %}">
                             <i class="fa-solid fa-list-check"></i>
-                            <span class="icon-text">{% trans "Заказы" %}</span>
+                            <span class="icon-text">Заказы</span>
                         </a>
                         <a href="{% url 'store:favorite_list' %}">
                             <i class="fa-solid fa-heart" style="color: black;"></i>
-                            <span class="icon-text">{% trans "Избранное" %}</span>
+                            <span class="icon-text">Избранное</span>
                         </a>
                         <a href="{% url 'cart:cart' %}">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="icon-text">{% trans "Корзина" %}</span>
+                            <span class="icon-text">Корзина</span>
                         </a>
                     </li>
                 </ul>
@@ -66,15 +67,29 @@
     </header>
     
     <script>
-        function toggleCatalog() {
-            const catalog = document.getElementById('catalog');
-            if (catalog.style.display === 'none') {
-                catalog.style.display = 'block';
-            } else {
-                catalog.style.display = 'none';
-            }
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'ru', autoDisplay: false }, 'google_translate_element');
+      }
+
+      function changeLanguage(lang) {
+        localStorage.setItem("selectedLanguage", lang); // Сохраняем язык
+        var select = document.querySelector(".goog-te-combo");
+        if (select) {
+          select.value = lang;
+          select.dispatchEvent(new Event("change"));
         }
+      }
+
+      // Восстанавливаем язык после обновления страницы
+      window.onload = function () {
+        var savedLang = localStorage.getItem("selectedLanguage");
+        if (savedLang) {
+          document.getElementById("language-selector").value = savedLang; // Обновляем селектор
+          changeLanguage(savedLang); // Применяем перевод
+        }
+      };
     </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 {% endblock %}
 </body>
 </html>

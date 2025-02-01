@@ -95,47 +95,50 @@
             <p>Нет отзывов для этого товара.</p>
         {% endfor %}
     </div>
-
+    
 
     {% if user.is_authenticated and has_bought and not user_has_reviewed %}
-        <button id="show-review-form" class="button">Оставить отзыв</button>
-        <div id="review-form-container" class="review-form-container" style="display: none;">
-            <h3>Оставьте отзыв</h3>
-            <form class="review-form" action="{% url 'store:add_review' item.slug %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="rating">Рейтинг (1-5):</label>
-                    <div class="rating-stars">
-                        {% for i in "54321" %}
-                            <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" required>
-                            <label for="star{{ i }}" class="fas fa-star"></label>
-                        {% endfor %}
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="text">Отзыв:</label>
-                    <textarea id="text" name="text" rows="4" required></textarea>
-                </div>
+    <button id="show-review-form" class="button">Оставить отзыв</button>
+    <div id="review-form-container" class="review-form-container" style="display: none;">
+        <h3>Оставьте отзыв</h3>
+        <form class="review-form" action="{% url 'store:add_review' item.slug %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="rating">Рейтинг (1-5):</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" required class="rating-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="text">Отзыв:</label>
+                <textarea id="text" name="text" rows="6" required class="review-textarea"></textarea>
+            </div>
 
-                <div class="form-group">
-                    <label>Изображение (необязательно):</label>
-                    <div class="image-upload-wrapper">
-                        <input type="file" id="image" name="image" accept="image/*" class="image-input">
-                        <div class="image-preview-container" id="imagePreview">
-                            <img src="" alt="Preview" class="image-preview">
-                            <div class="image-preview-placeholder">
-                                <i class="upload-icon">📸</i>
-                                <span>Нажмите или перетащите изображение</span>
-                            </div>
+            <div class="form-group">
+                <label>Изображение (необязательно):</label>
+                <div class="image-upload-wrapper">
+                    <input type="file" id="image" name="image" accept="image/*" class="image-input">
+                    <div class="image-preview-container" id="imagePreview">
+                        <img src="" alt="Preview" class="image-preview">
+                        <div class="image-preview-placeholder">
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <button type="submit" class="submit-button">Отправить отзыв</button>
-            </form>
-        </div>
-    {% endif %}
+            <button type="submit" class="submit-button">Отправить отзыв</button>
+        </form>
+    </div>
+{% endif %}
+    <div class="seller-info">
+        <h3>Продавец этого товара</h3>
+        {% if item.seller %}
+            <div class="seller-details">
+                <p><strong>Продавец:</strong> {{ item.seller.username }}</p>
+            </div>
+        {% else %}
+            <p>Информация о продавце недоступна.</p>
+        {% endif %}
+    </div>
     <h3>Похожие товары</h3>
 <div class="similar-items-container">
     {% for similar_item in similar_items %}
@@ -219,6 +222,39 @@ document.addEventListener('DOMContentLoaded', function() {
             const event = new Event('change');
             imageInput.dispatchEvent(event);
         }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.rating-stars input[type="radio"]');
+    const labels = document.querySelectorAll('.rating-stars label');
+
+    stars.forEach((star, index) => {
+        star.addEventListener('change', () => {
+            labels.forEach((label, i) => {
+                if (i >= index) {
+                    label.classList.add('selected');
+                } else {
+                    label.classList.remove('selected');
+                }
+            });
+        });
+    });
+
+    labels.forEach((label, index) => {
+        label.addEventListener('mouseover', () => {
+            labels.forEach((l, i) => {
+                if (i >= index) {
+                    l.classList.add('hovered');
+                } else {
+                    l.classList.remove('hovered');
+                }
+            });
+        });
+
+        label.addEventListener('mouseout', () => {
+            labels.forEach(l => l.classList.remove('hovered'));
+        });
     });
 });
 </script>
