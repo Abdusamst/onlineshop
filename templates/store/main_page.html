@@ -34,7 +34,7 @@
             <a href="{% url 'store:add_item' %}" class="button_add_item">Добавить товар</a>
             <a href="{% url 'store:my_items' %}" class="button_my_items">Мои товары</a>
             {% if user.is_superuser %}
-            <a href="{% url 'admin:index' %}" class="button_admin">Перейти в панель администратора</a>
+            <a href="{% url 'admin:index' %}" class="button_admin">Панель модератора</a>
             {% endif %}
         {% endif %}
         </div>
@@ -61,40 +61,41 @@
         
     </div>
 
-        <!-- Продукты -->
-        <section id="products">
-            <div class="inner">
-                <h2>Список всех продуктов</h2>
-                <div class="product-list">
-                    {% for item in page_obj %}
-                        <div class="product-item" id="item-{{ item.id }}">
-                            <p><span class="image right">
-                                {% if item.image and user.is_authenticated %}
-                                    <button id="favorite-btn-{{ item.id }}" class="btn btn-sm btn-outline-primary" onclick="toggleFavorite({{ item.id }})">
-                                        {% if item.id in favorites %}
-                                        <i class="fa-solid fa-heart"></i>
-                                        {% else %}
-                                        <i class="fa-regular fa-heart"></i>
-                                        {% endif %}
-                                    </button>    
-                                    <img src="{{ item.image.url }}" alt=""  />
-                                {% else %}
-                                    <img src="{% static 'images/pic14.jpg' %}" alt="" />
-                                {% endif %}
-                            <a href="{% url 'store:item_details' item.slug %}"><b>{{ item.title }}</b></a>
-                            <p class="item-description" style="color: rgb(129, 129, 129);">{{ item.description }}</p>      
-                            <p class="price-current"><b style="color: black;">{{ item.price }}</b> сом</p>  
+<!-- Продукты -->
+<section id="products">
+    <div class="inner">
+        <h2>Список всех продуктов</h2>
+        <div class="product-list">
+            {% for item in page_obj %}
+                <div class="product-item" id="item-{{ item.id }}">
+                    <p><span class="image right">
+                        {% if item.image %}
                             {% if user.is_authenticated %}
-                    
-                                <a href="{% url 'cart:add_to_cart' item.slug %}" class="button_small" style="margin-top:10px; color: white;">
-                                    <i class="fa-solid fa-cart-shopping"></i></a>
+                                <button id="favorite-btn-{{ item.id }}" class="btn btn-sm btn-outline-primary" onclick="toggleFavorite({{ item.id }})">
+                                    {% if item.id in favorites %}
+                                    <i class="fa-solid fa-heart"></i>
+                                    {% else %}
+                                    <i class="fa-regular fa-heart"></i>
+                                    {% endif %}
+                                </button>    
                             {% endif %}
-                        </div>
-                        {% if not forloop.last %}{% endif %}
-                    {% endfor %}
+                            <img src="{{ item.image.url }}" alt=""  />
+                        {% else %}
+                            <img src="{% static 'images/pic14.jpg' %}" alt="" />
+                        {% endif %}
+                    <a href="{% url 'store:item_details' item.slug %}"><b>{{ item.title }}</b></a>
+                    <p class="item-description" style="color: rgb(129, 129, 129);">{{ item.description }}</p>      
+                    <p class="price-current"><b style="color: black;">{{ item.price }}</b> сом</p>  
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'cart:add_to_cart' item.slug %}" class="button_small" style="margin-top:10px; color: white;">
+                            <i class="fa-solid fa-cart-shopping"></i></a>
+                    {% endif %}
                 </div>
-            </div>
-        </section>
+                {% if not forloop.last %}{% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
         
         
         

@@ -114,7 +114,7 @@ class Item(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:  # если slug еще не создан
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.title)
             original_slug = self.slug
             counter = 1
             while Item.objects.filter(slug=self.slug).exists():
@@ -124,6 +124,8 @@ class Item(models.Model):
 
     def average_rating(self):
         return self.reviews.aggregate(Avg('rating'))['rating__avg'] or 0
+    
+    
     class Meta:
         ordering = ['-price']
         verbose_name = 'Товар'
