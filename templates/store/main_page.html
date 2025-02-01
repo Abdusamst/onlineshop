@@ -13,52 +13,54 @@
 </head>
 <body>
     <div class="main_page1">
-        <div id="carouselExampleIndicators" class="carousel-slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                {% for poster in posters %}
-                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                        <img src="{{ poster.image.url }}" class="d-block w-100 img-poster" alt="">
-                    </div>
-                {% endfor %}
+        <div class="inner12">
+
+            <div id="carouselExampleIndicators" class="carousel-slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for poster in posters %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ poster.image.url }}" class="d-block w-100 img-poster" alt="">
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-        
-        <div class="jhin-seller-container">
-            <img src="{% static 'images/ddd.png' %}" class="Jhin">
-            <div class="become-seller">
-                <a href="{% url 'store:becomeseller' %}" class="beseller">Стать продавцом</a>
+            
+            <div class="jhin-seller-container">
+                <img src="{% static 'images/ddd.png' %}" class="Jhin">
+                <div class="become-seller">
+                    <a href="{% url 'store:becomeseller' %}" class="beseller">Стать продавцом</a>
+                </div>
             </div>
-        </div>
-        <div class="seller-dashboard">
-        {% if user.is_seller %}
-            <a href="{% url 'store:add_item' %}" class="button_add_item">Добавить товар</a>
-            <a href="{% url 'store:my_items' %}" class="button_my_items">Мои товары</a>
-            {% if user.is_superuser %}
-            <a href="{% url 'admin:index' %}" class="button_admin">Панель модератора</a>
+            <div class="seller-dashboard">
+            {% if user.is_seller %}
+                <a href="{% url 'store:add_item' %}" class="button_add_item">Добавить товар</a>
+                <a href="{% url 'store:my_items' %}" class="button_my_items">Мои товары</a>
+                {% if user.is_superuser %}
+                <a href="{% url 'admin:index' %}" class="button_admin">Панель модератора</a>
+                {% endif %}
             {% endif %}
-        {% endif %}
-        </div>
-        <!--Карусель категорий-->
-        <div class="carousel-container">
-            <div class="tags_mainpage">
-              {% for tag in page_obj_2 %}
-              <a href="{% url 'store:tag_details' tag.slug %}" class="carousel-item">
-                <p><span class="image right">
-                  {% if tag.image %}
-                    <img src="{{ tag.image.url }}" alt="" style="width: 200px; height: 200px;"/>
-                  {% else %}
-                    <img src="{% static 'images/pic14.jpg' %}" alt="" />
-                  {% endif %}
-                </span></p>
-                <b>{{ tag.name }}</b>
-              </a>
-              {% endfor %}
             </div>
-            <button class="previous">&#62;</button>
-            <button class="next">&#60;</button>
-          </div>
-          
-        
+            <!--Карусель категорий-->
+            <div class="carousel-container">
+                <div class="tags_mainpage">
+                {% for tag in page_obj_2 %}
+                <a href="{% url 'store:tag_details' tag.slug %}" class="carousel-item">
+                    <p><span class="image right">
+                    {% if tag.image %}
+                        <img src="{{ tag.image.url }}" alt="" style="width: 200px; height: 200px;"/>
+                    {% else %}
+                        <img src="{% static 'images/pic14.jpg' %}" alt="" />
+                    {% endif %}
+                    </span></p>
+                    <b>{{ tag.name }}</b>
+                </a>
+                {% endfor %}
+                </div>
+                <button class="previous">&#62;</button>
+                <button class="next">&#60;</button>
+            </div>
+            
+        </div>  
     </div>
 
 <!-- Продукты -->

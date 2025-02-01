@@ -7,7 +7,7 @@
     overflow: hidden;
     position: relative;
     list-style-type: none;
-    margin-left: 160px;
+    margin-left: 100px;
     margin-top: 30px;
     
 }
@@ -26,7 +26,7 @@
     padding: 7px 25px;
     text-decoration: none;
     border-radius: 30px;
-    margin-left: 1180px;
+    margin-left: 1130px;
     position: absolute;
     margin-top: -320px;
     color: white;
@@ -37,7 +37,7 @@
     padding: 7px 15px;
     text-decoration: none;
     border-radius: 30px;
-    margin-left: 1330px;
+    margin-left: 1315px;
     position: absolute;
     margin-top: -270px;
     color: white;
@@ -48,12 +48,16 @@
 }
 
 .Jhin {
-    width: 300px;
-    height: 500px;
+    width: 350px;
+    height: 600px;
     position: absolute;
-    margin-left: 1220px;
-    margin-top: -250px;
+    margin-left: 1290px;
+    margin-top: -300px;
     z-index: -1;
+}
+
+.tags_mainpage {
+    width: 1700px;
 }
 
 .tags_mainpage {
@@ -189,7 +193,7 @@ i.fa-heart {
     text-decoration: none;
     border-radius: 30px;
     color: white;
-    margin-left: 1350px;
+    margin-left: 1300px;
     position: absolute;
     margin-top: -320px;
 }
@@ -200,7 +204,7 @@ i.fa-heart {
     text-decoration: none;
     border-radius: 30px;
     color: white;
-    margin-left: 1180px;    
+    margin-left: 1130px;    
     position: absolute;
     margin-top: -270px;
 }
@@ -281,6 +285,36 @@ i.fa-heart {
 .product-item .button.small:hover {
     background-color: #0056b3;
 }
+
+.catalog-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Чтобы появлялось сразу под кнопкой */
+    left: 0;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    z-index: 1000; /* Чтобы меню было поверх всего */
+}
+
+.catalog-button {
+    position: relative; /* Чтобы меню позиционировалось относительно кнопки */
+}
+
+.catalog-item {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: black;
+    white-space: nowrap; /* Чтобы текст не переносился */
+}
+
+.catalog-item:hover {
+    background: #f0f0f0;
+}
+
 
 
 @media (max-width: 575.98px) { 
@@ -569,8 +603,8 @@ i.fa-heart {
     .Jhin {
         margin-top: 300px;
         margin-left: 600px;
-        width: 300px;
-        height: 500px;
+        width: 400px;
+        height: 600px;
     }
     
     .carousel-slide {
@@ -605,7 +639,22 @@ i.fa-heart {
 
 /* 2K  второй монитор манитора*/ 
 @media (min-width: 1400px) {
-    
+    .inner12 {
+        margin-left: 15%;
+    }
+    .product-item {
+        flex: 1 1 calc(16.66% - 10px); /* 6 товаров в ряду */
+        max-width: calc(16.66% - 10px);
+        box-sizing: border-box;
+    }
+    #products .inner {
+        max-width: 1600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .carousel-container {
+        width: 1600px;
+    }
 }
 
 /* 4K */
