@@ -51,10 +51,9 @@
 </section>
 <div style="text-align: justify;">
   <a href="{% url 'store:home' %}" style="float: left;" class="button_continue">Продолжать покупки</a>
-  <a href="{% url 'checkout:checkout' %}" style="float: right;" class="button_checkout">Оформить заказ</a>
-  <form method="post" style="float: right;">
+  <form method="POST" action="{% url 'checkout:create_order_whatsapp' %}">
     {% csrf_token %}
-    <button type="submit" class="button_whatsapp">Оформить заказ в WhatsApp</button>
+    <button type="submit" class="button_whatsapp">Оформить заказ через WhatsApp</button>
   </form>
 </div>
 {% else %}

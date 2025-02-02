@@ -37,7 +37,7 @@
     padding: 7px 15px;
     text-decoration: none;
     border-radius: 30px;
-    margin-left: 1315px;
+    margin-left: 1265px;
     position: absolute;
     margin-top: -270px;
     color: white;
@@ -51,7 +51,7 @@
     width: 350px;
     height: 600px;
     position: absolute;
-    margin-left: 1290px;
+    margin-left: 1270px;
     margin-top: -300px;
     z-index: -1;
 }
@@ -59,6 +59,48 @@
 .tags_mainpage {
     width: 1700px;
 }
+
+
+.product-item {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.item-description {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.product-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+
+.button_small {
+    display: inline-block;
+    background-color: #4CAF50;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
 
 .tags_mainpage {
     display: flex;
@@ -315,6 +357,55 @@ i.fa-heart {
     background: #f0f0f0;
 }
 
+/* 📱 Очень маленькие устройства (до 400px) */
+@media (max-width: 400px) {
+    .carousel-slide .carousel-item img {
+        height: 200px;
+    }
+
+    /* Уменьшаем размеры кнопок */
+    .button_admin,
+    .button_add_item,
+    .button_my_items,
+    .beseller {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    /* Товары в 1 колонку */
+    .product-item {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    /* Уменьшаем размеры изображений */
+    .tags_mainpage .image {
+        width: 120px;
+        height: 120px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Делаем карусель более узкой */
+    .carousel-slide {
+        width: 360px;
+        height: 180px;
+        margin-left: 10px;
+    }
+
+    .carousel-container {
+        width: 360px;
+        margin-left: 10px;
+    }
+
+    /* Уменьшаем высоту блока Jhin */
+    .Jhin {
+        width: 280px;
+        height: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
 
 
 @media (max-width: 575.98px) { 
@@ -353,14 +444,14 @@ i.fa-heart {
     }
     
     .carousel-slide {
-        width: 490px;
-        height: 250px;
+        width: 440px;
+        height: 200px;
         margin-left: 20px;
         margin-top: 10px;
     }
 
     .carousel-container {
-        width: 500px;
+        width: 400px;
         margin-left: 20px;
     }
 
@@ -472,20 +563,20 @@ i.fa-heart {
 
     .Jhin {
         margin-top: 300px;
-        margin-left: 600px;
+        margin-left: 400px;
         width: 300px;
         height: 500px;
     }
     
     .carousel-slide {
-        width: 900px;
+        width: 700px;
         height: 350px;
         margin-left: 20px;
         margin-top: 10px;
     }
 
     .carousel-container {
-        width: 940px;
+        width: 740px;
         margin-left: 20px;
     }
 
@@ -639,9 +730,7 @@ i.fa-heart {
 
 /* 2K  второй монитор манитора*/ 
 @media (min-width: 1400px) {
-    .inner12 {
-        margin-left: 15%;
-    }
+
     .product-item {
         flex: 1 1 calc(16.66% - 10px); /* 6 товаров в ряду */
         max-width: calc(16.66% - 10px);
@@ -655,10 +744,127 @@ i.fa-heart {
     .carousel-container {
         width: 1600px;
     }
+    .Jhin {
+        margin-left: 1200px
+    }
+    .carousel-slide {
+        width: 900px;
+        height: 290px;
+    }
+    .beseller {
+        margin-left: 1020px;
+    }
+    .button_my_items {
+        margin-left: 1020px;
+    }
+    .button_add_item {
+        margin-left: 1200px;
+    }
+    .button_admin {
+        margin-left: 1180px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .inner12 {
+        margin-left: 10%
+    }
+    .carousel-slide {
+        width: 1100px;
+        height: 350px;
+    }
+    .Jhin {
+        margin-left: 1340px
+    }
+    .beseller {
+        margin-left: 1230px;
+    }
+    .button_add_item {
+        margin-left: 1410px;
+    }
+
+    .button_my_items {
+        margin-left: 1230px;
+    }
+    .button_admin {
+        margin-left: 1370px;
+    }
+}
+
+@media (min-width: 2020px) {
+
+    .Jhin {
+        margin-left: 1450px
+    }
+}
+
+@media (min-width: 2220px) {
+
+    .Jhin {
+        margin-left: 1620px;
+        width: 400px;
+        height: 600px;
+        margin-top: -400px;
+    }
+    .beseller {
+        padding: 14px 28px;
+        margin-left: 1410px;
+        margin-top: -420px;
+    }
+    .button_my_items {
+        padding: 14px 28px;
+        margin-left: 1410px;
+        margin-top: -350px;
+    }
+    .button_add_item {
+        padding: 14px 28px;
+        margin-left: 1600px;
+        margin-top: -420px;
+    }
+    .button_admin {
+        padding: 14px 28px;
+        margin-left: 1550px;
+        margin-top: -350px;
+    }
+    .carousel-slide {
+        width: 1300px;
+        height: 420px;
+    }
 }
 
 /* 4K */
 @media (min-width: 2560px) {
+
+    .Jhin {
+        margin-left: 2220px;
+        width: 500px;
+        height: 700px;
+        margin-top: -400px;
+    }
+    .beseller {
+        padding: 20px 40px;
+        margin-left: 2110px;
+        margin-top: -420px;
+    }
+    .button_my_items {
+        padding: 20px 40px;
+        margin-left: 1960px;
+        margin-top: -330px;
+    }
+    .button_add_item {
+        padding: 20px 40px;
+        margin-left: 2310px;
+        margin-top: -420px;
+    }
+    .button_admin {
+        padding: 20px 40px;
+        margin-left: 2130px;
+        margin-top: -330px;
+    }
+    .carousel-slide {
+        width: 1700px;
+        height: 520px;
+    }
 
 }
 

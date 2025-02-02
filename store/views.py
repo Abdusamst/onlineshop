@@ -258,36 +258,27 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import SellerRegistrationForm
-from .models import User, Seller
+from .models import User, Seller, ItemTag
+import urllib.parse
 
 @login_required
 def become_seller(request):
+    tags = ItemTag.objects.all().order_by('name')
+    page_obj_2 = tags  # Если `page_obj_2` требуется в шаблоне, просто присваиваем `tags`
+
     if request.user.is_seller:
         messages.info(request, 'Вы уже продавец.')
         return redirect('store:home')
 
-    if request.method == 'POST':
-        form = SellerRegistrationForm(request.POST, request.FILES)
-        if form.is_valid():
-            seller = form.save(commit=False)
-            seller.user = request.user
-            seller.save()
-            request.user.is_seller = True
-            request.user.save()
-            return redirect('store:add_item')  # Перенаправление на добавление товара
-    else:
-        form = SellerRegistrationForm()
+    # Если пользователь не продавец, отправляем его в чат WhatsApp с менеджером
+    whatsapp_number = "+996552840777"  # Замените на номер менеджера
+    message = "Здравствуйте! Я хочу стать продавцом в вашем магазине."
+    whatsapp_url = f"https://wa.me/{whatsapp_number}?text={urllib.parse.quote(message)}"
 
+    return redirect(whatsapp_url)
 
-    page_obj_2 = ItemTag.objects.all()
-    tags = ItemTag.objects.all().order_by('name')
-    context = {
-        'form': form,
-        'tags': tags,
-        'page_obj_2': tags,
-    }
-    
-    return render(request, 'store/becomeseller.html', context)
+    return render(request, 'store/becomeseller.html', {'tags': tags, 'page_obj_2': page_obj_2})
+
 
 
 
@@ -315,18 +306,19 @@ def add_item(request):
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Item
+from .models import Item, ItemTag
+from checkout.models import OrderItem
+from cart.models import CartItem
 
 @login_required
 def my_items(request):
     seller = request.user
     items = Item.objects.filter(seller=seller)
-    page_obj_2 = ItemTag.objects.all()
-    tags = ItemTag.objects.all().order_by('name')
+
     context = {
         'items': items,
-        'tags': tags,
-        'page_obj_2': tags,
+        'tags': ItemTag.objects.all().order_by('name'),
+        'page_obj_2': ItemTag.objects.all(),
     }
     return render(request, 'store/my_items.html', context)
 
