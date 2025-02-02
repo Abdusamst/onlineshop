@@ -5,7 +5,7 @@ from .models import Item, ItemTag, Poster, Seller, Review
 
 @admin.register(Seller)  # Если @admin.register отсутствует, добавь его
 class SellerAdmin(admin.ModelAdmin):
-    list_display = ['id']
+    list_display = ['id', 'user', 'phone_number', 'whatsapp', 'stock_status', 'store_address', 'seller_name']
 
 class ItemAdmin(admin.ModelAdmin):
     list_display = ('title', 'short_description', 'slug', 'price',
