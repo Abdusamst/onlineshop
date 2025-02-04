@@ -119,6 +119,10 @@ body {
     font-size: 24px;
 }
 
+.icons-header a img {
+    height: 50px;
+}
+
 .icon-text {
     margin-top: 5px;
     font-size: 14px;
@@ -208,303 +212,6 @@ body {
     color: white;
 }
 
-/* Анимация появления */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 575.98px) { 
-    .catalog-button {
-        padding: 5px 10px;
-        font-size: 15px;
-    }
-    
-    .logo {
-        height: 60px;
-        background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 24, 48) 50%, rgb(0, 116, 218));
-    }
-
-    .logo .symbol img {
-        height: 60px;
-    }
-    .inner1 {
-        margin-left: auto !important;
-        gap: 14px;
-    }
-    .search-bar form {
-        width: 60%;  /* Сделаем форму шире */
-        max-width: 800px;  /* Ограничим максимальную ширину */
-        margin-left: -70px;
-    }
-    .search-bar button i {
-        font-size: 16px;
-    }
-
-    .search-bar button {
-        padding: 6px 15px;
-    }
-    .actions {
-        gap: 4px;
-        margin-left: -105px;
-    }
-    .search-bar input[type="text"] {
-        padding: 5px;
-    }
-    .icons-header {
-        gap: 10px;
-    }
-
-    #catalog {
-        left: 0;
-    }
-}
-@media (min-width: 576px) and (max-width: 767.98px) {
-    
-    #catalog {
-        left: 2;
-    }
-    
-    .catalog-button {
-        padding: 5px 10px;
-        font-size: 15px;
-    }
-    
-    .logo {
-        height: 60px;
-        background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 24, 48) 50%, rgb(0, 116, 218));
-    }
-
-    .logo .symbol img {
-        height: 60px;
-    }
-    .inner1 {
-        margin-left: auto !important;
-        gap: 14px;
-    }
-    .search-bar form {
-        width: 60%;  /* Сделаем форму шире */
-        max-width: 800px;  /* Ограничим максимальную ширину */
-        margin-left: -70px;
-    }
-    .search-bar button i {
-        font-size: 16px;
-    }
-
-    .search-bar button {
-        padding: 6px 15px;
-    }
-    .actions {
-        gap: 4px;
-        margin-left: -100px;
-        margin-right: 50px;
-    }
-    .search-bar input[type="text"] {
-        padding: 5px;
-    }
-    .icons-header {
-        gap: 10px;
-    }
- }
-
-/* Планшеты */
-@media (min-width: 768px) and (max-width: 991.98px) { 
-    
-    #catalog {
-        left: 2;
-    }
-    
-    .catalog-button {
-        padding: 10px 20px;
-        font-size: 15px;
-    }
-    
-    .logo {
-        height: 60px;
-        background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 24, 48) 50%, rgb(0, 116, 218));
-    }
-
-    .logo .symbol img {
-        height: 60px;
-    }
-    .inner1 {
-        margin-left: auto !important;
-        gap: 30px;
-    }
-    .search-bar form {
-        width: 80%;  /* Сделаем форму шире */
-        max-width: 800px;  /* Ограничим максимальную ширину */
-        margin-left: -70px;
-    }
-    .search-bar button i {
-        font-size: 16px;
-    }
-
-    .search-bar button {
-        padding: 12px 30px;
-    }
-    .actions {
-        gap: 4px;
-        margin-left: -200px;
-        margin-right: 50px;
-    }
-    .search-bar input[type="text"] {
-        padding: 5px;
-    }
-    .icons-header {
-        gap: 10px;
-        margin-left: 100px;
-    }
- }
-
-@media (min-width: 992px) and (max-width: 1199.98px) {
-    .logo {
-        height: 60px;
-        background: linear-gradient(to right, rgb(0, 0, 0), rgb(0,19,35) 50%, rgb(0, 116, 218));
-    }
-
-    .logo .symbol img {
-        height: 60px;
-    }
-    #catalog {
-        left: 2;
-    }
-    
-    .catalog-button {
-        padding: 10px 20px;
-        font-size: 15px;
-    }
-    
-    .inner1 {
-        margin-left: auto !important;
-        gap: 30px;
-    }
-    .search-bar form {
-        width: 80%;  /* Сделаем форму шире */
-        max-width: 800px;  /* Ограничим максимальную ширину */
-        margin-left: -70px;
-    }
-    .search-bar button i {
-        font-size: 16px;
-    }
-
-    .search-bar button {
-        padding: 12px 30px;
-    }
-    .actions {
-        gap: 4px;
-        margin-left: -200px;
-        margin-right: 50px;
-    }
-    .search-bar input[type="text"] {
-        padding: 5px;
-    }
-    .icons-header {
-        gap: 10px;
-        margin-left: 100px;
-    }
- }
-
-/* Десктопы */
-@media (min-width: 1200px) and (max-width: 1399.98px) { 
-}
-/* 2K */
-@media (min-width: 1400px) {
-    
-}
-
-/* 4K */
-@media (min-width: 2560px) {
-    .catalog-button {
-        padding: 20px 40px;
-        font-size: 22px;
-    }
-
-
-    .search-bar form {
-        width: 95%;
-        max-width: 1200px;
-    }
-
-    .search-bar button {
-        padding: 16px 40px;
-        font-size: 20px;
-    }
-
-    .actions {
-        gap: 15px;
-    }
-
-    .icons-header {
-        gap: 20px;
-    }
-}
-
-/* 5K */
-@media (min-width: 5120px) {
-    .catalog-button {
-        padding: 25px 50px;
-        font-size: 26px;
-    }
-
-    .logo {
-        font-size: 48px;
-    }
-
-    .search-bar form {
-        width: 100%;
-        max-width: 1500px;
-    }
-
-    .search-bar button {
-        padding: 18px 50px;
-        font-size: 24px;
-    }
-
-    .actions {
-        gap: 20px;
-    }
-
-    .icons-header {
-        gap: 25px;
-    }
-}
-
-/* 8K */
-@media (min-width: 7680px) {
-    .catalog-button {
-        padding: 30px 60px;
-        font-size: 32px;
-    }
-
-    .logo {
-        font-size: 60px;
-    }
-
-    .search-bar form {
-        width: 100%;
-        max-width: 2000px;
-    }
-
-    .search-bar button {
-        padding: 20px 60px;
-        font-size: 28px;
-    }
-
-    .actions {
-        gap: 30px;
-    }
-
-    .icons-header {
-        gap: 35px;
-    }
-}
 
 /* Скрываем верхнюю панель Google Translate */
 /* Полностью скрываем панель Google Translate */
@@ -557,3 +264,47 @@ body {
 .language-selector {
     margin-left: auto;
 }
+
+
+/* Mobile First Base Styles (apply to all sizes) */
+/* Add your default styles here */
+
+/* Small Mobile (0-399px) */
+@media (max-width: 399px) { 
+    /* Tiny screen adjustments */
+  }
+  
+  /* Standard Mobile (400-575px) */
+  @media (min-width: 400px) and (max-width: 575px) { 
+    /* Average phone adjustments */
+  }
+  
+  /* Large Mobile/Tablet Portrait (576-767px) */
+  @media (min-width: 576px) and (max-width: 767px) { 
+    /* Phablets/small tablets */
+  }
+  
+  /* Tablet/Laptop (768-991px) */
+  @media (min-width: 768px) and (max-width: 991px) { 
+    /* iPad portrait, small laptops */
+  }
+  
+  /* Desktop (992-1199px) */
+  @media (min-width: 992px) and (max-width: 1199px) { 
+    /* Standard laptop screens */
+  }
+  
+  /* Large Desktop (1200-1399px) */
+  @media (min-width: 1200px) and (max-width: 1399px) { 
+    /* Large monitors */
+  }
+  
+  /* Extra Large (1400px+) */
+  @media (min-width: 1400px) { 
+    /* 2K+ monitors */
+  }
+  
+  /* Ultra HD (1920px+) */
+  @media (min-width: 1920px) { 
+    /* Full HD optimizations */
+  }
