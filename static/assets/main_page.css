@@ -22,14 +22,19 @@
 }
 
 .beseller {
-    background-color: darkred;
     padding: 7px 25px;
     text-decoration: none;
     border-radius: 30px;
-    margin-left: 1130px;
+    margin-left: 1190px;
     position: absolute;
-    margin-top: -320px;
+    margin-top: -360px;
     color: white;
+}
+
+.beseller img {
+    width: 250px;
+    height: 150px;
+    margin-right: 5px;
 }
 
 .button_admin {
@@ -357,522 +362,44 @@ i.fa-heart {
     background: #f0f0f0;
 }
 
-/* 📱 Очень маленькие устройства (до 400px) */
-@media (max-width: 400px) {
-    .carousel-slide .carousel-item img {
-        height: 200px;
-    }
-
-    /* Уменьшаем размеры кнопок */
-    .button_admin,
-    .button_add_item,
-    .button_my_items,
-    .beseller {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-
-    /* Товары в 1 колонку */
-    .product-item {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
-
-    /* Уменьшаем размеры изображений */
-    .tags_mainpage .image {
-        width: 120px;
-        height: 120px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Делаем карусель более узкой */
-    .carousel-slide {
-        width: 360px;
-        height: 180px;
-        margin-left: 10px;
-    }
-
-    .carousel-container {
-        width: 360px;
-        margin-left: 10px;
-    }
-
-    /* Уменьшаем высоту блока Jhin */
-    .Jhin {
-        width: 280px;
-        height: 450px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
 
 
-@media (max-width: 575.98px) { 
-    .carousel-slide .carousel-item img {
-        height: 250px;
-    }
-    
-    .button_admin {
-        margin-top: 600px;
-        margin-left: 60px;
-    }
+/* Small Mobile (0-399px) */
+@media (max-width: 399px) { 
 
-    .button_add_item {
-        margin-top: 300px;
-        margin-left: 200px;
-    }
-    .button_my_items {
-        margin-top: 300px;
-        margin-left: 60px;
-    }
-    
-    .beseller {
-        margin-top: 360px;
-        margin-left: 60px;
-    }
-
-    #products {
-        margin-top: 600px;
-    }
-
-    .Jhin {
-        margin-top: 300px;
-        margin-left: 200px;
-        width: 300px;
-        height: 500px;
-    }
-    
-    .carousel-slide {
-        width: 440px;
-        height: 200px;
-        margin-left: 20px;
-        margin-top: 10px;
-    }
-
-    .carousel-container {
-        width: 400px;
-        margin-left: 20px;
-    }
-
-
-    .tags_mainpage .image {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin-left: 70px;
-    }
-    .tags_mainpage {
-        margin-right: 20px;
-    }
-
-    .product-item {
-        flex: 1 1 calc(50% - 20px);
-        max-width: calc(50% - 20px);
-    }
-}
-@media (min-width: 576px) and (max-width: 767.98px) {
-    .carousel-slide .carousel-item img {
-        height: 250px;
-    }
-    .button_admin {
-        margin-top: 600px;
-        margin-left: 60px;
-    }
-    
-    .button_add_item {
-        margin-top: 300px;
-        margin-left: 200px;
-    }
-    .button_my_items {
-        margin-top: 300px;
-        margin-left: 60px;
-    }
-    
-    .beseller {
-        margin-top: 360px;
-        margin-left: 60px;
-    }
-
-    #products {
-        margin-top: 600px;
-    }
-
-    .Jhin {
-        margin-top: 300px;
-        margin-left: 200px;
-        width: 300px;
-        height: 500px;
-    }
-    
-    .carousel-slide {
-        width: 510px;
-        height: 250px;
-        margin-left: 20px;
-        margin-top: 10px;
-    }
-
-    .carousel-container {
-        width: 500px;
-        margin-left: 20px;
-    }
-
-
-    .tags_mainpage .image {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin-left: 70px;
-    }
-    .tags_mainpage {
-        margin-right: 20px;
-    }
-
-    .product-item {
-        flex: 1 1 calc(50% - 20px);
-        max-width: calc(50% - 20px);
-    }
- }
-
-/* Планшеты */
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .button_admin {
-        margin-top: 340px;
-        margin-left: 60px;
-    }
-    .carousel-slide .carousel-item img {
-        height: 350px;
-    } 
-    .button_add_item {
-        margin-top: 300px;
-        margin-left: 200px;
-    }
-    .button_my_items {
-        margin-top: 300px;
-        margin-left: 60px;
-    }
-    
-    .beseller {
-        margin-top: 300px;
-        margin-left: 370px;
-    }
-
-    #products {
-        margin-top: 600px;
-    }
-
-    .Jhin {
-        margin-top: 300px;
-        margin-left: 400px;
-        width: 300px;
-        height: 500px;
-    }
-    
-    .carousel-slide {
-        width: 700px;
-        height: 350px;
-        margin-left: 20px;
-        margin-top: 10px;
-    }
-
-    .carousel-container {
-        width: 740px;
-        margin-left: 20px;
-    }
-
-
-    .tags_mainpage .image {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin-left: 50px;
-    }
-    .tags_mainpage {
-        margin-right: 50px;
-    }
-
-    .product-item {
-        flex: 1 1 calc(32% - 30px);
-        max-width: calc(32% - 30px);
-    }
-    
- }
-
-@media (min-width: 992px) and (max-width: 1199.98px) {
-    .carousel-slide .carousel-item img {
-        height: 350px;
-        
-    }
-
-    .button_admin {
-        margin-top: 340px;
-        margin-left: 60px;
-    }
-    .button_add_item {
-        margin-top: 300px;
-        margin-left: 200px;
-    }
-    .button_my_items {
-        margin-top: 300px;
-        margin-left: 60px;
-    }
-    
-    .beseller {
-        margin-top: 300px;
-        margin-left: 370px;
-    }
-
-    #products {
-        margin-top: 600px;
-    }
-
-    .Jhin {
-        margin-top: 300px;
-        margin-left: 600px;
-        width: 300px;
-        height: 500px;
-    }
-    
-    .carousel-slide {
-        width: 900px;
-        height: 350px;
-        margin-left: 20px;
-        margin-top: 10px;
-    }
-
-    .carousel-container {
-        width: 940px;
-        margin-left: 20px;
-    }
-
-
-    .tags_mainpage .image {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin-left: 50px;
-    }
-    .tags_mainpage {
-        margin-right: 50px;
-    }
-
-    .product-item {
-        flex: 1 1 calc(27% - 30px);
-        max-width: calc(27% - 30px);
-    }
- }
-
-
-/* Десктопы */
-@media (min-width: 1200px) and (max-width: 1399.98px) { 
-    .carousel-slide .carousel-item img {
-        height: 350px;
-        
-    }
-    .button_admin {
-        margin-top: 340px;
-        margin-left: 60px;
-    }
-    .button_add_item {
-        margin-top: 300px;
-        margin-left: 200px;
-    }
-    .button_my_items {
-        margin-top: 300px;
-        margin-left: 60px;
-    }
-    
-    .beseller {
-        margin-top: 300px;
-        margin-left: 370px;
-    }
-
-    #products {
-        margin-top: 600px;
-    }
-
-    .Jhin {
-        margin-top: 300px;
-        margin-left: 600px;
-        width: 400px;
-        height: 600px;
-    }
-    
-    .carousel-slide {
-        width: 900px;
-        height: 350px;
-        margin-left: 20px;
-        margin-top: 10px;
-    }
-
-    .carousel-container {
-        width: 940px;
-        margin-left: 20px;
-    }
-
-
-    .tags_mainpage .image {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin-left: 50px;
-    }
-    .tags_mainpage {
-        margin-right: 50px;
-    }
-
-    .product-item {
-        flex: 1 1 calc(27% - 30px);
-        max-width: calc(27% - 30px);
-    }
-}
- /* Ноут */
-
-/* 2K  второй монитор манитора*/ 
-@media (min-width: 1400px) {
-
-    .product-item {
-        flex: 1 1 calc(16.66% - 10px); /* 6 товаров в ряду */
-        max-width: calc(16.66% - 10px);
-        box-sizing: border-box;
-    }
-    #products .inner {
-        max-width: 1600px;
-        margin: 0 auto;
-        text-align: center;
-    }
-    .carousel-container {
-        width: 1600px;
-    }
-    .Jhin {
-        margin-left: 1200px
-    }
-    .carousel-slide {
-        width: 900px;
-        height: 290px;
-    }
-    .beseller {
-        margin-left: 1020px;
-    }
-    .button_my_items {
-        margin-left: 1020px;
-    }
-    .button_add_item {
-        margin-left: 1200px;
-    }
-    .button_admin {
-        margin-left: 1180px;
-    }
-}
-
-@media (min-width: 1920px) {
-    .inner12 {
-        margin-left: 10%
-    }
-    .carousel-slide {
-        width: 1100px;
-        height: 350px;
-    }
-    .Jhin {
-        margin-left: 1340px
-    }
-    .beseller {
-        margin-left: 1230px;
-    }
-    .button_add_item {
-        margin-left: 1410px;
-    }
-
-    .button_my_items {
-        margin-left: 1230px;
-    }
-    .button_admin {
-        margin-left: 1370px;
-    }
-}
-
-@media (min-width: 2020px) {
-
-    .Jhin {
-        margin-left: 1450px
-    }
-}
-
-@media (min-width: 2220px) {
-
-    .Jhin {
-        margin-left: 1620px;
-        width: 400px;
-        height: 600px;
-        margin-top: -400px;
-    }
-    .beseller {
-        padding: 14px 28px;
-        margin-left: 1410px;
-        margin-top: -420px;
-    }
-    .button_my_items {
-        padding: 14px 28px;
-        margin-left: 1410px;
-        margin-top: -350px;
-    }
-    .button_add_item {
-        padding: 14px 28px;
-        margin-left: 1600px;
-        margin-top: -420px;
-    }
-    .button_admin {
-        padding: 14px 28px;
-        margin-left: 1550px;
-        margin-top: -350px;
-    }
-    .carousel-slide {
-        width: 1300px;
-        height: 420px;
-    }
-}
-
-/* 4K */
-@media (min-width: 2560px) {
-
-    .Jhin {
-        margin-left: 2220px;
-        width: 500px;
-        height: 700px;
-        margin-top: -400px;
-    }
-    .beseller {
-        padding: 20px 40px;
-        margin-left: 2110px;
-        margin-top: -420px;
-    }
-    .button_my_items {
-        padding: 20px 40px;
-        margin-left: 1960px;
-        margin-top: -330px;
-    }
-    .button_add_item {
-        padding: 20px 40px;
-        margin-left: 2310px;
-        margin-top: -420px;
-    }
-    .button_admin {
-        padding: 20px 40px;
-        margin-left: 2130px;
-        margin-top: -330px;
-    }
-    .carousel-slide {
-        width: 1700px;
-        height: 520px;
-    }
-
-}
-
-/* 5K */
-@media (min-width: 5120px) {
-}
-
-/* 8K */
-@media (min-width: 7680px) {
-
-}
+  }
+  
+  /* Standard Mobile (400-575px) */
+  @media (min-width: 400px) and (max-width: 575px) { 
+    /* Average phone adjustments */
+  }
+  
+  /* Large Mobile/Tablet Portrait (576-767px) */
+  @media (min-width: 576px) and (max-width: 767px) { 
+    /* Phablets/small tablets */
+  }
+  
+  /* Tablet/Laptop (768-991px) */
+  @media (min-width: 768px) and (max-width: 991px) { 
+    /* iPad portrait, small laptops */
+  }
+  
+  /* Desktop (992-1199px) */
+  @media (min-width: 992px) and (max-width: 1199px) { 
+    /* Standard laptop screens */
+  }
+  
+  /* Large Desktop (1200-1399px) */
+  @media (min-width: 1200px) and (max-width: 1399px) { 
+    /* Large monitors */
+  }
+  
+  /* Extra Large (1400px+) */
+  @media (min-width: 1400px) { 
+    /* 2K+ monitors */
+  }
+  
+  /* Ultra HD (1920px+) */
+  @media (min-width: 1920px) { 
+    /* Full HD optimizations */
+  }

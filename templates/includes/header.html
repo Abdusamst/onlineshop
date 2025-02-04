@@ -10,7 +10,7 @@
 <body>
     <header id="header">
         <a href="{% url 'store:home' %}" class="logo">
-            <span class="symbol"><img src="{% static "images/Door.png" %}" alt="DOOR" /></span>
+            <span class="symbol"><img src="{% static 'images/logo_door.png' %}" alt="DOOR" /></span>
         </a>
         
         <!-- Language Selector -->
@@ -49,19 +49,19 @@
                 <ul class="actions">
                     <li class="icons-header">
                         <a href="{% url 'users:profile' %}">
-                            <i class="fa-solid fa-user"></i>
+                            <img src="{% static 'images/user.png' %}" alt="">
                             <span class="icon-text">Войти</span>
                         </a>
-                        <a href="{% url 'users:user_orders' %}">
+                        <!-- <a href="{% url 'users:user_orders' %}">
                             <i class="fa-solid fa-list-check"></i>
                             <span class="icon-text">Заказы</span>
-                        </a>
+                        </a> -->
                         <a href="{% url 'store:favorite_list' %}">
-                            <i class="fa-solid fa-heart" style="color: black;"></i>
+                            <img src="{% static 'images/favorite.png' %}" alt="">
                             <span class="icon-text">Избранное</span>
                         </a>
                         <a href="{% url 'cart:cart' %}">
-                            <i class="fa-solid fa-cart-shopping"></i>
+                            <img src="{% static 'images/basket.png' %}" alt="">
                             <span class="icon-text">Корзина</span>
                         </a>
                     </li>
