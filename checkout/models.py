@@ -86,6 +86,7 @@ class OrderItem(models.Model):
 class ShippingAddress(models.Model):
     first_name = models.CharField(max_length=50, verbose_name='Имя',)
     last_name = models.CharField(max_length=50, verbose_name='Фамилия',)
+    email = models.EmailField(null=True, blank=True)
     phone = models.CharField(max_length=20, verbose_name='Телефон',)
     order = models.OneToOneField(
         Order, on_delete=models.CASCADE, related_name='shipping_address', verbose_name='Заказ',)
