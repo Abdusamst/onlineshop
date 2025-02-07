@@ -304,40 +304,846 @@ body {
 
 /* Small Mobile (0-399px) */
 @media (max-width: 399px) { 
-    /* Tiny screen adjustments */
+    .logo .symbol img {
+        height: 40px;
+    }
+    .header-logo {
+        height: 80%;
+    }
+    .header-logo a img {
+        height: 40px;
+        margin-bottom: 5px;
+    }
+        body {
+            font-size: 14px;
+        }
+    
+        /* Логотип и шапка */
+        .logo {
+            height: 70px;
+            padding: 0 5px;
+        }
+    
+        .logo .text {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+    
+        .logo .symbol img {
+            height: 40px;
+        }
+    
+        /* Поисковая строка - уменьшаем */
+        .search-bar {
+            padding: 6px 10px;
+            width: 20%;
+            padding: 0 5px;
+        }
+    
+        .search-bar form {
+            max-width: 100%;
+            border-width: 2px;
+        }
+    
+        .search-bar input[type="text"] {
+            padding: 8px;
+            font-size: 12px;
+        }
+    
+        .search-bar button {
+            padding: 10px 15px;
+        }
+    
+        /* Внутренний контейнер */
+        .inner1 {
+            gap: 10px;
+        }
+    
+        /* Кнопка каталога - делаем компактнее */
+        .catalog-button {
+            padding: 6px 10px;
+            font-size: 14px;
+            border-width: 2px;
+        }
+    
+        .catalog-button i.fa-solid.fa-bars {
+            margin-right: 8px;
+        }
+    
+        /* Иконки в шапке */
+        .icons-header {
+            gap: 8px;
+        }
+    
+        .icons-header a img {
+            height: 35px;
+        }
+    
+        .icon-text {
+            font-size: 11px;
+        }
+    
+        /* Действия и языковой селектор */
+        .actions {
+            margin-right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+
+    
+        /* Каталог */
+        #catalog {
+            width: 160px;
+            top: 180px;
+            padding: 8px;
+        }
+    
+        #catalog h3 {
+            font-size: 14px;
+        }
+    
+        #catalog ul li a {
+            font-size: 12px;
+        }
+    
+        /* Оптимизация размещения элементов */
+        .header-logo {
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+    
+        .inner1 {
+            display: flex;
+            justify-content: space-between;
+            width: 65%;
+        }
+        .search-bar input[type="text"] {
+            padding: 10px;
+        }
+        .search-bar form  {
+            height: 30px;
+        }
   }
   
   /* Standard Mobile (400-575px) */
-  @media (min-width: 400px) and (max-width: 575px) { 
-    /* Average phone adjustments */
+  @media (max-width: 575px) { 
+    .logo .symbol img {
+        height: 40px;
+    }
+    .header-logo {
+        height: 80%;
+    }
+    .header-logo a img {
+        height: 40px;
+        margin-bottom: 5px;
+    }
+        body {
+            font-size: 14px;
+        }
+    
+        /* Логотип и шапка */
+        .logo {
+            height: 70px;
+            padding: 0 5px;
+        }
+    
+        .logo .text {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+    
+        .logo .symbol img {
+            height: 70px;
+        }
+    
+        /* Поисковая строка - уменьшаем */
+        .search-bar {
+            padding: 6px 10px;
+            width: 20%;
+            padding: 0 5px;
+        }
+    
+        .search-bar form {
+            max-width: 100%;
+            border-width: 2px;
+        }
+    
+        .search-bar input[type="text"] {
+            padding: 8px;
+            font-size: 12px;
+        }
+    
+        .search-bar button {
+            padding: 10px 15px;
+        }
+    
+        /* Внутренний контейнер */
+        .inner1 {
+            margin-left: 5px;
+            gap: 10px;
+        }
+    
+        /* Кнопка каталога - делаем компактнее */
+        .catalog-button {
+            padding: 6px 10px;
+            font-size: 14px;
+            border-width: 2px;
+        }
+    
+        .catalog-button i.fa-solid.fa-bars {
+            margin-right: 8px;
+        }
+    
+        /* Иконки в шапке */
+        .icons-header {
+            gap: 8px;
+        }
+    
+        .icons-header a img {
+            height: 35px;
+        }
+    
+        .icon-text {
+            font-size: 11px;
+        }
+    
+        /* Действия и языковой селектор */
+        .actions {
+            margin-right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+
+    
+        /* Каталог */
+        #catalog {
+            width: 160px;
+            top: 180px;
+            padding: 8px;
+        }
+    
+        #catalog h3 {
+            font-size: 14px;
+        }
+    
+        #catalog ul li a {
+            font-size: 12px;
+        }
+    
+        /* Оптимизация размещения элементов */
+        .header-logo {
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+    
+        .inner1 {
+            display: flex;
+            justify-content: space-between;
+            width: 65%;
+        }
+        .search-bar input[type="text"] {
+            padding: 10px;
+        }
+        .search-bar form  {
+            height: 30px;
+        }
   }
   
   /* Large Mobile/Tablet Portrait (576-767px) */
   @media (min-width: 576px) and (max-width: 767px) { 
-    /* Phablets/small tablets */
+    .logo .symbol img {
+        height: 70px;
+    }
+    .header-logo {
+        height: 80%;
+    }
+    .header-logo a img {
+        height: 40px;
+        margin-bottom: 5px;
+    }
+        body {
+            font-size: 14px;
+        }
+    
+        /* Логотип и шапка */
+        .logo {
+            height: 70px;
+            padding: 0 5px;
+        }
+    
+        .logo .text {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+    
+        .logo .symbol img {
+            height: 70px;
+        }
+    
+        /* Поисковая строка - уменьшаем */
+        .search-bar {
+            padding: 6px 10px;
+            width: 80%;
+            padding: 0 5px;
+        }
+    
+        .search-bar form {
+            max-width: 100%;
+            border-width: 2px;
+        }
+    
+        .search-bar input[type="text"] {
+            padding: 8px;
+            font-size: 12px;
+        }
+    
+        .search-bar button {
+            padding: 10px 15px;
+        }
+    
+        /* Внутренний контейнер */
+        .inner1 {
+            margin-left: 5px;
+            gap: 10px;
+        }
+    
+        /* Кнопка каталога - делаем компактнее */
+        .catalog-button {
+            font-size: 14px;
+            border-width: 2px;
+        }
+    
+        .catalog-button i.fa-solid.fa-bars {
+            margin-right: 8px;
+        }
+    
+        /* Иконки в шапке */
+        .icons-header {
+            gap: 8px;
+        }
+    
+        .icons-header a img {
+            height: 35px;
+        }
+    
+        .icon-text {
+            font-size: 11px;
+        }
+    
+        /* Действия и языковой селектор */
+        .actions {
+            margin-right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+
+    
+        /* Каталог */
+        #catalog {
+            width: 160px;
+            padding: 8px;
+        }
+    
+        #catalog h3 {
+            font-size: 14px;
+        }
+    
+        #catalog ul li a {
+            font-size: 12px;
+        }
+    
+        /* Оптимизация размещения элементов */
+        .header-logo {
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+    
+        .inner1 {
+            display: flex;
+            justify-content: space-between;
+            width: 95%;
+        }
+
   }
   
   /* Tablet/Laptop (768-991px) */
   @media (min-width: 768px) and (max-width: 991px) { 
-    /* iPad portrait, small laptops */
+    .logo .symbol img {
+        height: 70px;
+    }
+    .header-logo {
+        height: 80%;
+    }
+    .header-logo a img {
+        height: 40px;
+        margin-bottom: 5px;
+    }
+        body {
+            font-size: 14px;
+        }
+    
+        /* Логотип и шапка */
+        .logo {
+            height: 70px;
+            padding: 0 5px;
+        }
+    
+        .logo .text {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+    
+        .logo .symbol img {
+            height: 70px;
+        }
+    
+        /* Поисковая строка - уменьшаем */
+        .search-bar {
+            padding: 6px 10px;
+            width: 80%;
+            padding: 0 5px;
+        }
+    
+        .search-bar form {
+            max-width: 100%;
+            border-width: 2px;
+        }
+    
+        .search-bar input[type="text"] {
+            padding: 8px;
+            font-size: 12px;
+        }
+    
+        .search-bar button {
+            padding: 10px 15px;
+        }
+    
+        /* Внутренний контейнер */
+        .inner1 {
+            margin-left: 5px;
+            gap: 10px;
+        }
+    
+        /* Кнопка каталога - делаем компактнее */
+        .catalog-button {
+            font-size: 14px;
+            border-width: 2px;
+        }
+    
+        .catalog-button i.fa-solid.fa-bars {
+            margin-right: 8px;
+        }
+    
+        /* Иконки в шапке */
+        .icons-header {
+            gap: 8px;
+        }
+    
+        .icons-header a img {
+            height: 35px;
+        }
+    
+        .icon-text {
+            font-size: 11px;
+        }
+    
+        /* Действия и языковой селектор */
+        .actions {
+            margin-right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+
+    
+        /* Каталог */
+        #catalog {
+            width: 160px;
+            padding: 8px;
+        }
+    
+        #catalog h3 {
+            font-size: 14px;
+        }
+    
+        #catalog ul li a {
+            font-size: 12px;
+        }
+    
+        /* Оптимизация размещения элементов */
+        .header-logo {
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+    
+        .inner1 {
+            display: flex;
+            justify-content: space-between;
+            width: 95%;
+        }
   }
   
   /* Desktop (992-1199px) */
   @media (min-width: 992px) and (max-width: 1199px) { 
-    /* Standard laptop screens */
+    .logo .symbol img {
+        height: 70px;
+    }
+    .header-logo {
+        height: 80%;
+    }
+    .header-logo a img {
+        height: 40px;
+        margin-bottom: 5px;
+    }
+        body {
+            font-size: 14px;
+        }
+    
+        /* Логотип и шапка */
+        .logo {
+            height: 70px;
+            padding: 0 5px;
+        }
+    
+        .logo .text {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+    
+        .logo .symbol img {
+            height: 70px;
+        }
+    
+        /* Поисковая строка - уменьшаем */
+        .search-bar {
+            padding: 6px 10px;
+            width: 80%;
+            padding: 0 5px;
+        }
+    
+        .search-bar form {
+            max-width: 100%;
+            border-width: 2px;
+        }
+    
+        .search-bar input[type="text"] {
+            padding: 8px;
+            font-size: 12px;
+        }
+    
+        .search-bar button {
+            padding: 10px 15px;
+        }
+    
+        /* Внутренний контейнер */
+        .inner1 {
+            margin-left: 5px;
+            gap: 10px;
+        }
+    
+        /* Кнопка каталога - делаем компактнее */
+        .catalog-button {
+            font-size: 14px;
+            border-width: 2px;
+        }
+    
+        .catalog-button i.fa-solid.fa-bars {
+            margin-right: 8px;
+        }
+    
+        /* Иконки в шапке */
+        .icons-header {
+            gap: 8px;
+        }
+    
+        .icons-header a img {
+            height: 35px;
+        }
+    
+        .icon-text {
+            font-size: 11px;
+        }
+    
+        /* Действия и языковой селектор */
+        .actions {
+            margin-right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+
+    
+        /* Каталог */
+        #catalog {
+            width: 160px;
+            padding: 8px;
+        }
+    
+        #catalog h3 {
+            font-size: 14px;
+        }
+    
+        #catalog ul li a {
+            font-size: 12px;
+        }
+    
+        /* Оптимизация размещения элементов */
+        .header-logo {
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+    
+        .inner1 {
+            display: flex;
+            justify-content: space-between;
+            width: 95%;
+        }
   }
   
   /* Large Desktop (1200-1399px) */
   @media (min-width: 1200px) and (max-width: 1399px) { 
-    /* Large monitors */
+    .logo .symbol img {
+        height: 70px;
+    }
+    .header-logo {
+        height: 80%;
+    }
+    .header-logo a img {
+        height: 40px;
+        margin-bottom: 5px;
+    }
+        body {
+            font-size: 14px;
+        }
+    
+        /* Логотип и шапка */
+        .logo {
+            height: 70px;
+            padding: 0 5px;
+        }
+    
+        .logo .text {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+    
+        .logo .symbol img {
+            height: 70px;
+        }
+    
+        /* Поисковая строка - уменьшаем */
+        .search-bar {
+            padding: 6px 10px;
+            width: 80%;
+            padding: 0 5px;
+        }
+    
+        .search-bar form {
+            max-width: 100%;
+            border-width: 2px;
+        }
+    
+        .search-bar input[type="text"] {
+            padding: 8px;
+            font-size: 12px;
+        }
+    
+        .search-bar button {
+            padding: 10px 15px;
+        }
+    
+        /* Внутренний контейнер */
+        .inner1 {
+            margin-left: 5px;
+            gap: 10px;
+        }
+    
+        /* Кнопка каталога - делаем компактнее */
+        .catalog-button {
+            font-size: 14px;
+            border-width: 2px;
+        }
+    
+        .catalog-button i.fa-solid.fa-bars {
+            margin-right: 8px;
+        }
+    
+        /* Иконки в шапке */
+        .icons-header {
+            gap: 8px;
+        }
+    
+        .icons-header a img {
+            height: 35px;
+        }
+    
+        .icon-text {
+            font-size: 11px;
+        }
+    
+        /* Действия и языковой селектор */
+        .actions {
+            margin-right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+
+    
+        /* Каталог */
+        #catalog {
+            width: 160px;
+            padding: 8px;
+        }
+    
+        #catalog h3 {
+            font-size: 14px;
+        }
+    
+        #catalog ul li a {
+            font-size: 12px;
+        }
+    
+        /* Оптимизация размещения элементов */
+        .header-logo {
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+    
+        .inner1 {
+            display: flex;
+            justify-content: space-between;
+            width: 95%;
+        }
   }
   
-  /* Extra Large (1400px+) */
-  @media (min-width: 1400px) { 
-    /* 2K+ monitors */
-  }
-  
-  /* Ultra HD (1920px+) */
-  @media (min-width: 1920px) { 
-    /* Full HD optimizations */
-  }
+@media (min-width: 1400px) { 
+    /* Increase overall container widths */
+    
+    .search-bar {
+        width: 700px;
+    }
+    .search-bar form {
+        width: 700px;
+    }
+
+    .inner1 {
+        margin-left: 100px;
+        gap: 50px;
+    }
+
+    /* Larger elements for better visibility */
+    .logo {
+        height: 120px;
+        padding: 0 30px;
+    }
+
+    .logo .text {
+        font-size: 28px;
+    }
+
+    .logo .symbol img {
+        height: 120px;
+    }
+
+    /* Enhanced search bar */
+
+
+    .search-bar input[type="text"] {
+        padding: 20px;
+        font-size: 18px;
+    }
+
+    .search-bar button {
+        padding: 22px 60px;
+    }
+
+    /* Larger icons and text */
+    .icons-header a img {
+        height: 80px;
+    }
+
+    .icon-text {
+        font-size: 16px;
+    }
+
+    /* Adjusted catalog button */
+    .catalog-button {
+        padding: 15px 30px;
+        font-size: 24px;
+    }
+
+    .actions {
+        margin-right: 150px;
+    }
+
+    .language-selector {
+        width: 120px;
+        height: 35px;
+    }
+}
+
+/* Ultra HD (1920px+) */
+@media (min-width: 1920px) { 
+    /* Further increased container widths */
+      /* Increase overall container widths */
+    
+      .search-bar {
+        width: 1300px;
+    }
+    .search-bar form {
+        width: 1300px;
+    }
+
+    .inner1 {
+        margin-left: 200px;
+        gap: 50px;
+    }
+
+    /* Larger elements for better visibility */
+    .logo {
+        height: 120px;
+        padding: 0 30px;
+    }
+
+    .logo .text {
+        font-size: 28px;
+    }
+
+    .logo .symbol img {
+        height: 120px;
+    }
+
+    /* Enhanced search bar */
+
+
+    .search-bar input[type="text"] {
+        padding: 20px;
+        font-size: 18px;
+    }
+
+    .search-bar button {
+        padding: 22px 60px;
+    }
+
+    /* Larger icons and text */
+    .icons-header a img {
+        height: 80px;
+    }
+
+    .icon-text {
+        font-size: 16px;
+    }
+
+    /* Adjusted catalog button */
+    .catalog-button {
+        padding: 15px 30px;
+        font-size: 24px;
+    }
+
+    .actions {
+        margin-right: 150px;
+    }
+
+    .language-selector {
+        width: 120px;
+        height: 35px;
+    }
+}
