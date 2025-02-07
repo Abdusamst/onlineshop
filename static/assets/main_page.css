@@ -13,7 +13,8 @@
 }
 
 .product-image {
-    width: 65%;
+    width: 100%;
+    height: 100%;
     object-fit: fill;
 }
 
@@ -436,56 +437,406 @@ i.fa-heart {
 
 /* Small Mobile (0-399px) */
 @media (max-width: 399px) {
-    body {
-        background-color: #000;
+    .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+    .doorlogo {
+        width: 60px;
+        height: 20px;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+    }
+
+
+    .market-title {
+        font-size: 22px;
+    }
+    .beseller {
+        margin-top: 250px;
+        margin-left: 10px;
+    }
+
+    #products {
+        margin-top: 600px;
+    }
+
+    .Jhin {
+        margin-top: 300px;
+        margin-left: 100px;
+        width: 300px;
+        height: 500px;
+    }
+    
+    .carousel-slide {
+        width: 350px;
+        height: 200px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        width: 400px;
+        margin-left: 20px;
+    }
+
+
+    .tags_mainpage .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-left: 70px;
+    }
+    .tags_mainpage {
+        margin-right: 100px;
+    }
+
+    .product-item {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
     }
 }
   
   /* Standard Mobile (400-575px) */
-  @media (min-width: 400px) and (max-width: 575px) {
-    body {
-        background-color: #ff0000;
-    } 
+  @media (max-width: 575px) {
+    .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+    .doorlogo {
+        width: 60px;
+        height: 20px;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+    }
+
+
+    .market-title {
+        font-size: 22px;
+    }
+    .beseller {
+        margin-top: 250px;
+        margin-left: 10px;
+    }
+
+    #products {
+        margin-top: 600px;
+    }
+
+    .Jhin {
+        margin-top: 300px;
+        margin-left: 100px;
+        width: 300px;
+        height: 500px;
+    }
+    
+    .carousel-slide {
+        width: 400px;
+        height: 200px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        width: 400px;
+        margin-left: 20px;
+    }
+
+
+    .tags_mainpage .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-left: 70px;
+    }
+    .tags_mainpage {
+        margin-right: 100px;
+    }
+
+    .product-item {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
   }
   
   /* Large Mobile/Tablet Portrait (576-767px) */
   @media (min-width: 576px) and (max-width: 767px) { 
-    body {
-        background-color: #710000;
+    .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+    .doorlogo {
+        width: 120px;
+        height: 40px;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+    }
+
+
+    .market-title {
+        font-size: 22px;
+    }
+    .beseller {
+        margin-top: 250px;
+        margin-left: 350px;
+    }
+
+    #products {
+        margin-top: 600px;
+    }
+
+    .Jhin {
+        margin-top: 300px;
+        margin-left: 440px;
+        width: 300px;
+        height: 500px;
+    }
+    
+    .carousel-slide {
+        width: 700px;
+        height: 200px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        width: 670px;
+        margin-left: 20px;
+    }
+
+
+    .tags_mainpage .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-left: 70px;
+    }
+    .tags_mainpage {
+        margin-right: 100px;
+    }
+
+    .product-item {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
     }
   }
   
   /* Tablet/Laptop (768-991px) */
   @media (min-width: 768px) and (max-width: 991px) { 
-    body {
-        background-color: #0040ff;
+    .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
     }
+    .doorlogo {
+        width: 120px;
+        height: 40px;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+    }
+
+
+    .market-title {
+        font-size: 22px;
+    }
+    .beseller {
+        margin-top: 250px;
+        margin-left: 350px;
+    }
+
+    #products {
+        margin-top: 600px;
+    }
+
+    .Jhin {
+        margin-top: 300px;
+        margin-left: 440px;
+        width: 300px;
+        height: 500px;
+    }
+    
+    .carousel-slide {
+        width: 900px;
+        height: 200px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        width: 890px;
+        margin-left: 20px;
+    }
+
+
+    .tags_mainpage .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-left: 70px;
+    }
+    .tags_mainpage {
+        margin-right: 100px;
+    }
+
+    .product-item {
+        flex: 1 1 calc(33.33% - 20px);
+        max-width: calc(33.33% - 20px);
+    }
+    
   }
   
   /* Desktop (992-1199px) */
   @media (min-width: 992px) and (max-width: 1199px) { 
-    body {
-        background-color: #33ff00;
+    .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+    .doorlogo {
+        width: 120px;
+        height: 40px;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+    }
+
+
+    .market-title {
+        font-size: 22px;
+    }
+    .beseller {
+        margin-top: 250px;
+        margin-left: 350px;
+    }
+
+    #products {
+        margin-top: 600px;
+    }
+
+    .Jhin {
+        margin-top: 300px;
+        margin-left: 440px;
+        width: 300px;
+        height: 500px;
+    }
+    
+    .carousel-slide {
+        width: 900px;
+        height: 200px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        width: 890px;
+        margin-left: 20px;
+    }
+
+
+    .tags_mainpage .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-left: 70px;
+    }
+    .tags_mainpage {
+        margin-right: 100px;
+    }
+
+    .product-item {
+        flex: 1 1 calc(33.33% - 20px);
+        max-width: calc(33.33% - 20px);
     }
   }
   
   /* Large Desktop (1200-1399px) */
+
+      /* Desktop (992-1199px) */
+  @media (min-width: 992px) and (max-width: 1199px) { 
+    .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+    .doorlogo {
+        width: 120px;
+        height: 40px;
+    }
+    
+    .subtitle {
+        font-size: 14px;
+    }
+
+
+    .market-title {
+        font-size: 22px;
+    }
+    .beseller {
+        margin-top: 250px;
+        margin-left: 350px;
+    }
+
+    #products {
+        margin-top: 600px;
+    }
+
+    .Jhin {
+        margin-top: 300px;
+        margin-left: 440px;
+        width: 300px;
+        height: 500px;
+    }
+    
+    .carousel-slide {
+        width: 900px;
+        height: 200px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .carousel-container {
+        width: 890px;
+        margin-left: 20px;
+    }
+
+
+    .tags_mainpage .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-left: 70px;
+    }
+    .tags_mainpage {
+        margin-right: 100px;
+    }
+
+    .product-item {
+        flex: 1 1 calc(33.33% - 20px);
+        max-width: calc(33.33% - 20px);
+    }
+  }
+  
   @media (min-width: 1200px) and (max-width: 1399px) { 
-    body {
-        background-color: #00c8ff;
-    }
-  }
-  
-  /* Extra Large (1400px+) */
+}
+
   @media (min-width: 1400px) { 
-    body {
-        background-color: #ffff00;
-    }
-  }
+
+}
   
-  /* Ultra HD (1920px+) */
-  @media (min-width: 1920px) { 
-    body {
-        background-color: #d622b8;
+@media (min-width: 1920px) { 
+    .inner12 {
+        margin-left: 10%;
     }
-  }
+}

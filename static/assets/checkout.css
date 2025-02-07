@@ -146,6 +146,11 @@ h1 {
     }
   }
 
+.row {
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
   .rating-stars {
     display: flex;
     flex-direction: row-reverse; /* Обратный порядок звезд */
