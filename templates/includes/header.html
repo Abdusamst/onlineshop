@@ -15,12 +15,20 @@
                     <span class="symbol"><img src="{% static 'images/logo_door.png' %}" alt="DOOR" /></span>
                 </a>
             </div>
-           <div class="right">
-                <a href="{% url 'users:profile' %}" class="logo" class="login">
-                    <img src="{% static 'images/user.png' %}" alt="">
-                    <span class="icon-text">ВОЙТИ</span>
-                </a>
-           </div>
+            <div class="right">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'users:profile' %}" class="logo">
+                        <img src="{% static 'images/user.png' %}" alt="">
+                        <span class="icon-text">{{ user.username }}</span>
+                    </a>
+                {% else %}
+                    <a href="{% url 'users:profile' %}" class="logo">
+                        <img src="{% static 'images/user.png' %}" alt="">
+                        <span class="icon-text">ВОЙТИ</span>
+                    </a>
+                {% endif %}
+            </div>
+            
             
         </div>
 
