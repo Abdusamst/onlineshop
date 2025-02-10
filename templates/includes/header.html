@@ -78,6 +78,12 @@
                             <i class="fa-solid fa-list-check"></i>
                             <span class="icon-text">Заказы</span>
                         </a> -->
+                        {% if user.is_seller %}
+                        <a href="{% url 'store:my_items' %}">
+                            <img src="{% static 'images/seller.png' %}" alt="">
+                            <span class="icon-text">Мои обьявления</span>
+                        </a>
+                        {% endif %}
                         <a href="{% url 'store:favorite_list' %}">
                             <img src="{% static 'images/favorite.png' %}" alt="">
                             <span class="icon-text">Избранное</span>

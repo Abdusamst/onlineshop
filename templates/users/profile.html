@@ -21,7 +21,6 @@
   </p>
   <div class="profile-actions">
     {% if user.is_seller %}
-                <a href="{% url 'store:add_item' %}" class="button_add_item">Добавить товар</a>
                 <a href="{% url 'store:my_items' %}" class="button_my_items">Мои товары</a>
     {% endif %}
     <p class="profile-orders">

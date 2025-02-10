@@ -91,6 +91,26 @@ button.button:hover {
     margin-top: 1rem;
 }
 
+.button_add_item_my_items {
+    padding: 10px 20px ;
+    background-color: #27ae60;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 26px;
+    display: inline-block;
+}
+
+.button_add_item_my_items_container {
+    display: flex;
+    justify-content: center; /* Центрирует по горизонтали */
+    align-items: center; /* Центрирует по вертикали */
+    width: 100%; /* На всю ширину */
+    margin-bottom: 20px;
+}
+
+
 /* Responsive design */
 @media (max-width: 768px) {
     .item-list {
