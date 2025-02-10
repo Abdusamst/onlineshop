@@ -87,7 +87,7 @@
 
 .doorlogo {
     width: 200px;
-    height: 70px;
+    height: 50px;
 }
 
 .button_small {
@@ -225,9 +225,25 @@ i.fa-heart {
 
 /* Центральная секция с изображением */
 .image-section {
-    width: 60%;
+    height: 100%;
     position: relative;
-    background: white;
+    background: #0047AB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 2%;
+}
+
+.image-caption {
+    font-weight: bold;
+    font-size: 23px;
+    color: #ffffff;
+    text-align: center;
 }
 
 .digital-fair {

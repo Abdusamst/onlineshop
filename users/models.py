@@ -44,6 +44,7 @@ class CustomUser(AbstractUser):
     is_phone_verified = models.BooleanField(default=False)
     groups = models.ManyToManyField(Group, related_name='custom_user_set', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='custom_user_set_permissions', blank=True)
+    avatar = models.ImageField(upload_to='avater/', default='images/user.png')
 
     objects = CustomUserManager()
     def save(self, *args, **kwargs):
