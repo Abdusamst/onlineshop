@@ -12,6 +12,7 @@
     
 }
 
+
 .product-image {
     width: 100%;
     height: 100%;
@@ -185,7 +186,7 @@ i.fa-heart {
 
 .carousel-container {
     position: relative;
-    max-width: 1340px;
+    max-width: 1120px;
     margin-right: auto;
     overflow: hidden;
 }
@@ -341,6 +342,19 @@ i.fa-heart {
     margin-left: 1130px;    
     position: absolute;
     margin-top: -270px;
+}
+
+.main_page1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-left: -150px; /* Adjust the pixel value as needed */
+}
+
+.inner12 {
+    max-width: 1200px; /* Same max-width as products .inner */
+    width: 100%;
+    margin: 0 auto; /* This centers the content */
 }
 
 #products {
@@ -852,7 +866,5 @@ i.fa-heart {
 }
   
 @media (min-width: 1920px) { 
-    .inner12 {
-        margin-left: 10%;
-    }
+
 }
