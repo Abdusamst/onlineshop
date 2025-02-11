@@ -88,18 +88,30 @@
                                     {% else %}
                                     <i class="fa-regular fa-heart"></i>
                                     {% endif %}
-                                </button>    
+                                </button>   
                             {% endif %}
                             <img src="{{ item.image.url }}" alt=""  />
                         {% else %}
                             <img src="{% static 'images/pic14.jpg' %}" alt="" />
                         {% endif %}
-                    <a href="{% url 'store:item_details' item.slug %}"><b>{{ item.title }}</b></a>
+                    {% if item.slug %}
+                        <a href="{% url 'store:item_details' item.slug %}"><b>{{ item.title }}</b></a>
+                    {% else %}
+                        <b>{{ item.title }}</b>  {# Без ссылки, если нет slug #}
+                    {% endif %}
                     <p class="item-description" style="color: rgb(129, 129, 129);">{{ item.description }}</p>      
                     <p class="price-current"><b style="color: black;">{{ item.price }}</b> сом</p>  
                     {% if user.is_authenticated %}
-                        <a href="{% url 'cart:add_to_cart' item.slug %}" class="button_small" style="margin-top:10px; color: white;">
-                            <i class="fa-solid fa-cart-shopping"></i></a>
+                    {% if item.slug %}
+                    <a href="{% url 'cart:add_to_cart' item.slug %}" class="button_small" style="margin-top:10px; color: white;">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                {% else %}
+                    <span class="button_small disabled" style="margin-top:10px; color: gray;">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </span>
+                {% endif %}
+                
                     {% endif %}
                 </div>
                 {% if not forloop.last %}{% endif %}
