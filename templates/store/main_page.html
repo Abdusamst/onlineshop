@@ -56,7 +56,7 @@
                 <a href="{% url 'store:tag_details' tag.slug %}" class="carousel-item">
                     <p><span class="image right">
                     {% if tag.image %}
-                        <img src="{{ tag.image.url }}" alt="" style="width: 200px; height: 200px;"/>
+                        <img src="{{ tag.image.url }}" alt="" style="width: 125px; height: 125px;"/>
                     {% else %}
                         <img src="{% static 'images/pic14.jpg' %}" alt="" />
                     {% endif %}
@@ -65,8 +65,6 @@
                 </a>
                 {% endfor %}
                 </div>
-                <button class="previous">&#60;</button>
-                <button class="next">&#62;</button>
             </div>
             
         </div>  
@@ -128,34 +126,6 @@
         {% block js %}
     
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.querySelector('.tags_mainpage');
-    const nextButton = document.querySelector('.next');
-    const prevButton = document.querySelector('.previous');
-    const carouselItems = document.querySelectorAll('.tags_mainpage a');
-
-    const itemWidth = carouselItems[0].offsetWidth + 20;
-    const totalItems = carouselItems.length;
-    const visibleItems = 4;
-    const maxScroll = (totalItems - visibleItems) * itemWidth;
-
-    let currentScroll = 0;
-
-    nextButton.addEventListener('click', () => {
-        if (currentScroll < maxScroll) {
-            currentScroll += itemWidth;
-            carousel.scrollLeft = currentScroll;
-        }
-    });
-
-    prevButton.addEventListener('click', () => {
-        if (currentScroll > 0) {
-            currentScroll -= itemWidth;
-            carousel.scrollLeft = currentScroll;
-        }
-    });
-});
-
 function toggleFavorite(itemId) {
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;       
     fetch(`/toggle_favorite/${itemId}/`, {

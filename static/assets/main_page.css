@@ -105,7 +105,6 @@
     flex-direction: row;
      /* чтобы теги переносились на следующую строку при нехватке места */
     gap: 20px; /* расстояние между тегами */
-    justify-content: center; /* выравнивание по центру */
     margin: 20px 0; /* отступы сверху и снизу */
 }
 
@@ -119,14 +118,13 @@
 }
 
 .tags_mainpage .image {
-    width: 200px;
-    height: 200px;
+    width: 125px;
+    height: 125px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     border-radius: 50%; /* делаем изображение круглым */
-    border: 2px solid #000; /* добавляем рамку для кружков */
+    border: 3px solid gold;
 }
 
 .tags_mainpage img {
@@ -187,8 +185,7 @@ i.fa-heart {
 .carousel-container {
     position: relative;
     max-width: 1120px;
-    margin-right: auto;
-    overflow: hidden;
+    margin-right: 400px;
 }
 
 .carousel-slide {
@@ -285,7 +282,6 @@ i.fa-heart {
 
 .tags_mainpage {
     display: flex;
-    overflow-x: hidden;
     scroll-behavior: smooth;
     gap: 20px;
     padding: 20px 50px;
@@ -865,6 +861,158 @@ i.fa-heart {
 
 }
   
-@media (min-width: 1920px) { 
+@media (min-width: 1920px) {
 
+}
+
+/* 2K (2560x1440) */
+@media (min-width: 2560px) {
+
+  
+}
+
+/* 3K (3200x1800) */
+@media (min-width: 3200px) {
+    .carousel-slide {
+        width: 2200px;
+        height: 600px;
+        margin-left: 250px;
+    }
+
+    .doorlogo {
+        width: 500px;
+        height: 125px;
+    }
+
+    .subtitle {
+        font-size: 40px;
+    }
+
+    .market-title {
+        font-size: 80px;
+    }
+
+    .image-caption {
+        font-size: 48px;
+    }
+
+    .beseller {
+        margin-top: -520px;
+        margin-left: 2500px;
+    }
+
+    .beseller img {
+        width: 500px;
+        height: 250px;
+    }
+
+    .Jhin {
+        width: 750px;
+        height: 1250px;
+        margin-left: 2500px;
+        margin-top: -450px;
+    }
+
+    .carousel-container {
+        width: 2200px;
+    }
+
+    .tags_mainpage .image {
+        width: 400px;
+        height: 400px;
+    }
+
+    .product-item {
+        padding: 35px;
+    }
+
+    .product-item img {
+        height: 500px;
+    }
+
+    .product-item a b {
+        font-size: 32px;
+    }
+
+    .item-description {
+        font-size: 26px;
+        height: 120px;
+    }
+
+    .price-current {
+        font-size: 30px;
+    }
+}
+
+/* 4K (3840x2160) */
+@media (min-width: 3840px) {
+    .carousel-slide {
+        width: 2600px;
+        height: 700px;
+        margin-left: 300px;
+    }
+
+    .doorlogo {
+        width: 600px;
+        height: 150px;
+    }
+
+    .subtitle {
+        font-size: 48px;
+    }
+
+    .market-title {
+        font-size: 96px;
+    }
+
+    .image-caption {
+        font-size: 56px;
+    }
+
+    .beseller {
+        margin-top: -600px;
+        margin-left: 3000px;
+    }
+
+    .beseller img {
+        width: 600px;
+        height: 300px;
+    }
+
+    .Jhin {
+        width: 900px;
+        height: 1500px;
+        margin-left: 3000px;
+        margin-top: -500px;
+    }
+
+    .carousel-container {
+        width: 2600px;
+    }
+
+    .tags_mainpage .image {
+        width: 500px;
+        height: 500px;
+    }
+
+    .product-item {
+        padding: 40px;
+    }
+
+    .product-item img {
+        height: 600px;
+    }
+
+    .product-item a b {
+        font-size: 36px;
+    }
+
+    .item-description {
+        font-size: 30px;
+        height: 140px;
+    }
+
+    .price-current {
+        font-size: 34px;
+    }
 }
