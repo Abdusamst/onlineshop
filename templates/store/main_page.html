@@ -56,7 +56,7 @@
                 <a href="{% url 'store:tag_details' tag.slug %}" class="carousel-item">
                     <p><span class="image right">
                     {% if tag.image %}
-                        <img src="{{ tag.image.url }}" alt="" style="width: 125px; height: 125px;"/>
+                        <img src="{{ tag.image.url }}" alt=""/>
                     {% else %}
                         <img src="{% static 'images/pic14.jpg' %}" alt="" />
                     {% endif %}

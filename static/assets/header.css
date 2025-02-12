@@ -166,7 +166,6 @@ body {
 
 .actions {
     display: flex;
-    margin-right: 120px;
 }
 
 .language-selector { 
@@ -1145,4 +1144,111 @@ body {
         width: 120px;
         height: 35px;
     }
+}
+
+
+
+
+
+@media (min-width: 2560px) {
+    .inner1 {
+        margin: 0 auto;  /* Центрирование */
+        max-width: 2000px;  /* Максимальная ширина контента */
+        padding: 0 30px;
+        gap: 60px;
+        display: flex;
+        justify-content: center;  /* Центрирование всех элементов */
+        align-items: center;
+    }
+
+    /* Увеличенная поисковая строка */
+    .search-bar {
+        width: 1900px;  /* Увеличенная ширина */
+    }
+    .header-logo a span {
+        font-size: 26px;
+    }
+
+    .search-bar form {
+        width: 1800px;
+        height: 70px;  /* Увеличенная высота */
+        border-width: 5px;  /* Более толстая рамка */
+    }
+
+    .search-bar input[type="text"] {
+        padding: 25px;
+        font-size: 22px;  /* Больший размер шрифта */
+    }
+
+    .search-bar button {
+        padding: 22px 70px;  /* Увеличенные отступы */
+    }
+
+    .search-bar button i {
+        font-size: 24px;  /* Увеличенная иконка поиска */
+    }
+
+    /* Увеличенная кнопка каталога */
+    .catalog-button {
+        padding: 20px 40px;
+        font-size: 26px;
+        border-width: 5px;
+    }
+
+    .catalog-button i.fa-solid.fa-bars {
+        margin-right: 35px;
+        font-size: 26px;
+    }
+
+    /* Увеличенные иконки header */
+    .icons-header {
+        gap: 40px;  /* Больше пространства между иконками */
+    }
+
+    .icons-header a img {
+        height: 120px;  /* Увеличенные иконки */
+    }
+
+    .icon-text {
+        font-size: 20px;  /* Увеличенный текст под иконками */
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    /* Увеличенный логотип */
+    .header-logo {
+        height: 140px;  /* Увеличенная высота шапки */
+    }
+
+    .header-logo a img {
+        height: 80px;
+        margin-bottom: 15px;
+    }
+
+    /* Увеличенный каталог */
+    #catalog {
+        width: 300px;
+        top: 260px;
+        padding: 20px;
+    }
+
+    #catalog h3 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    #catalog ul li {
+        margin-bottom: 15px;
+    }
+
+    #catalog ul li a {
+        font-size: 20px;
+        padding: 8px 15px;
+    }
+
+    .icons-header {
+        width: 10px;
+    }
+    /* Увеличенные кнопки действий */
+
 }
