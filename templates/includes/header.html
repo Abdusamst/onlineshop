@@ -74,10 +74,6 @@
                             <span class="icon-text">Панель модератора</span>
                         </a>
                         {% endif %}
-                        <!-- <a href="{% url 'users:user_orders' %}">
-                            <i class="fa-solid fa-list-check"></i>
-                            <span class="icon-text">Заказы</span>
-                        </a> -->
                         {% if user.is_seller %}
                         <a href="{% url 'store:my_items' %}">
                             <img src="{% static 'images/seller.png' %}" alt="">

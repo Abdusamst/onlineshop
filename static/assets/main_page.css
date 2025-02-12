@@ -912,15 +912,17 @@ i.fa-heart {
     .beseller {
         margin-top: -570px;
         margin-left: 1960px;
-
+    }
+    .image-caption {
+        font-size: 54px;
     }
     .beseller img {
         width: 340px;
         height: 200px;
     }
     .carousel-slide {
-        width: 1700px;
-        height: 550px;
+        width: 1900px;
+        height: 650px;
     }
     .image-section {
         width: 100%;
@@ -950,7 +952,7 @@ i.fa-heart {
     }
 
     .inner12 {
-        margin-left: 600px;
+        margin-left: 400px;
     }
     .product-item {
         background: white;
