@@ -4,12 +4,57 @@
     <link rel="stylesheet" href="{% static 'assets/add_item.css' %}">
 {% endblock %}
 {% block content %}
-    <div class="add-item-form">
-        <h1>Добавить товар</h1>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="button">Добавить</button>
-        </form>
+<form method="post" enctype="multipart/form-data" class="add-item-form">
+    {% csrf_token %}
+    <p><label for="id_title">Название:</label> {{ form.title }}</p>
+    <p><label for="id_description">Описание:</label> {{ form.description }}</p>
+    <p><label for="id_price">Цена:</label> {{ form.price }}</p>
+    <p><label for="id_old_price">Старая цена:</label> {{ form.old_price }}</p>
+    
+    <p><label for="id_image">Изображение:</label></p>
+    <div class="file-input-container">
+        {{ form.image }}
+        <div class="image-preview-container">
+            <div class="preview-placeholder">
+                Предварительный просмотр изображения
+            </div>
+            <img id="imagePreview" class="image-preview" src="#" alt="Preview">
+        </div>
     </div>
+    
+    <p><label for="id_is_available">Доступно:</label> {{ form.is_available }}</p>
+    
+    <p><label for="id_tags">Выберите категорию:</label></p>
+    <div class="radio-group">
+        {{ form.tags }}
+    </div>
+
+    <button type="submit" class="button">Добавить</button>
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const imageInput = document.querySelector('input[type="file"]');
+    const imagePreview = document.getElementById('imagePreview');
+    const placeholder = document.querySelector('.preview-placeholder');
+
+    imageInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.classList.add('active');
+                placeholder.style.display = 'none';
+            }
+            
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.classList.remove('active');
+            placeholder.style.display = 'flex';
+        }
+    });
+});
+</script>
 {% endblock %}

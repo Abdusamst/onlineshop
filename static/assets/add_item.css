@@ -1,89 +1,167 @@
-/* Mobile-first approach */
+/* Add Item Form Styles */
 .add-item-form {
-    width: 90%;
-    max-width: 500px;
-    margin: 1rem auto;
-    padding: 1rem;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.add-item-form h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+.add-item-form p {
+    margin-bottom: 20px;
+}
+
+.add-item-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
     color: #333;
 }
 
-/* Form elements */
-.add-item-form form p {
-    margin-bottom: 1rem;
-}
-
-.add-item-form form p label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #444;
-}
-
-/* Input fields */
-.add-item-form form p input[type="text"],
-.add-item-form form p input[type="number"],
-.add-item-form form p textarea,
-.add-item-form form p select {
+.add-item-form input[type="text"],
+.add-item-form input[type="number"],
+.add-item-form textarea {
     width: 100%;
-    padding: 0.5rem;
+    padding: 12px;
     border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.add-item-form input[type="text"]:focus,
+.add-item-form input[type="number"]:focus,
+.add-item-form textarea:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.add-item-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.radio-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f5f5f5;
     border-radius: 4px;
-    font-size: 16px; /* Prevents zoom on mobile */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* File input specific */
-.add-item-form form p input[type="file"] {
-    width: 100%;
-    padding: 0.5rem 0;
+.radio-group label:hover {
+    background: #eee;
 }
 
-/* Submit button */
-.add-item-form .button {
-    width: 100%;
-    padding: 0.75rem;
-    background: #2196F3;
+.radio-group input[type="radio"] {
+    margin-right: 8px;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #4a90e2;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Error messages */
-.add-item-form form p .errorlist {
-    color: #f44336;
-    margin: 0.25rem 0;
-    padding: 0;
+.button:hover {
+    background-color: #357abd;
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+/* File input styling */
+.add-item-form input[type="file"] {
+    display: block;
+    margin-top: 8px;
+    padding: 8px;
+    border: 1px dashed #ddd;
+    border-radius: 6px;
+    background: #f8f9fa;
+}
+
+/* Checkbox styling */
+.add-item-form input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+/* Error states */
+.add-item-form .errorlist {
+    color: #dc3545;
     list-style: none;
-    font-size: 0.875rem;
+    padding: 0;
+    margin: 4px 0;
+    font-size: 14px;
 }
 
-/* Help text */
-.add-item-form form p .helptext {
+.add-item-form input.error,
+.add-item-form textarea.error {
+    border-color: #dc3545;
+}
+
+.image-preview-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    display: none;
+    margin: 10px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-preview.active {
+    display: block;
+}
+
+.preview-placeholder {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #666;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 
-/* Tablet and larger */
-@media screen and (min-width: 768px) {
-    .add-item-form {
-        padding: 1.5rem;
-        margin: 2rem auto;
-    }
-
-    .add-item-form h1 {
-        font-size: 1.75rem;
-    }
+/* Custom file input */
+.file-input-container {
+    position: relative;
+    margin-top: 10px;
 }
 
-/* Desktop adjustments */
-@media screen and (min-width: 1024px) {
-    .add-item-form {
-        padding: 2rem;
-    }
+.file-input-container input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f8f9fa;
+    cursor: pointer;
 }

@@ -9,6 +9,11 @@ h1 {
     letter-spacing: 1px;
 }
 
+.item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
 /* Основной контейнер (размещаем товары слева, Джинна справа) */
 .main-container {
     display: flex;
@@ -27,10 +32,7 @@ h1 {
 
 /* Блок с Джинном */
 .genie-container {
-    flex: 1; /* Джинн занимает меньше места */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-left: -220px;
 }
 
 .genie {
@@ -40,7 +42,7 @@ h1 {
 .speech-bubble {
     position: absolute;
     width: 200px;
-    margin-right: 200px;
+    margin-left: -20px;
     margin-top: -20px;
 }
 
@@ -53,20 +55,49 @@ h1 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.item a {
+    text-decoration: none;
+}
+
 .item:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* Кнопки */
-.button {
+.button_delete {
     display: inline-block;
+    background-color: red;
     padding: 10px 15px;
     border-radius: 6px;
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
     transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    color: white;
+    margin-top:10px ;
+}
+.price_my_items {
+    font-weight: bold;
+}
+.button_edit {
+    background-color: #2ecc71;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 16px;
+    display: inline-block;
+    padding: 10px 15px;
+}
+.button_delete:hover {
+    background-color: darkred;
+}
+
+.button_edit:hover {
+    background-color: #00360b;
 }
 
 /* Кнопка "Добавить товар" */
@@ -89,178 +120,50 @@ h1 {
 }
 
 /* Медиа-запрос для мобильных устройств */
-@media (max-width: 768px) {
-    .main-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .genie {
-        width: 200px;
-    }
-
-    .speech-bubble {
-        width: 150px;
-    }
-
-    .item-list {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 399px) {
+    
 }
 
+@media (max-width: 575px) {
 
-/* Item list container */
-.item-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
 }
 
-/* Individual item card */
-.item {
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
+@media (min-width: 576px) and (max-width: 767px) {
+
 }
 
-.item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+@media (min-width: 768px) and (max-width: 991px) {
+
 }
 
-/* Item content styling */
-.item h2 {
-    color: #34495e;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
+@media (min-width: 992px) and (max-width: 1199px) {
+
 }
 
-.item p {
-    color: #7f8c8d;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+@media (min-width: 1200px) and (max-width: 1399px) {
+
 }
 
-/* Button styles */
-.button {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    margin: 0.5rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
+@media (min-width: 1400px) {
+
 }
 
-/* Edit button */
-a.button {
-    background-color: #3498db;
-    color: white;
+@media (min-width: 1920px) {
+
 }
 
-a.button:hover {
-    background-color: #2980b9;
+@media (min-width: 2560px) {
+
 }
 
-/* Delete button */
-button.button {
-    background-color: #e74c3c;
-    color: white;
+@media (min-width: 2880px) { 
+
 }
 
-button.button:hover {
-    background-color: #c0392b;
+@media (min-width: 3840px) {
+
 }
 
-/* Price styling */
-.item p:nth-of-type(2) {
-    font-weight: bold;
-    color: #27ae60;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-}
+@media (min-width: 4800px) {
 
-.button_add_item_my_items {
-    padding: 10px 20px ;
-    background-color: #27ae60;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    border-radius: 10px;
-    font-size: 26px;
-    display: inline-block;
-}
-
-.button_add_item_my_items_container {
-    display: flex;
-    justify-content: center; /* Центрирует по горизонтали */
-    align-items: center; /* Центрирует по вертикали */
-    width: 100%; /* На всю ширину */
-    margin-bottom: 20px;
-}
-
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .item-list {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        padding: 1rem;
-        gap: 1rem;
-    }
-
-    h1 {
-        font-size: 2rem;
-        margin: 1.5rem 0;
-    }
-
-    .item {
-        padding: 1rem;
-    }
-
-    .item h2 {
-        font-size: 1.3rem;
-    }
-
-    .button {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .item-list {
-        grid-template-columns: 1fr;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-        margin: 1rem 0;
-    }
-}
-
-/* Loading animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.item {
-    animation: fadeIn 0.5s ease-out forwards;
 }

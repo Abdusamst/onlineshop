@@ -25,7 +25,7 @@ def store(request):
 @receiver(pre_save, sender=Item)
 def create_slug(sender, instance, **kwargs):
     if not instance.slug:  # проверяем, есть ли уже slug
-        instance.slug = slugify(instance.title)  # Используем title вместо name
+        instance.slug = slugify(instance.name)  # Используем title вместо name
 
 def poster(request):
     posters = Poster.objects.all()
@@ -291,18 +291,20 @@ def add_item(request):
             item = form.save(commit=False)
             item.seller = request.user  
             item.save()
+            form.save_m2m()  # Обязательно для ManyToManyField, чтобы сохранить категории
+
+            print(f"Товар {item.title} добавлен в категории: {[tag.name for tag in item.tags.all()]}")
             return redirect('store:my_items')
     else:
         form = ItemForm()
 
-    page_obj_2 = ItemTag.objects.all()
-    tags = ItemTag.objects.all().order_by('name')
+    tags = ItemTag.objects.all()
     context = {
         'form': form,
         'tags': tags,
-        'page_obj_2': tags,
     }
     return render(request, 'store/add_item.html', context)
+
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
