@@ -2,8 +2,16 @@ from django import forms
 from .models import Seller
 from django import forms
 from .models import Item
+from .models import Item, ItemTag
 
 class ItemForm(forms.ModelForm):
+    tags = forms.ModelMultipleChoiceField(
+        queryset=ItemTag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,  # Можно заменить на forms.SelectMultiple для списка
+        required=True,
+        label="Категории"
+    )
+
     class Meta:
         model = Item
         fields = ['title', 'description', 'price', 'old_price', 'image', 'is_available', 'tags']

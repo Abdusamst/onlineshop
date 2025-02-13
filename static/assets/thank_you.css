@@ -1,0 +1,169 @@
+/* Thank You Page Styles */
+.thank-you {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 40px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.6s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.thank-you h2 {
+    color: #2c3e50;
+    font-size: 36px;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.thank-you h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #3498db;
+    border-radius: 2px;
+    animation: widthGrow 0.8s ease-out forwards;
+}
+
+@keyframes widthGrow {
+    from {
+        width: 0;
+    }
+    to {
+        width: 60px;
+    }
+}
+
+.thank-you p {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 30px 0;
+    animation: fadeIn 0.8s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.thank-you .button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.thank-you .button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.thank-you .button:active {
+    transform: translateY(0);
+}
+
+.thank-you .button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.4s ease-out;
+}
+
+.thank-you .button:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .thank-you {
+        margin: 40px 20px;
+        padding: 30px 20px;
+    }
+
+    .thank-you h2 {
+        font-size: 28px;
+    }
+
+    .thank-you p {
+        font-size: 16px;
+    }
+
+    .thank-you .button {
+        display: block;
+        margin: 15px auto;
+        max-width: 280px;
+    }
+}
+
+/* Additional decorative elements */
+.thank-you::before,
+.thank-you::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid #3498db;
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: float 6s infinite ease-in-out;
+}
+
+.thank-you::before {
+    top: -20px;
+    left: -20px;
+    border-color: #3498db;
+}
+
+.thank-you::after {
+    bottom: -20px;
+    right: -20px;
+    border-color: #2ecc71;
+    animation-delay: -3s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(10px, -10px);
+    }
+}
