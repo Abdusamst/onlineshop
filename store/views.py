@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 from django.contrib.auth.decorators import login_required
 
 def store(request):
-    items = Item.objects.filter(is_available=True)
+    items = Item.objects.filter(is_available=True, is_approved=True)
     tags = ItemTag.objects.all().order_by('name')  # Добавим сортировку
     posters = Poster.objects.all()
     favorites = Favorite.objects.filter(user=request.user).values_list('item_id', flat=True) if request.user.is_authenticated else []
@@ -25,7 +25,7 @@ def store(request):
 @receiver(pre_save, sender=Item)
 def create_slug(sender, instance, **kwargs):
     if not instance.slug:  # проверяем, есть ли уже slug
-        instance.slug = slugify(instance.name)  # Используем title вместо name
+        instance.slug = slugify(instance.title)  # Используем title вместо name
 
 def poster(request):
     posters = Poster.objects.all()
@@ -133,6 +133,13 @@ def all_reviews(request, item_slug):  # Используйте item_slug
         'average_rating': average_rating,
     }
     return render(request, 'store/all_reviews.html', context)
+
+from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import render
+
+@staff_member_required
+def moderator_panel(request):
+    return render(request, 'store/moderator_panel.html')
 
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
@@ -291,20 +298,20 @@ def add_item(request):
             item = form.save(commit=False)
             item.seller = request.user  
             item.save()
-            form.save_m2m()  # Обязательно для ManyToManyField, чтобы сохранить категории
+            form.save_m2m()
 
-            print(f"Товар {item.title} добавлен в категории: {[tag.name for tag in item.tags.all()]}")
-            return redirect('store:my_items')
-    else:
-        form = ItemForm()
+            print("Редирект выполняется!")  # Проверка
+            return redirect('store:thank_you')
+        
+        print("Ошибки формы:", form.errors)  # Показываем ошибки в консоли
 
+    form = ItemForm()
     tags = ItemTag.objects.all()
-    context = {
-        'form': form,
-        'tags': tags,
-    }
-    return render(request, 'store/add_item.html', context)
+    return render(request, 'store/add_item.html', {'form': form, 'tags': tags})
 
+
+def thank_you(request):
+    return render(request, 'store/thank_you.html')
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404

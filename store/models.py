@@ -106,7 +106,7 @@ class Item(models.Model):
         default=True,
         verbose_name='Доступно',
     )
-    
+    is_approved = models.BooleanField(default=False, verbose_name="Одобрено администратором")  # ✅ Добавлено поле
     
     tags = TaggableManager(through=TaggedItem, related_name="tagged_items", verbose_name='Категории',)
     seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default = 1 ,related_name='items', verbose_name='Продавец')

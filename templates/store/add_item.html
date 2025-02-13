@@ -24,10 +24,13 @@
     
     <p><label for="id_is_available">Доступно:</label> {{ form.is_available }}</p>
     
-    <p><label for="id_tags">Выберите категорию:</label></p>
-    <div class="radio-group">
-        {{ form.tags }}
-    </div>
+    <p><label for="id_tags">Выберите категорию:</label>
+        <select name="tags" id="id_tags" multiple>
+            {% for tag in tags %}
+                <option value="{{ tag.id }}">{{ tag.name }}</option>
+            {% endfor %}
+        </select>
+    </p>        
 
     <button type="submit" class="button">Добавить</button>
 </form>

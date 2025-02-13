@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/admin_panel.css' %}">
+{% endblock %}
+{% block content %}
+<div class="moderator-panel">
+    <h2>Панель модератора</h2>
+    <a href="{% url 'admin:index' %}" class="button">Перейти в управление базой данных</a>
+    <a href="{% url 'users:moderate_items' %}" class="button_admin_panel">Принимать/Отклонять товары</a>
+</div>
+{% endblock %}

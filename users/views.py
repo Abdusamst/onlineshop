@@ -49,10 +49,6 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm
 from .models import CustomUser
-from .utils import send_email_notification  # удалил send_sms_notification
-
-
-SUPERUSER_PHONE = "998997966517"  # Главный модератор
 
 class SignUp(CreateView):
     form_class = CustomUserCreationForm
@@ -62,10 +58,6 @@ class SignUp(CreateView):
     def form_valid(self, form):
         user = form.save(commit=False)  # Не сохраняем сразу, чтобы можно было изменить данные
         phone_number = form.cleaned_data.get("phone_number")
-
-        if phone_number == SUPERUSER_PHONE:
-            user.is_superuser = True
-            user.is_staff = True
 
         user.save()  # Теперь сохраняем
         login(self.request, user)  # Авторизуем пользователя после регистрации
@@ -93,3 +85,31 @@ def feedback_processing(request):
     return render(request, 'users/feedback_failed.html')
 
 
+from django.contrib.auth.decorators import login_required, user_passes_test
+from store.models import Item
+from django.shortcuts import get_object_or_404
+
+
+def is_admin(user):
+    return user.is_superuser  # ✅ Проверка на администратора
+
+@login_required
+@user_passes_test(is_admin)
+def moderate_items(request):
+    items = Item.objects.filter(is_approved=False)
+    return render(request, "store/moderate_items.html", {"items": items})
+
+@login_required
+@user_passes_test(is_admin)
+def approve_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    item.is_approved = True
+    item.save()
+    return redirect("users:moderate_items")
+
+@login_required
+@user_passes_test(is_admin)
+def reject_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    item.delete()
+    return redirect("users:moderate_items")

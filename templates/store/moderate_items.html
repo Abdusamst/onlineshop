@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/moderate_items.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_superuser %}
+    <div class="moderation-container">
+        <h2>Модерация товаров</h2>
+        <div class="moderation-grid">
+            {% for item in items %}
+            <div class="moderation-card">
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                {% else %}
+                    <img src="{% static 'images/pic14.jpg' %}" alt="Default image">
+                {% endif %}
+                
+                <div class="moderation-info">
+                    <div class="moderation-title">{{ item.title }}</div>
+                    <div class="moderation-seller">Продавец: {{ item.seller.username }}</div>
+                    <div class="item-description">{{ item.description }}</div>
+                    <div class="price-current"><b>{{ item.price }}</b> сом</div>
+                </div>
+                
+                <div class="moderation-actions">
+                    <a href="{% url 'users:approve_item' item.id %}" class="action-button approve-button">
+                        ✅ Одобрить
+                    </a>
+                    <a href="{% url 'users:reject_item' item.id %}" class="action-button reject-button">
+                        ❌ Отклонить
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="empty-message">
+                <p>Нет товаров на модерации.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+    <p>У вас нет доступа к этой странице.</p>
+{% endif %}
+
+{% endblock %}
+

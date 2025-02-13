@@ -7,7 +7,7 @@ from .models import Item, ItemTag
 class ItemForm(forms.ModelForm):
     tags = forms.ModelMultipleChoiceField(
         queryset=ItemTag.objects.all(),
-        widget=forms.RadioSelect,  # Можно заменить на forms.SelectMultiple для списка
+        widget=forms.CheckboxSelectMultiple,  # Можно заменить на forms.SelectMultiple для списка
         required=True,
         label="Категории"
     )

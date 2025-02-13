@@ -8,10 +8,13 @@ from django.contrib.auth.views import (LoginView, LogoutView,
 from django.urls import path, reverse_lazy
 
 from .views import SignUp, feedback_processing, profile, user_orders
-
+from .views import moderate_items, approve_item, reject_item
 app_name = 'users'
 
 urlpatterns = [
+    path("moderate/", moderate_items, name="moderate_items"),
+    path("approve/<int:item_id>/", approve_item, name="approve_item"),
+    path("reject/<int:item_id>/", reject_item, name="reject_item"),
     path('orders/', user_orders, name='user_orders'),
     path('profile/', profile, name='profile'),
     path('feedback-processing/', feedback_processing, name='feedback_processing'),

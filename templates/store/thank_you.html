@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'assets/thank_you.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="thank-you">
+        <h2>Спасибо!</h2>
+        <p>Ваш товар отправлен на модерацию. Мы скоро его проверим.</p>
+        <a href="{% url 'store:add_item' %}" class="button">Добавить ещё товар</a>
+        <a href="{% url 'store:my_items' %}" class="button">Перейти к моим товарам</a>
+    </div>
+{% endblock %}
