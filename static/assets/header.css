@@ -425,6 +425,7 @@ body {
   
   /* Standard Mobile (400-575px) */
   @media (max-width: 575px) { 
+
     .logo .symbol img {
         height: 40px;
     }
@@ -451,14 +452,16 @@ body {
         }
     
         .logo .symbol img {
-            height: 70px;
+            height: 50px;
+            margin-top: 10px;
         }
     
         /* Поисковая строка - уменьшаем */
         .search-bar {
             padding: 6px 10px;
-            width: 20%;
+            width: 40%;
             padding: 0 5px;
+
         }
     
         .search-bar form {
@@ -469,6 +472,7 @@ body {
         .search-bar input[type="text"] {
             padding: 8px;
             font-size: 12px;
+
         }
     
         .search-bar button {
@@ -510,6 +514,7 @@ body {
             margin-right: 5px;
             display: flex;
             gap: 5px;
+            width: 10px;
         }
 
     
@@ -1247,8 +1252,109 @@ body {
     }
 
     .icons-header {
-        width: 10px;
+        width: 100px;
     }
     /* Увеличенные кнопки действий */
 
+}
+@media (min-width: 2880px)  {
+    .inner1 {
+        margin: 0 auto;  /* Центрирование */
+        max-width: 2000px;  /* Максимальная ширина контента */
+        padding: 0 30px;
+        gap: 60px;
+        display: flex;
+        justify-content: center;  /* Центрирование всех элементов */
+        align-items: center;
+    }
+
+    /* Увеличенная поисковая строка */
+    .search-bar {
+        width: 1900px;  /* Увеличенная ширина */
+    }
+
+    .header-logo a span {
+        font-size: 26px;
+    }
+
+    .search-bar form {
+        width: 1800px;
+        height: 70px;  /* Увеличенная высота */
+        border-width: 5px;  /* Более толстая рамка */
+    }
+
+    .search-bar input[type="text"] {
+        padding: 25px;
+        font-size: 22px;  /* Больший размер шрифта */
+    }
+
+    .search-bar button {
+        padding: 22px 70px;  /* Увеличенные отступы */
+    }
+
+    .search-bar button i {
+        font-size: 24px;  /* Увеличенная иконка поиска */
+    }
+
+    /* Увеличенная кнопка каталога */
+    .catalog-button {
+        padding: 20px 40px;
+        font-size: 26px;
+        border-width: 5px;
+    }
+
+    .catalog-button i.fa-solid.fa-bars {
+        margin-right: 35px;
+        font-size: 26px;
+    }
+
+    /* Увеличенные иконки header */
+    .icons-header {
+        gap: 40px;  /* Больше пространства между иконками */
+    }
+
+    .icons-header a img {
+        height: 120px;  /* Увеличенные иконки */
+    }
+
+    .icon-text {
+        font-size: 20px;  /* Увеличенный текст под иконками */
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    /* Увеличенный логотип */
+    .header-logo {
+        height: 140px;  /* Увеличенная высота шапки */
+    }
+
+    .header-logo a img {
+        height: 80px;
+        margin-bottom: 15px;
+    }
+
+    /* Увеличенный каталог */
+    #catalog {
+        width: 300px;
+        top: 260px;
+        padding: 20px;
+    }
+
+    #catalog h3 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    #catalog ul li {
+        margin-bottom: 15px;
+    }
+
+    #catalog ul li a {
+        font-size: 20px;
+        padding: 8px 15px;
+    }
+
+    .icons-header {
+        width: 100px;
+    }
 }
