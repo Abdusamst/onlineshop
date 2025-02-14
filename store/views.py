@@ -147,7 +147,7 @@ from .models import ItemTag, Item
 
 def tag_details(request, slug):
     tag = get_object_or_404(ItemTag, slug=slug)
-    items = Item.objects.filter(tags=tag)  # Вместо tags__in=[tag]
+    items = Item.objects.filter(tags=tag, is_available=True, is_approved=True)  # Вместо tags__in=[tag]
     paginator = Paginator(items, 10)  # отобразить 10 товаров на странице
 
     page_number = request.GET.get('page')
