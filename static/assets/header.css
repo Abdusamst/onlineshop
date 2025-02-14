@@ -429,15 +429,12 @@ body {
         height: 40px;
     }
     .header-logo {
-        height: 80%;
+        width: 100%;
     }
     .header-logo a img {
         height: 40px;
         margin-bottom: 5px;
     }
-        body {
-            font-size: 14px;
-        }
     
         /* Логотип и шапка */
         .logo {
