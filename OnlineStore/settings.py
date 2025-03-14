@@ -18,8 +18,8 @@ SECRET_KEY = ('5o@ux!w8v89i@czv*5^@nos6&u1wbi6bpv_%3m#f7q1^j-@(0%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ["192.168.81.4", "localhost", "127.0.0.1"]
+#192.168.81.4", "localhost", "127.0.0.1
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'store.custommiddleware.CustomLocaleMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'OnlineStore.urls'
@@ -163,3 +164,7 @@ TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
+
+#этого не должно быть
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
